@@ -139,8 +139,9 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
 .back-stage.hz .back-photo{width:238px;height:156px;top:14px;}
 .back-stage.hz .dim-w{top:180px;width:238px;}
 .back-stage.hz .dim-h{left:246px;height:156px;top:14px;}
+@keyframes attnsoft{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(240,180,41,.45);}5%{transform:scale(1.13);}10%{transform:scale(1);box-shadow:0 0 0 11px rgba(240,180,41,0);}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(240,180,41,0);}}
 @media(max-width:760px){
-.p-card.mp-center .flip-hint{background:var(--accent);color:#0d1f33;animation:attn 1.15s ease-out infinite;}
+.p-card.mp-center .flip-hint{background:var(--accent);color:#0d1f33;animation:attnsoft 5s ease-out infinite;}
 }
 </style>
 </head>
