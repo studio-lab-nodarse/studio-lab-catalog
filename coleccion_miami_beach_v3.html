@@ -744,7 +744,7 @@ if(location.hash==='#pedido'){mpOpenPanel();}
 /* movil: al centrar una tarjeta en pantalla, el boton de giro llama la atencion */
 if(window.matchMedia&&window.matchMedia('(max-width:760px)').matches&&'IntersectionObserver' in window){
   var mpIO=new IntersectionObserver(function(es){
-    es.forEach(function(e){e.target.classList.toggle('mp-center',e.isIntersecting);});
+    es.forEach(function(e){e.target.classList.toggle('mp-center',e.isIntersecting);if(!e.isIntersecting)e.target.classList.remove('flipped');});
   },{rootMargin:'-38% 0px -38% 0px',threshold:0});
   document.querySelectorAll('.p-card').forEach(function(c){mpIO.observe(c);});
 }
