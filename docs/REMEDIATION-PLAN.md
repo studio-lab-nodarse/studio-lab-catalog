@@ -55,11 +55,11 @@ Site-level:
 - [x] `robots.txt`, `sitemap.xml`, `404.html` (2026-07-16). Note: on a GitHub Pages **project** site, `robots.txt`/`sitemap.xml` live at the project subpath, not the domain root — submit the sitemap URL directly in Google Search Console for it to take effect.
 - [ ] Refine `<title>`s; verify one `<h1>` per page
 
-## Phase 3 — Performance / Core Web Vitals  ·  SEO + conversion; needs a build step
-- [ ] Externalize base64 images → files under `assets/` (enables caching, compression, lazy-load, reusable OG image)
-- [ ] `width`/`height` + `loading="lazy"` on offscreen images
-- [ ] `preconnect` + subset Google Fonts (Playfair Display, Archivo)
-- [ ] Target: catalog home 8.6 MB → <1 MB initial load
+## Phase 3 — Performance / Core Web Vitals  ·  SEO + conversion
+- [x] Externalize base64 images → `assets/img/` (2026-07-16). 383 unique files (content-hash names → immutable/cacheable), decoded from 509 refs. **HTML 29.9 MB → 1.0 MB** (catalog 8.6 MB → 116 KB, biggest page now 308 KB). Verified in-browser: all images load, pages render, footer/JSON-LD intact, 0 base64 left, every ref resolves. A few tiny inline SVG icons left as-is.
+- [ ] `width`/`height` + `loading="lazy"` on offscreen images — deferred: imgs are JS-rendered (would mean editing the React data/factory), higher risk, smaller win now that payload is external.
+- [ ] `preconnect` + subset Google Fonts (Playfair Display, Archivo) — `preconnect` already present in most pages; subsetting deferred.
+- [x] Target hit: catalog 8.6 MB → 116 KB initial HTML.
 
 ## Phase 4 — Deploy safety (fits Pages)
 - [ ] CI on PRs: link-integrity sweep (static `href=`, JS `href:`, `location.href=`, collections map), HTML validation, per-page size budget
