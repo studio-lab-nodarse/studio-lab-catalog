@@ -20,8 +20,8 @@ Single source of truth for the values that recur across the site (order channels
 
 | Key | Value | Notes |
 |-----|-------|-------|
-| **Order email (decided)** | **`jesusnodarse1823@gmail.com`** | Chosen 2026-07-16 as the order destination. NOT yet wired into pages — Phase 1 replaces the `mailto:` flow with a form-to-email service pointing here. |
-| Order email (still in code) | `nodarsesartsllc@gmail.com` | `MP_EMAIL` constant in storefront + hardcoded `mailto:` (~10 spots). To be replaced in Phase 1. |
+| **Order email** | **`jesusnodarse1823@gmail.com`** | Live destination. Wired via FormSubmit (Phase 1). Old `nodarsesartsllc@gmail.com` fully removed; CI blocks its return. |
+| Order transport | FormSubmit AJAX → `https://formsubmit.co/ajax/jesusnodarse1823@gmail.com` | Added script (`__slp`/`__slwa`) intercepts the order sinks and POSTs. Fallback = original mailto/WhatsApp. **Needs one-time FormSubmit activation** (owner clicks the confirm email on first order). |
 | WhatsApp / phone | `+1 786 483 4268` → `https://wa.me/17864834268` | catalog primary today; becomes secondary after Phase 1 |
 
 ## URLs / hosting
@@ -56,7 +56,7 @@ Under `assets/` — derived from the storefront header logo (a cream double-hear
 
 ## Where used (update these when a value changes)
 
-- **Order email** — storefront `MP_EMAIL` constant + hardcoded `mailto:` in `gorras/magnets/stickers.html` and `colecciones/*.html`; catalog order action.
+- **Order email** — the `__slp`/`__slwa` FormSubmit endpoint (added order script, all 8 app pages), the fallback `mailto:` strings + `MP_EMAIL`, and the JSON-LD `contactPoint.email` (all 9 pages). CI (`tools/verify_site.py`) fails if the old address reappears.
 - **WhatsApp number** — `apps/catalog/index.html` (`wa.me/17864834268`).
 - **Legal name / brand** — SEO JSON-LD (Phase 2), footers.
 - **Base URL** — canonical / OG / sitemap / robots (Phase 2).

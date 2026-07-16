@@ -40,7 +40,7 @@
         "@type": "ContactPoint",
         "contactType": "sales",
         "telephone": "+17864834268",
-        "email": "nodarsesartsllc@gmail.com",
+        "email": "jesusnodarse1823@gmail.com",
         "availableLanguage": ["es", "en"]
       }
     },
@@ -709,7 +709,7 @@ document.querySelectorAll('.p-card').forEach(function(c){
 </div>
 <script>
 var MP_KEY='mp_order';
-var MP_EMAIL='nodarsesartsllc@gmail.com';
+var MP_EMAIL='jesusnodarse1823@gmail.com';
 function mpLang(){return document.documentElement.lang||'en';}
 function mpGet(){try{return JSON.parse(localStorage.getItem(MP_KEY))||[]}catch(e){return []}}
 function mpSet(v){localStorage.setItem(MP_KEY,JSON.stringify(v));mpRender();}
@@ -784,7 +784,7 @@ function mpSend(){
   });
   var body=(es?'Pedido para cotizar':'Order for quote')+'\n\n'+lines.join('\n')+
     '\n\n'+(es?'Negocio':'Business')+': '+biz+'\n'+(es?'Contacto':'Contact')+': '+nm+'\nEmail: '+em;
-  location.href='mailto:'+MP_EMAIL+'?subject='+encodeURIComponent((es?'Pedido — ':'Order — ')+biz)+'&body='+encodeURIComponent(body);
+  window.__slp.href='mailto:'+MP_EMAIL+'?subject='+encodeURIComponent((es?'Pedido — ':'Order — ')+biz)+'&body='+encodeURIComponent(body);
 }
 function mpFlash(){var b=document.getElementById('mpBar');b.style.transform='scale(1.08)';setTimeout(function(){b.style.transform=''},180);}
 /* inyectar boton Versionar en cada tarjeta */
@@ -811,6 +811,67 @@ if(window.matchMedia&&window.matchMedia('(max-width:760px)').matches&&'Intersect
   document.querySelectorAll('.p-card').forEach(function(c){mpIO.observe(c);});
 }
 </script>
+<script>
+/* Studio Lab — captura fiable de pedidos (Phase 1).
+   Intercepta los "sinks" de pedido (mailto / WhatsApp) y los envía por
+   formulario-a-email (FormSubmit). Si el POST falla, cae al mailto/WhatsApp
+   original para no perder ningún pedido. */
+(function () {
+  var ENDPOINT = "https://formsubmit.co/ajax/jesusnodarse1823@gmail.com";
+  function parse(url) {
+    var subject = "Pedido — Studio Lab", body = "", wa = url.indexOf("wa.me") > -1;
+    try {
+      if (url.indexOf("mailto:") === 0) {
+        var q = url.indexOf("?") > -1 ? url.slice(url.indexOf("?") + 1) : "";
+        var p = new URLSearchParams(q);
+        subject = p.get("subject") || subject;
+        body = p.get("body") || "";
+      } else {
+        body = new URL(url).searchParams.get("text") || "";
+        subject = "Pedido — Studio Lab (WhatsApp)";
+      }
+    } catch (e) {}
+    return { subject: subject, body: body, wa: wa };
+  }
+  function toast(msg, kind) {
+    var t = document.getElementById("__sl_toast") || document.createElement("div");
+    t.id = "__sl_toast";
+    t.textContent = msg;
+    t.style.cssText = "position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:99999;" +
+      "max-width:90vw;padding:12px 18px;border-radius:12px;font:14px/1.4 system-ui,-apple-system,sans-serif;" +
+      "color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.35);background:" +
+      (kind === "ok" ? "#15803d" : kind === "err" ? "#b91c1c" : "#111827");
+    if (!t.parentNode) document.body.appendChild(t);
+    if (kind) setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 6000);
+  }
+  function send(url) {
+    var o = parse(url);
+    toast("Enviando pedido…");
+    return fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ _subject: o.subject, _template: "box", _captcha: "false", Pedido: o.body })
+    }).then(function (r) { if (!r.ok) throw new Error("http"); return r.json(); })
+      .then(function (d) {
+        if (d && (d.success === "true" || d.success === true)) {
+          toast("✓ ¡Pedido enviado! Te contactaremos pronto.", "ok");
+        } else {
+          throw new Error("pending");
+        }
+        if (o.wa) window.open(url, "_blank"); // WhatsApp queda como canal secundario
+      })
+      .catch(function () {
+        // nunca perder un pedido: cae al canal original
+        if (o.wa) window.open(url, "_blank"); else window.location.href = url;
+      });
+  }
+  // sink de mailto: el código de la app hace  window.__slp.href = 'mailto:...'
+  window.__slp = { set href(v) { send(String(v)); }, get href() { return ""; } };
+  // sink de WhatsApp: el código hace  window.__slwa('https://wa.me/...')
+  window.__slwa = function (u) { send(String(u)); };
+})();
+</script>
+
 <footer class="sl-sitefooter" aria-label="Navegación Studio Lab">
 <style>.sl-sitefooter{background:#0b0b0c;color:#f4f4f5;padding:28px 16px;text-align:center;font:14px/1.7 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.sl-sitefooter nav{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;max-width:900px;margin:0 auto}.sl-sitefooter a{color:#f4f4f5;text-decoration:none;opacity:.85}.sl-sitefooter a:hover{opacity:1;text-decoration:underline}.sl-sitefooter .cr{margin-top:14px;font-size:12px;opacity:.5}</style>
 <nav>

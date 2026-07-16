@@ -88,6 +88,12 @@ for p in present:
         if need not in s:
             err(f"[seo] {p} missing {label}")
 
+# 5b. order-email regression: the old personal address must never reappear
+OLD_ORDER_EMAIL = "nodarsesartsllc@gmail.com"
+for p in present:
+    if OLD_ORDER_EMAIL in read(p):
+        err(f"[order-email] {p} still references {OLD_ORDER_EMAIL} (orders go to jesusnodarse1823@gmail.com)")
+
 # 6. JSON-LD blocks parse
 ld = re.compile(r'<script type="application/ld\+json">(.*?)</script>', re.S)
 for p in present:

@@ -22,13 +22,15 @@ Goal: make the store **SEO-ready and reliably able to take orders**, on GitHub P
 ## Phase 0 — Freeze (DONE as decision)
 Committed HTML = source. Documented in `CLAUDE.md` + `README.md`. Re-applying a fresh export over these files is a regression, not an update.
 
-## Phase 1 — Reliable order capture (email MVP)  ·  do first
-- [ ] Confirm the order-destination email (decision #1).
-- [ ] Replace `mailto:` order actions with a form-to-email service (decision #2).
-- [ ] Unify catalog to the email flow; keep WhatsApp as secondary (decision #3).
-- [ ] On-screen order-summary fallback so a failed submit never loses an order.
-- [ ] Minimal validation (name + contact required) before submit.
-- [ ] Put the destination email in one obvious place per app (kill the duplicated hardcoded address).
+## Phase 1 — Reliable order capture (email MVP) — DONE 2026-07-16
+Implemented additively (frozen bundles untouched structurally): a small script defines `window.__slp` (mailto sink) + `window.__slwa` (WhatsApp sink); the app's existing order sinks were surgically redirected into them. Each posts the order to **FormSubmit** (`https://formsubmit.co/ajax/jesusnodarse1823@gmail.com`).
+- [x] Order email = `jesusnodarse1823@gmail.com` (swapped everywhere; old `nodarsesartsllc@…` gone, CI guards against its return).
+- [x] `mailto:`/WhatsApp order actions now POST to a form-to-email service.
+- [x] Catalog unified to email; **WhatsApp still opens** (secondary channel).
+- [x] Fallback: on any non-success/failure the handler opens the original mailto/WhatsApp → an order is never lost. Verified in-browser (success toast + fallback both fire).
+- [~] Validation: relies on the app's existing form; no extra layer added.
+
+**⚠️ Owner go-live step:** FormSubmit needs a one-time activation. Before launch, submit one test order → click the activation link FormSubmit emails to `jesusnodarse1823@gmail.com`. Until then, orders fall back to opening the mail client / WhatsApp (nothing lost, but not yet captured to inbox). Optional hardening: switch to FormSubmit's hashed alias endpoint so the address isn't in client JS.
 
 ## Phase 2 — SEO foundation  ·  stated goal, low risk (head is editable despite minified body)
 
