@@ -42,10 +42,11 @@ Per page `<head>` — DONE 2026-07-16 (all 9 pages):
 - [x] `lang="es"` on all 9 `<html>` tags
 - [x] Favicon + `og:image` — asset files created (2026-07-16). Extracted the `.logo-mark` heart PNG from the storefront header, re-colored it to cream via the site's own CSS filter (rendered through a canvas), padded onto navy `#081420` → `assets/favicon.png` (512), `assets/apple-touch-icon.png` (180), `assets/og/default.jpg` (1200×630). Source logo kept at `assets/brand-logo.png`.
 - viewport: already present on all pages (the earlier "missing on hub" was a false negative — hub uses unquoted `name=viewport`).
-JSON-LD:
-- [ ] `Organization`+`Store` on homes (legal name Nodarse Arts LLC, contactPoint = order email + WhatsApp, areaServed Miami; no `sameAs`)
-- [ ] `ItemList`/`Product` on catalog + category/collection pages — **without `offers`**: rendered-DOM check found NO prices anywhere (order-to-quote store, "Pedido para cotizar"). Add offers only if the owner later publishes prices.
-- [ ] `BreadcrumbList` on non-home pages
+JSON-LD — DONE 2026-07-16 (all 9 pages, validated as parseable JSON):
+- [x] `Organization`+`Store` on every page (`@id #org`; legalName Nodarse Arts LLC, founder Jesús Nodarse, contactPoint = order email + WhatsApp, areaServed Miami; no `sameAs`)
+- [x] Page node: `WebSite` on root; `CollectionPage` on the other 8 (linked to `#org`/`#website`)
+- [x] `BreadcrumbList` on all non-home pages
+- Product-level `ItemList`/`Product` intentionally **skipped**: no prices (order-to-quote) and product lists are client-rendered. Add later if a product/price feed appears.
 Crawlability (client-render risk — h1/links are React-injected, absent from static HTML):
 - [ ] Static `<nav>`/footer with plain `<a>` to all 9 pages (de-orphans collections)
 - [ ] Static `<h1>` in initial HTML of catalog + hub
