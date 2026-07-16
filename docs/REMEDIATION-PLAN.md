@@ -47,10 +47,10 @@ JSON-LD — DONE 2026-07-16 (all 9 pages, validated as parseable JSON):
 - [x] Page node: `WebSite` on root; `CollectionPage` on the other 8 (linked to `#org`/`#website`)
 - [x] `BreadcrumbList` on all non-home pages
 - Product-level `ItemList`/`Product` intentionally **skipped**: no prices (order-to-quote) and product lists are client-rendered. Add later if a product/price feed appears.
-Crawlability (client-render risk — h1/links are React-injected, absent from static HTML):
-- [ ] Static `<nav>`/footer with plain `<a>` to all 9 pages (de-orphans collections)
-- [ ] Static `<h1>` in initial HTML of catalog + hub
-- [ ] Breadcrumb `<a>` links
+Crawlability — DONE 2026-07-16 (verified in-browser: footer survives JS render, content still mounts):
+- [x] Static `<footer>` nav (scoped styles, absolute links to all 9 pages) appended before `</body>` — de-orphans the 3 collection pages. On catalog (`#cont`) and hub (`#root`) it sits outside the mount so JS doesn't wipe it.
+- [x] Static sr-only `<h1>` on catalog (its only h1) + hub (adds a keyword h1; hub's React h1 is "Your shop, your own collection." — 2 h1s total, HTML5-valid).
+- [x] Breadcrumbs covered by JSON-LD `BreadcrumbList`; visible breadcrumb `<a>` deferred (footer nav already gives crawlable internal links).
 Site-level:
 - [x] `robots.txt`, `sitemap.xml`, `404.html` (2026-07-16). Note: on a GitHub Pages **project** site, `robots.txt`/`sitemap.xml` live at the project subpath, not the domain root — submit the sitemap URL directly in Google Search Console for it to take effect.
 - [ ] Refine `<title>`s; verify one `<h1>` per page
