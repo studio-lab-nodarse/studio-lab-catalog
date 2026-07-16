@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<script>/* Studio Lab — lazy-load para imágenes creadas por JS (React/lightbox). Antes del bundle. */
+(function(){try{var c=Document.prototype.createElement;Document.prototype.createElement=function(t){var e=c.apply(this,arguments);try{if((""+t).toLowerCase()==="img"){e.loading="lazy";e.decoding="async";}}catch(_){}return e;};}catch(_){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Colección Miami | Studio Lab</title>
 <meta name="description" content="Colección Miami de Studio Lab: gorras, magnets y stickers que capturan la esencia de la ciudad.">
@@ -209,7 +211,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
 </head>
 <body>
 <header><div class="wrap bar">
-  <a href="../index.html" class="brand brand-home" title="Volver al inicio"><img class="logo-mark" src="../../../assets/img/9281355fb13182af.png" alt="Miami Peculiar"><div><div class="logo-name">MIAMI<b> PECULIAR</b></div><div class="logo-sub">Studio Lab · Coleccion</div></div></a>
+  <a href="../index.html" class="brand brand-home" title="Volver al inicio"><img loading="lazy" decoding="async" class="logo-mark" src="../../../assets/img/9281355fb13182af.png" alt="Miami Peculiar"><div><div class="logo-name">MIAMI<b> PECULIAR</b></div><div class="logo-sub">Studio Lab · Coleccion</div></div></a>
   <div class="lang-toggle">
     <button id="b-es" class="active" onclick="setLang('es')">ES</button>
     <button id="b-en" onclick="setLang('en')">EN</button>
@@ -233,7 +235,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="3" style="--tint2:#f8f5f5;--tint:#efd8cf">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/78b9a11102de291b.jpg" alt="#3" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/78b9a11102de291b.jpg" alt="#3" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #3" data-en="Miami Magnet #3">Miami Magnet #3</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -251,7 +253,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="4" style="--tint2:#f8f5f5;--tint:#efd5cf">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/7c982a9d2b3739fe.jpg" alt="#4" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/7c982a9d2b3739fe.jpg" alt="#4" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #4" data-en="Miami Magnet #4">Miami Magnet #4</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -269,7 +271,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="20" style="--tint2:#f7f5f8;--tint:#e7cfef">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/d1ce9dea9bef535d.jpg" alt="#20" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/d1ce9dea9bef535d.jpg" alt="#20" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #20" data-en="Miami Magnet #20">Miami Magnet #20</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -287,7 +289,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="23" style="--tint2:#f7f8f5;--tint:#efefcf">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/902b51d24410adf7.webp" alt="#23" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/902b51d24410adf7.webp" alt="#23" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #23" data-en="Miami Magnet #23">Miami Magnet #23</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -305,7 +307,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="25" style="--tint2:#f8f7f5;--tint:#efebcf">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/2114ebf44cf9338c.jpg" alt="#25" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/2114ebf44cf9338c.jpg" alt="#25" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #25" data-en="Miami Magnet #25">Miami Magnet #25</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -323,7 +325,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="27" style="--tint2:#f7f8f5;--tint:#ecefcf">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/7d3176b3f321fba9.jpg" alt="#27" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/7d3176b3f321fba9.jpg" alt="#27" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #27" data-en="Miami Magnet #27">Miami Magnet #27</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -341,7 +343,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="28" style="--tint2:#f8f5f7;--tint:#efcfe5">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img rnd" src="../../../assets/img/f9a076fb7ccccc13.webp" alt="#28" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img rnd" src="../../../assets/img/f9a076fb7ccccc13.webp" alt="#28" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #28" data-en="Miami Magnet #28">Miami Magnet #28</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -359,7 +361,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="30" style="--tint2:#f8f7f5;--tint:#efeecf">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img rnd" src="../../../assets/img/b4adad35af65c49f.webp" alt="#30" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img rnd" src="../../../assets/img/b4adad35af65c49f.webp" alt="#30" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #30" data-en="Miami Magnet #30">Miami Magnet #30</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -377,7 +379,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="54" style="--tint2:#f8f6f5;--tint:#efdecf">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img hz" src="../../../assets/img/90bc66993bb56e90.webp" alt="#54" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img hz" src="../../../assets/img/90bc66993bb56e90.webp" alt="#54" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #54" data-en="Miami Magnet #54">Miami Magnet #54</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -395,7 +397,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="80" style="--tint2:#f6f8f5;--tint:#e1efcf">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img cut" src="../../../assets/img/267708ffe2f4a088.webp" alt="#80" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img cut" src="../../../assets/img/267708ffe2f4a088.webp" alt="#80" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #80" data-en="Miami Magnet #80">Miami Magnet #80</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -413,7 +415,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="92" style="--tint2:#f6f6f6;--tint:#dfdfdf">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img rnd" src="../../../assets/img/3a3728fc8be2d866.webp" alt="#92" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img rnd" src="../../../assets/img/3a3728fc8be2d866.webp" alt="#92" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #92" data-en="Miami Magnet #92">Miami Magnet #92</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -431,7 +433,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="104" style="--tint2:#f6f8f5;--tint:#e0efcf">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/3fa7ffec74d339e4.jpg" alt="#104" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/3fa7ffec74d339e4.jpg" alt="#104" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #104" data-en="Miami Magnet #104">Miami Magnet #104</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -449,7 +451,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="171" style="--tint2:#f5f7f8;--tint:#cfeeef">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img cut hz" src="../../../assets/img/31c0fa756c618a78.webp" alt="#171" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img cut hz" src="../../../assets/img/31c0fa756c618a78.webp" alt="#171" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #171" data-en="Miami Magnet #171">Miami Magnet #171</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -467,7 +469,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="172" style="--tint2:#f5f8f7;--tint:#cfefe9">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img cut hz" src="../../../assets/img/13fa18d8c2dceb1c.webp" alt="#172" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img cut hz" src="../../../assets/img/13fa18d8c2dceb1c.webp" alt="#172" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #172" data-en="Miami Magnet #172">Miami Magnet #172</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -485,7 +487,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="178" style="--tint2:#f5f5f8;--tint:#d0d8ef">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img cut" src="../../../assets/img/90c7057a584e93c5.jpg" alt="#178" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img cut" src="../../../assets/img/90c7057a584e93c5.jpg" alt="#178" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #178" data-en="Miami Magnet #178">Miami Magnet #178</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -503,7 +505,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="1" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img hz" src="../../../assets/img/9a66b11e398f0688.webp" alt="#1" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img hz" src="../../../assets/img/9a66b11e398f0688.webp" alt="#1" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #1" data-en="Miami Magnet #1">Miami Magnet #1</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -521,7 +523,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="6" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/83208764b1bf05a0.webp" alt="#6" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/83208764b1bf05a0.webp" alt="#6" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #6" data-en="Miami Magnet #6">Miami Magnet #6</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -539,7 +541,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="9" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img cut" src="../../../assets/img/b0c3577ebfe603bb.webp" alt="#9" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img cut" src="../../../assets/img/b0c3577ebfe603bb.webp" alt="#9" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #9" data-en="Miami Magnet #9">Miami Magnet #9</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -557,7 +559,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="15" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/6f49b6d093f9b2ba.webp" alt="#15" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/6f49b6d093f9b2ba.webp" alt="#15" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #15" data-en="Miami Magnet #15">Miami Magnet #15</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -575,7 +577,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="22" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/ca7ff1c73a292773.webp" alt="#22" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/ca7ff1c73a292773.webp" alt="#22" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #22" data-en="Miami Magnet #22">Miami Magnet #22</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -593,7 +595,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="38" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/ecd999f889cddd9b.webp" alt="#38" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/ecd999f889cddd9b.webp" alt="#38" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #38" data-en="Miami Magnet #38">Miami Magnet #38</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -611,7 +613,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="42" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/f7ee88f0db75eb3f.webp" alt="#42" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/f7ee88f0db75eb3f.webp" alt="#42" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #42" data-en="Miami Magnet #42">Miami Magnet #42</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -629,7 +631,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="43" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/cd1e1f967c176eee.webp" alt="#43" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/cd1e1f967c176eee.webp" alt="#43" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #43" data-en="Miami Magnet #43">Miami Magnet #43</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -647,7 +649,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="44" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img cut" src="../../../assets/img/fa4f67fa61af8fcc.webp" alt="#44" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img cut" src="../../../assets/img/fa4f67fa61af8fcc.webp" alt="#44" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #44" data-en="Miami Magnet #44">Miami Magnet #44</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -665,7 +667,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="53" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/70ef7586b0f5c0e8.webp" alt="#53" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/70ef7586b0f5c0e8.webp" alt="#53" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #53" data-en="Miami Magnet #53">Miami Magnet #53</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -683,7 +685,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="57" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img" src="../../../assets/img/8838c1b5a60b2201.webp" alt="#57" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img" src="../../../assets/img/8838c1b5a60b2201.webp" alt="#57" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #57" data-en="Miami Magnet #57">Miami Magnet #57</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>
@@ -701,7 +703,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
       <div class="p-card" data-num="100" style="--tint2:#f8f5f5;--tint:#e8e2d8">
         <div class="p-inner">
           <div class="p-face p-front">
-            <div class="p-imgwrap"><img class="p-img cut" src="../../../assets/img/b83daf9156eda1c3.webp" alt="#100" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img cut" src="../../../assets/img/b83daf9156eda1c3.webp" alt="#100" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
             <div class="p-body"><span class="p-tag"><span data-es="Miami" data-en="Miami">Miami</span></span>
               <h3 class="p-name" data-es="Iman Miami #100" data-en="Miami Magnet #100">Miami Magnet #100</h3>
               <p class="p-desc" data-es="Diseno original producido en Miami." data-en="Original design produced in Miami.">Original design produced in Miami.</p>

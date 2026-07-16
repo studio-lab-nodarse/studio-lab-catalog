@@ -12,11 +12,12 @@ Outstanding items. The remediation phases (P1–P4) are done; see [REMEDIATION-P
 - [ ] After go-live, submit a real test order end-to-end and confirm it lands in the inbox.
 
 ## 🧊 Deferred / nice-to-have
-- [ ] `loading="lazy"` + `width`/`height` on product images (they're JS-rendered → means editing the React factory; smaller win now that payload is external).
-- [ ] Subset Google Fonts (Playfair Display, Archivo).
+- [x] `loading="lazy"` + `decoding="async"` on images (2026-07-16). Static `<img>` tags rewritten directly; a tiny `createElement` hook covers React-created imgs. CLS already safe — cards use fixed-height image boxes (`.card-img{height:185px}`), so no `width`/`height` attrs needed. Fonts already use `display=swap` (storefront) or system fonts (catalog/root) — nothing to fix.
+- [ ] Subset Google Fonts (Playfair Display, Archivo) — minor; `display=swap` already prevents FOIT.
 - [ ] Visible breadcrumb `<a>` links (structured `BreadcrumbList` already shipped).
 - [ ] Product-level `Product`/`ItemList` schema with `offers` — only if the store ever publishes prices (today it's order-to-quote, no prices).
 - [ ] Descriptive image filenames for image SEO (currently content-hash names).
+- [ ] Hub collection cards use CSS `background-image` (not `<img>`) → not covered by native lazy; low priority (few, above-ish the fold).
 
 ## 🌱 Post-MVP
 - [ ] Real order backend / capture beyond email (dashboard, order records).
