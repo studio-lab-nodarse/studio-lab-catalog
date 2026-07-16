@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://studio-lab-nodarse.github.io/studio-lab-catalog/sitemap.xml

@@ -48,7 +48,7 @@ Crawlability (client-render risk — h1/links are React-injected, absent from st
 - [ ] Static `<h1>` in initial HTML of catalog + hub
 - [ ] Breadcrumb `<a>` links
 Site-level:
-- [ ] `robots.txt`, `sitemap.xml`, `404.html`
+- [x] `robots.txt`, `sitemap.xml`, `404.html` (2026-07-16). Note: on a GitHub Pages **project** site, `robots.txt`/`sitemap.xml` live at the project subpath, not the domain root — submit the sitemap URL directly in Google Search Console for it to take effect.
 - [ ] Refine `<title>`s; verify one `<h1>` per page
 
 ## Phase 3 — Performance / Core Web Vitals  ·  SEO + conversion; needs a build step
