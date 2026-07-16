@@ -32,13 +32,14 @@ Committed HTML = source. Documented in `CLAUDE.md` + `README.md`. Re-applying a 
 
 Decisions (2026-07-16): bilingual **en/es** via runtime JS toggle on one URL → hreflang N/A; set `lang="es"` default + `og:locale es_US` / `og:locale:alternate en_US`. No socials → omit `sameAs`. Legal name **Nodarse Arts LLC**. Prices for Product schema → **extract from the live rendered pages** during execution. Favicon/OG image → **extract the logo from the page headers** (base64) → save under `assets/`. Constants in [SITE-CONFIG.md](SITE-CONFIG.md).
 
-Per page `<head>` (drafted titles + descriptions in the working draft):
-- [ ] Unique meta description (en/es — default es)
-- [ ] Canonical URL (clean dir URLs per SITE-CONFIG)
-- [ ] Open Graph + Twitter card (absolute image URL) + `og:locale` es_US / alternate en_US
-- [ ] Favicon / apple-touch-icon (from extracted header logo)
-- [ ] Add missing `viewport` on the storefront hub
-- [ ] `lang="es"` on all 9 `<html>` tags (fixes es/en/none mismatch)
+Per page `<head>` — DONE 2026-07-16 (all 9 pages):
+- [x] Unique meta description
+- [x] Canonical URL (clean dir URLs per SITE-CONFIG)
+- [x] Open Graph + Twitter card + `og:locale` es_US / alternate en_US
+- [x] Refined `<title>`s (keyword + brand)
+- [x] `lang="es"` on all 9 `<html>` tags
+- [~] Favicon + `og:image` link/meta tags added, but the **asset files don't exist yet** — `assets/favicon.png`, `assets/apple-touch-icon.png`, `assets/og/default.jpg` must be created (next step: extract logo). Until then these URLs 404.
+- viewport: already present on all pages (the earlier "missing on hub" was a false negative — hub uses unquoted `name=viewport`).
 JSON-LD:
 - [ ] `Organization`+`Store` on homes (legal name Nodarse Arts LLC, contactPoint = order email + WhatsApp, areaServed Miami; no `sameAs`)
 - [ ] `ItemList`/`Product` on catalog + category/collection pages — offers/price extracted from rendered pages
