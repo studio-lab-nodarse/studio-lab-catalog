@@ -10,7 +10,10 @@ Goal: make the store **SEO-ready and reliably able to take orders**, on GitHub P
 | 2 | Order transport | **Form-to-email service** (Web3Forms / Formspree / FormSubmit). Static-site friendly, reliable capture + auto-confirmation. Not raw `mailto:`. |
 | 3 | Catalog order channel | **Unify to email**; keep **WhatsApp as a secondary** button (`wa.me/17864834268`). |
 | 4 | Artifact policy | **FREEZE** — the committed HTML files are the source. No wholesale re-pasting of fresh AI-builder exports (it erases SEO + order wiring). Changes are surgical edits via git. |
-| 5 | Brand assets | Product photos exist only as base64 inside the HTML. **No logo/favicon/OG image file exists.** Need a dedicated brand image (extract from embedded photos or owner provides). |
+| 5 | Brand assets | No logo/favicon/OG file exists. **Extract the logo from the page headers** (base64) → save under `assets/` for favicon + OG. |
+| 6 | Languages | **en + es**, bilingual via runtime JS toggle (one URL). Default `lang="es"`; no hreflang (needs distinct URLs). |
+| 7 | Socials | None for now → omit `sameAs` from schema. |
+| 8 | Product prices | Extract from the **live rendered pages** during Phase 2 execution. |
 | — | Host | GitHub Pages (for now). No custom domain yet. |
 | — | Order backend | Email-only MVP. No real backend/checkout. |
 
@@ -26,17 +29,27 @@ Committed HTML = source. Documented in `CLAUDE.md` + `README.md`. Re-applying a 
 - [ ] Put the destination email in one obvious place per app (kill the duplicated hardcoded address).
 
 ## Phase 2 — SEO foundation  ·  stated goal, low risk (head is editable despite minified body)
-Per page `<head>`:
-- [ ] Unique meta description
-- [ ] Canonical URL
-- [ ] Open Graph + Twitter card (needs the brand/OG image from decision #5)
-- [ ] Favicon / apple-touch-icon
+
+Decisions (2026-07-16): bilingual **en/es** via runtime JS toggle on one URL → hreflang N/A; set `lang="es"` default + `og:locale es_US` / `og:locale:alternate en_US`. No socials → omit `sameAs`. Legal name **Nodarse Arts LLC**. Prices for Product schema → **extract from the live rendered pages** during execution. Favicon/OG image → **extract the logo from the page headers** (base64) → save under `assets/`. Constants in [SITE-CONFIG.md](SITE-CONFIG.md).
+
+Per page `<head>` (drafted titles + descriptions in the working draft):
+- [ ] Unique meta description (en/es — default es)
+- [ ] Canonical URL (clean dir URLs per SITE-CONFIG)
+- [ ] Open Graph + Twitter card (absolute image URL) + `og:locale` es_US / alternate en_US
+- [ ] Favicon / apple-touch-icon (from extracted header logo)
 - [ ] Add missing `viewport` on the storefront hub
-- [ ] JSON-LD structured data — `Store`/`Organization` on homes, `Product`/`ItemList` on catalog + category pages
+- [ ] `lang="es"` on all 9 `<html>` tags (fixes es/en/none mismatch)
+JSON-LD:
+- [ ] `Organization`+`Store` on homes (legal name Nodarse Arts LLC, contactPoint = order email + WhatsApp, areaServed Miami; no `sameAs`)
+- [ ] `ItemList`/`Product` on catalog + category/collection pages — offers/price extracted from rendered pages
+- [ ] `BreadcrumbList` on non-home pages
+Crawlability (client-render risk — h1/links are React-injected, absent from static HTML):
+- [ ] Static `<nav>`/footer with plain `<a>` to all 9 pages (de-orphans collections)
+- [ ] Static `<h1>` in initial HTML of catalog + hub
+- [ ] Breadcrumb `<a>` links
 Site-level:
 - [ ] `robots.txt`, `sitemap.xml`, `404.html`
-- [ ] Link the orphaned collection pages from the storefront hub/nav; add breadcrumbs
-- [ ] Refine `<title>`s; verify one `<h1>` + sane heading order per page
+- [ ] Refine `<title>`s; verify one `<h1>` per page
 
 ## Phase 3 — Performance / Core Web Vitals  ·  SEO + conversion; needs a build step
 - [ ] Externalize base64 images → files under `assets/` (enables caching, compression, lazy-load, reusable OG image)

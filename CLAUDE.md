@@ -24,6 +24,10 @@ Implication: you are editing generated/minified output, not source. Prefer **sur
 
 As of 2026-07-16 the committed HTML files are **frozen as source**. They were originally produced by an AI site builder, but the repo no longer treats them as disposable exports. **Do not re-paste a fresh export over an existing page** — doing so erases the SEO metadata, order-form wiring, and other hand-made production changes. All updates are surgical, git-tracked edits. See [docs/REMEDIATION-PLAN.md](docs/REMEDIATION-PLAN.md) for the production roadmap and decision log.
 
+## Project constants (single source of truth)
+
+Recurring values — brand, legal name, order email, WhatsApp, base URL, canonical paths — live in [docs/SITE-CONFIG.md](docs/SITE-CONFIG.md). Quick reference: brand **Studio Lab** (storefront sub-brand **Miami Peculiar**), legal entity **Nodarse Arts LLC**, order email currently `nodarsesartsllc@gmail.com` (business address pending), WhatsApp `wa.me/17864834268`, bilingual **en/es** (runtime toggle, default `es`), Pages base `https://studio-lab-nodarse.github.io/studio-lab-catalog/`. Any of these is hardcoded across the frozen HTML — when one changes, update `SITE-CONFIG.md` and every "Where used" spot it lists.
+
 ## Cross-page links are hand-maintained and appear in multiple forms
 
 Links between pages are plain relative paths, and moving/renaming a page means updating **all** of these forms (a plain `grep href=` will miss most of them):
