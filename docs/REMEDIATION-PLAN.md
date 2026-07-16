@@ -6,7 +6,7 @@ Goal: make the store **SEO-ready and reliably able to take orders**, on GitHub P
 
 | # | Decision | Choice |
 |---|----------|--------|
-| 1 | Order destination email | **PENDING** — owner to provide business inbox. Replaces personal `nodarsesartsllc@gmail.com` currently hardcoded in storefront pages. |
+| 1 | Order destination email | **`jesusnodarse1823@gmail.com`** (decided 2026-07-16). Not yet wired into pages — Phase 1 replaces the `mailto:` flow (currently → `nodarsesartsllc@gmail.com`) with a form-to-email service pointing here. |
 | 2 | Order transport | **Form-to-email service** (Web3Forms / Formspree / FormSubmit). Static-site friendly, reliable capture + auto-confirmation. Not raw `mailto:`. |
 | 3 | Catalog order channel | **Unify to email**; keep **WhatsApp as a secondary** button (`wa.me/17864834268`). |
 | 4 | Artifact policy | **FREEZE** — the committed HTML files are the source. No wholesale re-pasting of fresh AI-builder exports (it erases SEO + order wiring). Changes are surgical edits via git. |
@@ -61,10 +61,11 @@ Site-level:
 - [ ] `preconnect` + subset Google Fonts (Playfair Display, Archivo) — `preconnect` already present in most pages; subsetting deferred.
 - [x] Target hit: catalog 8.6 MB → 116 KB initial HTML.
 
-## Phase 4 — Deploy safety (fits Pages)
-- [ ] CI on PRs: link-integrity sweep (static `href=`, JS `href:`, `location.href=`, collections map), HTML validation, per-page size budget
-- [ ] Drop manual cache-busting once real asset URLs exist
-- [ ] Document: merge-to-`main` = release; work on branches
+## Phase 4 — Deploy safety (fits Pages) — DONE 2026-07-16
+- [x] CI gate: `tools/verify_site.py` (stdlib only) + `.github/workflows/ci.yml` (runs on PRs + main). Checks: page-size budget (800 KB, catches re-pasted exports), no inline raster base64, relative `.html`/asset links resolve, absolute site URLs (canonical/og/footer/breadcrumbs/sitemap) map to real files, per-page SEO essentials (title/canonical/og/lang), JSON-LD parses, brand+ops assets present. Negative-tested (catches broken link + re-inlined base64).
+- [x] Manual cache-busting dropped — asset filenames are content hashes (immutable); the `preview2.html` dup was removed during the reorg.
+- [x] Documented in CLAUDE.md / README: merge-to-`main` = release; work on branches; CI must stay green.
+- [ ] Owner action (GitHub setting, not a file): enable branch protection on `main` → require the "Verify site" check, so a red CI actually blocks the merge/deploy.
 
 ## Phase 5 — Maintainability (post-MVP)
 - [ ] Config/data file for order email + social handles (single source of truth)

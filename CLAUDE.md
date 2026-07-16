@@ -51,4 +51,6 @@ Opening a single app page directly as a `file://` URL also works for that page i
 
 ## Deploy
 
-`.github/workflows/static.yml` uploads the **entire repo root** to GitHub Pages on every push to `main` (or manual dispatch). `.nojekyll` forces raw file serving. There is no staging step — pushing to `main` publishes. Work on a branch; the user controls merges to `main`.
+`.github/workflows/static.yml` uploads the **entire repo root** to GitHub Pages on every push to `main` (or manual dispatch). `.nojekyll` forces raw file serving. Pushing to `main` publishes — so **work on a branch and open a PR**; the user controls merges to `main`.
+
+**CI gate:** `.github/workflows/ci.yml` runs `python3 tools/verify_site.py` on every PR and on `main`. It enforces the invariants (links resolve, images stay externalized, SEO tags + JSON-LD intact, page-size budget). Run it locally before pushing: `python3 tools/verify_site.py`. Keep it green. (Making it *block* merges requires branch protection on `main` — a repo setting the owner enables.)

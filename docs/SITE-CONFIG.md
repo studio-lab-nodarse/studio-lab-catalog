@@ -20,9 +20,8 @@ Single source of truth for the values that recur across the site (order channels
 
 | Key | Value | Notes |
 |-----|-------|-------|
-| Order email (current, in code) | `nodarsesartsllc@gmail.com` | `MP_EMAIL` constant in storefront; hardcoded in ~10 spots |
-| Artist personal email (in code) | `jesusnodarse1823@gmail.com` | 1 ref — Jesús Nodarse's personal address (legit, not a mistake) |
-| Order email (target) | **PENDING** — owner to provide business inbox | replaces the Gmail above (Phase 1) |
+| **Order email (decided)** | **`jesusnodarse1823@gmail.com`** | Chosen 2026-07-16 as the order destination. NOT yet wired into pages — Phase 1 replaces the `mailto:` flow with a form-to-email service pointing here. |
+| Order email (still in code) | `nodarsesartsllc@gmail.com` | `MP_EMAIL` constant in storefront + hardcoded `mailto:` (~10 spots). To be replaced in Phase 1. |
 | WhatsApp / phone | `+1 786 483 4268` → `https://wa.me/17864834268` | catalog primary today; becomes secondary after Phase 1 |
 
 ## URLs / hosting
