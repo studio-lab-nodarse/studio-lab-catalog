@@ -13,7 +13,9 @@ Goal: make the store **SEO-ready and reliably able to take orders**, on GitHub P
 | 5 | Brand assets | No logo/favicon/OG file exists. **Extract the logo from the page headers** (base64) → save under `assets/` for favicon + OG. |
 | 6 | Languages | **en + es**, bilingual via runtime JS toggle (one URL). Default `lang="es"`; no hreflang (needs distinct URLs). |
 | 7 | Socials | None for now → omit `sameAs` from schema. |
-| 8 | Product prices | Extract from the **live rendered pages** during Phase 2 execution. |
+| 8 | Product prices | **None exist** — rendered-DOM check (catalog, gorras, magnets, collection) found no prices; store is order-to-quote. Product schema ships without `offers`. |
+| 9 | Brand logo | Extracted `.logo-mark` heart PNG from storefront header, recolored cream (site CSS filter via canvas) → `assets/` favicon/apple-touch/og. |
+| — | Artist / founder | **Jesús Nodarse** (Miami). Personal email `jesusnodarse1823@gmail.com` (the "stray" one — it's legitimately his); `nodarsesartsllc@gmail.com` is the business/order alias. |
 | — | Host | GitHub Pages (for now). No custom domain yet. |
 | — | Order backend | Email-only MVP. No real backend/checkout. |
 
@@ -38,11 +40,11 @@ Per page `<head>` — DONE 2026-07-16 (all 9 pages):
 - [x] Open Graph + Twitter card + `og:locale` es_US / alternate en_US
 - [x] Refined `<title>`s (keyword + brand)
 - [x] `lang="es"` on all 9 `<html>` tags
-- [~] Favicon + `og:image` link/meta tags added, but the **asset files don't exist yet** — `assets/favicon.png`, `assets/apple-touch-icon.png`, `assets/og/default.jpg` must be created (next step: extract logo). Until then these URLs 404.
+- [x] Favicon + `og:image` — asset files created (2026-07-16). Extracted the `.logo-mark` heart PNG from the storefront header, re-colored it to cream via the site's own CSS filter (rendered through a canvas), padded onto navy `#081420` → `assets/favicon.png` (512), `assets/apple-touch-icon.png` (180), `assets/og/default.jpg` (1200×630). Source logo kept at `assets/brand-logo.png`.
 - viewport: already present on all pages (the earlier "missing on hub" was a false negative — hub uses unquoted `name=viewport`).
 JSON-LD:
 - [ ] `Organization`+`Store` on homes (legal name Nodarse Arts LLC, contactPoint = order email + WhatsApp, areaServed Miami; no `sameAs`)
-- [ ] `ItemList`/`Product` on catalog + category/collection pages — offers/price extracted from rendered pages
+- [ ] `ItemList`/`Product` on catalog + category/collection pages — **without `offers`**: rendered-DOM check found NO prices anywhere (order-to-quote store, "Pedido para cotizar"). Add offers only if the owner later publishes prices.
 - [ ] `BreadcrumbList` on non-home pages
 Crawlability (client-render risk — h1/links are React-injected, absent from static HTML):
 - [ ] Static `<nav>`/footer with plain `<a>` to all 9 pages (de-orphans collections)
