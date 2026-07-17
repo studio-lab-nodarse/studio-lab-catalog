@@ -26,7 +26,7 @@ As of 2026-07-16 the committed HTML files are **frozen as source**. They were or
 
 ## Project constants (single source of truth)
 
-Recurring values — brand, legal name, order email, WhatsApp, base URL, canonical paths — live in [docs/SITE-CONFIG.md](docs/SITE-CONFIG.md). Quick reference: brand **Studio Lab** (storefront sub-brand **Miami Peculiar**), legal entity **Nodarse Arts LLC**, order email currently `nodarsesartsllc@gmail.com` (business address pending), WhatsApp `wa.me/17864834268`, bilingual **en/es** (runtime toggle, default `es`), Pages base `https://studio-lab-nodarse.github.io/studio-lab-catalog/`. Any of these is hardcoded across the frozen HTML — when one changes, update `SITE-CONFIG.md` and every "Where used" spot it lists.
+Recurring values — brand, legal name, order email, WhatsApp, base URL, canonical paths — live in [docs/SITE-CONFIG.md](docs/SITE-CONFIG.md). Quick reference: brand **Studio Lab** (storefront sub-brand **Miami Peculiar**), legal entity **Nodarse Arts LLC**, order email `jesusnodarse1823@gmail.com` (via FormSubmit; CI blocks the old `nodarsesartsllc@gmail.com`), WhatsApp `wa.me/17864834268`, bilingual **en/es** (runtime toggle, default `es`), Pages base `https://studio-lab-nodarse.github.io/studio-lab-catalog/`. Any of these is hardcoded across the frozen HTML — when one changes, update `SITE-CONFIG.md` and every "Where used" spot it lists.
 
 ## Cross-page links are hand-maintained and appear in multiple forms
 

@@ -11,7 +11,18 @@ Outstanding items. The remediation phases (P1–P4) are done; see [REMEDIATION-P
 - [ ] Switch FormSubmit to its **hashed alias endpoint** so the order email isn't exposed in client JS (needs one-time FormSubmit setup).
 - [ ] After go-live, submit a real test order end-to-end and confirm it lands in the inbox.
 
+## ✅ Code stabilization (2026-07-16)
+- [x] Shared order script extracted to `assets/order.js` (was copy-pasted, byte-identical, into all 8 app pages) → one place to change the FormSubmit endpoint. Pages dropped ~480 lines.
+- [x] Storefront brand tokens + footer extracted to `assets/brand.css` (6 themed pages); normalized the stickers token drift. See [SITE-CONFIG.md](SITE-CONFIG.md).
+- [x] Unified storefront masthead across the 6 themed pages — one lockup (heart logo + MIAMI **PECULIAR** + page-specific bilingual subtitle) + a Gorras/Magnets/Stickers nav (active state) + EN/ES; header CSS centralized in `brand.css`. Fixed the stickers outlier (was "STUDIO LAB", no logo, no nav) and the subtitle drift. Each page keeps its own toggle JS.
+- [x] jsPDF (catalog) pinned with SRI `integrity` (sha512, verified against cdnjs) + `crossorigin` — closes the supply-chain risk of an unpinned CDN script.
+- [x] `window.window.__slp` typo + duplicated mailto recipient fixed (catalog + stickers).
+- [x] CLAUDE.md order-email drift fixed (was advertising the CI-banned old address).
+- [x] CI (`verify_site.py`) hardened: order.js wired on every app page + endpoint matches order email; no page may re-inline a FormSubmit endpoint; WhatsApp number consistent; sitemap covers every canonical URL; footer + Organization JSON-LD identical across pages (drift guard); every external `<script>` must carry SRI.
+
 ## 🧊 Deferred / nice-to-have
+- [ ] **Default language drift.** Storefront pages init to **EN** at runtime, but SITE-CONFIG says default `es`. Also the toggle wiring differs per page (`L()`+`be/bs` on gorras; `setLang()`+`b-es/b-en` elsewhere; `btEN/btES` on stickers). Unifying the i18n init/naming touches each page's inline JS — separate, riskier pass. (Header markup/toggle order already unified to EN|ES.)
+- [ ] **Hub masthead** (`apps/storefront/index.html`) stays on its own React header (subtitle literal `"Studio Lab · Jesús Nodarse"` already matches the unified `Studio Lab · …` format). Re-tokenizing the hub onto `brand.css` is a larger, riskier change.
 - [x] `loading="lazy"` + `decoding="async"` on images (2026-07-16). Static `<img>` tags rewritten directly; a tiny `createElement` hook covers React-created imgs. CLS already safe — cards use fixed-height image boxes (`.card-img{height:185px}`), so no `width`/`height` attrs needed. Fonts already use `display=swap` (storefront) or system fonts (catalog/root) — nothing to fix.
 - [ ] Subset Google Fonts (Playfair Display, Archivo) — minor; `display=swap` already prevents FOIT.
 - [ ] Visible breadcrumb `<a>` links (structured `BreadcrumbList` already shipped).

@@ -54,9 +54,28 @@ Under `assets/` — derived from the storefront header logo (a cream double-hear
 | `assets/apple-touch-icon.png` | iOS home-screen icon | 180×180 |
 | `assets/og/default.jpg` | Open Graph / Twitter share card (all pages) | 1200×630 |
 
+## Brand design tokens (Miami Peculiar storefront)
+
+Single source of truth: **`assets/brand.css`** (`:root`), linked by the category/collection pages (gorras, magnets, stickers, colecciones/*). Change a color here once. The hub (`apps/storefront/index.html`) uses its own shadcn token set and paints brand colors as literals; the catalog is a separate red/white surface.
+
+| Token | Value | Role |
+|-------|-------|------|
+| `--bg` | `#081420` | navy page background |
+| `--surface` | `rgba(8,20,32,.72)` | translucent panel |
+| `--card` | `#0f2337` | raised card navy |
+| `--mataqua` | `#16304a` | mid-navy accent |
+| `--border` | `rgba(243,234,214,.14)` | cream hairline |
+| `--accent` | `#f0b429` | primary gold (CTAs) |
+| `--accent2` | `#d9b25a` | muted gold (secondary) |
+| `--text` | `#f3ead6` | cream body text |
+| `--muted` | `#a8b8c8` | muted slate text |
+| `--tag-bg` | `rgba(240,180,41,.14)` | gold tag/pill wash |
+
+`assets/brand.css` also holds the shared **masthead** styles (`header`-scoped: brand lockup, `.hdr-nav` category nav, `.lang-toggle`) and the site **footer** (`.sl-sitefooter`). The 6 themed pages share one header structure — heart logo + "MIAMI **PECULIAR**" + a page-specific bilingual `Studio Lab · …` subtitle + a Gorras/Magnets/Stickers nav (current page highlighted) + EN/ES toggle. Each page keeps its own toggle JS (`L()` vs `setLang()`); only the lockup/nav/CSS are unified. CI (`tools/verify_site.py`) fails if a themed page stops linking `brand.css`, re-inlines the token block, if the footer nav diverges, or if a page's masthead loses the shared lockup/nav.
+
 ## Where used (update these when a value changes)
 
-- **Order email** — the `__slp`/`__slwa` FormSubmit endpoint (added order script, all 8 app pages), the fallback `mailto:` strings + `MP_EMAIL`, and the JSON-LD `contactPoint.email` (all 9 pages). CI (`tools/verify_site.py`) fails if the old address reappears.
+- **Order email** — the FormSubmit endpoint now lives in **one shared file, `assets/order.js`** (loaded by all 8 app pages via `<script src>`); change it there once. Also in the fallback `mailto:` strings + `MP_EMAIL` and the JSON-LD `contactPoint.email` (per page). CI (`tools/verify_site.py`) fails if the old address reappears, if a page inlines a FormSubmit endpoint, if `order.js`'s endpoint drifts from the order email, or if any app page stops loading `order.js`.
 - **WhatsApp number** — `apps/catalog/index.html` (`wa.me/17864834268`).
 - **Legal name / brand** — SEO JSON-LD (Phase 2), footers.
 - **Base URL** — canonical / OG / sitemap / robots (Phase 2).

@@ -71,8 +71,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/brand.css">
 <style>
-:root{--bg:#081420;--surface:rgba(8,20,32,.72);--card:#0f2337;--border:rgba(243,234,214,.14);--accent:#f0b429;--accent2:#d9b25a;--text:#f3ead6;--muted:#a8b8c8;--tag-bg:rgba(240,180,41,.14);--mataqua:#16304a;}
+
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{background:radial-gradient(1100px 560px at 50% -140px,#1a3a58 0%,rgba(26,58,88,0) 70%),radial-gradient(820px 480px at 88% 12%,rgba(240,180,41,.10) 0%,rgba(240,180,41,0) 65%),linear-gradient(180deg,#0c1e33 0%,#081420 60%,#060e18 100%);background-attachment:fixed;color:var(--text);font-family:'Archivo',"Helvetica Neue",Arial,sans-serif;line-height:1.5;min-height:100vh;}
@@ -207,13 +208,13 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
 .brand-home{text-decoration:none;color:inherit;cursor:pointer;transition:opacity .15s,transform .15s;} .brand-home:hover{opacity:.85;transform:translateY(-1px);}</style>
 </head>
 <body>
-<header><div class="wrap bar">
-  <a href="../index.html" class="brand brand-home" title="Volver al inicio"><img loading="lazy" decoding="async" class="logo-mark" src="../../../assets/img/9281355fb13182af.png" alt="Miami Peculiar"><div><div class="logo-name">MIAMI<b> PECULIAR</b></div><div class="logo-sub">Studio Lab · Coleccion</div></div></a>
-  <div class="lang-toggle">
-    <button id="b-es" class="active" onclick="setLang('es')">ES</button>
-    <button id="b-en" onclick="setLang('en')">EN</button>
+<header>
+  <div class="wrap bar">
+    <a class="brand brand-home" href="../index.html" title="Miami Peculiar"><img loading="lazy" decoding="async" class="logo-mark" src="../../../assets/img/9281355fb13182af.png" alt="Miami Peculiar"><div><div class="logo-name">MIAMI <b>PECULIAR</b></div><div class="logo-sub" data-en="Studio Lab · Miami Beach Collection" data-es="Studio Lab · Colección Miami Beach">Studio Lab · Colección Miami Beach</div></div></a>
+    <nav class="hdr-nav" aria-label="Categorías"><a href="../gorras.html">Gorras</a><a href="../magnets.html">Magnets</a><a href="../stickers.html">Stickers</a></nav>
+    <div class="lang-toggle"><button id="b-en" onclick="setLang('en')">EN</button><button id="b-es" class="active" onclick="setLang('es')">ES</button></div>
   </div>
-</div></header>
+</header>
 <section class="hero">
   <div class="hero-copy">
     <div class="hero-eyebrow" data-es="Coleccion - Miami Beach" data-en="Collection - Miami Beach">Collection - Miami Beach</div>
@@ -813,69 +814,9 @@ if(window.matchMedia&&window.matchMedia('(max-width:760px)').matches&&'Intersect
   document.querySelectorAll('.p-card').forEach(function(c){mpIO.observe(c);});
 }
 </script>
-<script>
-/* Studio Lab — captura fiable de pedidos (Phase 1).
-   Intercepta los "sinks" de pedido (mailto / WhatsApp) y los envía por
-   formulario-a-email (FormSubmit). Si el POST falla, cae al mailto/WhatsApp
-   original para no perder ningún pedido. */
-(function () {
-  var ENDPOINT = "https://formsubmit.co/ajax/jesusnodarse1823@gmail.com";
-  function parse(url) {
-    var subject = "Pedido — Studio Lab", body = "", wa = url.indexOf("wa.me") > -1;
-    try {
-      if (url.indexOf("mailto:") === 0) {
-        var q = url.indexOf("?") > -1 ? url.slice(url.indexOf("?") + 1) : "";
-        var p = new URLSearchParams(q);
-        subject = p.get("subject") || subject;
-        body = p.get("body") || "";
-      } else {
-        body = new URL(url).searchParams.get("text") || "";
-        subject = "Pedido — Studio Lab (WhatsApp)";
-      }
-    } catch (e) {}
-    return { subject: subject, body: body, wa: wa };
-  }
-  function toast(msg, kind) {
-    var t = document.getElementById("__sl_toast") || document.createElement("div");
-    t.id = "__sl_toast";
-    t.textContent = msg;
-    t.style.cssText = "position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:99999;" +
-      "max-width:90vw;padding:12px 18px;border-radius:12px;font:14px/1.4 system-ui,-apple-system,sans-serif;" +
-      "color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.35);background:" +
-      (kind === "ok" ? "#15803d" : kind === "err" ? "#b91c1c" : "#111827");
-    if (!t.parentNode) document.body.appendChild(t);
-    if (kind) setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 6000);
-  }
-  function send(url) {
-    var o = parse(url);
-    toast("Enviando pedido…");
-    return fetch(ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({ _subject: o.subject, _template: "box", _captcha: "false", Pedido: o.body })
-    }).then(function (r) { if (!r.ok) throw new Error("http"); return r.json(); })
-      .then(function (d) {
-        if (d && (d.success === "true" || d.success === true)) {
-          toast("✓ ¡Pedido enviado! Te contactaremos pronto.", "ok");
-        } else {
-          throw new Error("pending");
-        }
-        if (o.wa) window.open(url, "_blank"); // WhatsApp queda como canal secundario
-      })
-      .catch(function () {
-        // nunca perder un pedido: cae al canal original
-        if (o.wa) window.open(url, "_blank"); else window.location.href = url;
-      });
-  }
-  // sink de mailto: el código de la app hace  window.__slp.href = 'mailto:...'
-  window.__slp = { set href(v) { send(String(v)); }, get href() { return ""; } };
-  // sink de WhatsApp: el código hace  window.__slwa('https://wa.me/...')
-  window.__slwa = function (u) { send(String(u)); };
-})();
-</script>
+<script src="../../../assets/order.js"></script>
 
 <footer class="sl-sitefooter" aria-label="Navegación Studio Lab">
-<style>.sl-sitefooter{background:#0b0b0c;color:#f4f4f5;padding:28px 16px;text-align:center;font:14px/1.7 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.sl-sitefooter nav{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;max-width:900px;margin:0 auto}.sl-sitefooter a{color:#f4f4f5;text-decoration:none;opacity:.85}.sl-sitefooter a:hover{opacity:1;text-decoration:underline}.sl-sitefooter .cr{margin-top:14px;font-size:12px;opacity:.5}</style>
 <nav>
 <a href="https://studio-lab-nodarse.github.io/studio-lab-catalog/">Inicio</a>
 <a href="https://studio-lab-nodarse.github.io/studio-lab-catalog/apps/catalog/">Catálogo 2026</a>
