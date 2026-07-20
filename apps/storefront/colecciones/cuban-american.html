@@ -213,7 +213,9 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
 <header>
   <div class="wrap bar">
     <a class="brand brand-home" href="../index.html" title="Miami Peculiar"><img loading="lazy" decoding="async" class="logo-mark" src="../../../assets/img/9281355fb13182af.png" alt="Miami Peculiar"><div><div class="logo-name">MIAMI <b>PECULIAR</b></div><div class="logo-sub" data-en="Studio Lab · Cuban American Collection" data-es="Studio Lab · Colección Cuban American">Studio Lab · Colección Cuban American</div></div></a>
+    <input type="checkbox" id="mnav" class="mnav-toggle" aria-label="Abrir menú">
     <nav class="hdr-nav" aria-label="Categorías"><a href="../gorras.html">Gorras</a><a href="../magnets.html">Magnets</a><a href="../stickers.html">Stickers</a></nav>
+    <label for="mnav" class="mnav-btn" aria-hidden="true">☰</label>
     <div class="lang-toggle"><button id="b-en" onclick="setLang('en')">EN</button><button id="b-es" class="active" onclick="setLang('es')">ES</button></div>
   </div>
 </header>
@@ -712,100 +714,7 @@ document.querySelectorAll('.p-card').forEach(function(c){
     <div class="mp-foot"><button class="mp-send" onclick="mpVerAdd()" data-es="Agregar version al pedido &#8594;" data-en="Add version to order &#8594;">Add version to order &#8594;</button></div>
   </div>
 </div>
-<script>
-var MP_KEY='mp_order';
-var MP_EMAIL='jesusnodarse1823@gmail.com';
-function mpLang(){return document.documentElement.lang||'en';}
-function mpGet(){try{return JSON.parse(localStorage.getItem(MP_KEY))||[]}catch(e){return []}}
-function mpSet(v){localStorage.setItem(MP_KEY,JSON.stringify(v));mpRender();}
-function mpClose(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
-function mpOpen(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
-function mpOpenPanel(){mpRenderItems();mpOpen('mpPanelOv');}
-function mpCardInfo(n){
-  var card=document.querySelector('.p-card[data-num="'+n+'"]');
-  var name=card?card.querySelector('.p-name').textContent.trim():('#'+n);
-  return {n:String(n),name:name,col:window.MP_COL||''};
-}
-function addToOrder(n){
-  var o=mpGet(); var key=String(n)+'|std';
-  var it=o.find(function(x){return x.key===key});
-  if(it){it.qty++;}else{var inf=mpCardInfo(n);o.push({key:key,n:inf.n,name:inf.name,col:inf.col,qty:1,custom:false,note:''});}
-  mpSet(o); mpFlash();
-}
-var mpVerN=null;
-var MP_CHIPS={es:['Nombre de mi negocio','Referencia de mi zona','Cambiar texto / idioma','Marca trasera: tu logo o mensaje corto'],
-              en:['My business name','A local landmark','Change text / language','Back stamp: your logo or short message']};
-function mpVersion(n){
-  mpVerN=n;
-  var inf=mpCardInfo(n);
-  document.getElementById('mpVerTitle').textContent=(mpLang()==='es'?'Versionar ':'Version ')+inf.name;
-  var box=document.getElementById('mpVerChips');box.innerHTML='';
-  MP_CHIPS[mpLang()].forEach(function(c){
-    var d=document.createElement('div');d.className='mp-chip';d.textContent=c;
-    d.onclick=function(){d.classList.toggle('on')};box.appendChild(d);
-  });
-  document.getElementById('mpVerNote').value='';
-  mpOpen('mpVerOv');
-}
-function mpVerAdd(){
-  var chips=[].slice.call(document.querySelectorAll('#mpVerChips .mp-chip.on')).map(function(d){return d.textContent});
-  var note=document.getElementById('mpVerNote').value.trim();
-  var o=mpGet(); var inf=mpCardInfo(mpVerN);
-  var full=(chips.join(', ')+(note?((chips.length?' — ':'')+note):''));
-  o.push({key:String(mpVerN)+'|c'+Date.now(),n:inf.n,name:inf.name,col:inf.col,qty:1,custom:true,note:full});
-  mpSet(o); mpClose('mpVerOv'); mpFlash();
-}
-function mpQty(k,d){var o=mpGet();var it=o.find(function(x){return x.key===k});if(!it)return;
-  it.qty+=d;if(it.qty<1)o=o.filter(function(x){return x.key!==k});mpSet(o);mpRenderItems();}
-function mpDel(k){var o=mpGet().filter(function(x){return x.key!==k});mpSet(o);mpRenderItems();}
-function mpNoteEdit(k,v){var o=mpGet();var it=o.find(function(x){return x.key===k});if(it){it.note=v;localStorage.setItem(MP_KEY,JSON.stringify(o));}}
-function mpRender(){
-  var o=mpGet();var total=o.reduce(function(a,x){return a+x.qty},0);
-  document.getElementById('mpCount').textContent=total;
-  document.getElementById('mpBar').classList.toggle('on',total>0);
-}
-function mpRenderItems(){
-  var o=mpGet();var el=document.getElementById('mpItems');var es=mpLang()==='es';
-  if(!o.length){el.innerHTML='<div class="mp-empty">'+(es?'Tu pedido esta vacio. Agrega o versiona disenos de las colecciones.':'Your order is empty. Add or version designs from the collections.')+'</div>';return;}
-  el.innerHTML=o.map(function(x){
-    return '<div class="mp-item"><div class="mp-item-top">'+
-      '<div style="flex:1"><div class="mp-item-col">'+x.col+'</div><div class="mp-item-name">'+x.name+'</div></div>'+
-      '<div class="mp-qty"><button onclick="mpQty(\''+x.key+'\',-1)">&minus;</button><span>'+x.qty+'</span><button onclick="mpQty(\''+x.key+'\',1)">+</button></div>'+
-      '<button class="mp-del" onclick="mpDel(\''+x.key+'\')">&times;</button></div>'+
-      (x.custom?('<span class="mp-badge">&#10024; '+(es?'Version personalizada':'Custom version')+'</span>'+
-      '<textarea class="mp-note" rows="2" onblur="mpNoteEdit(\''+x.key+'\',this.value)" placeholder="'+(es?'Que adaptamos...':'What to adapt...')+'">'+(x.note||'')+'</textarea>'):'')+
-      '</div>';
-  }).join('');
-}
-function mpSend(){
-  var es=mpLang()==='es';
-  var biz=document.getElementById('mpBizName').value.trim();
-  var nm=document.getElementById('mpName').value.trim();
-  var em=document.getElementById('mpMail').value.trim();
-  if(!biz||!nm||!/.+@.+\..+/.test(em)){alert(es?'Completa negocio, nombre y email.':'Please fill business, name and email.');return;}
-  var o=mpGet();if(!o.length)return;
-  var lines=o.map(function(x){
-    return '- '+x.name+' ['+x.col+'] x'+x.qty+(x.custom?(es?'  << VERSION PERSONALIZADA: ':'  << CUSTOM VERSION: ')+x.note:'');
-  });
-  var body=(es?'Pedido para cotizar':'Order for quote')+'\n\n'+lines.join('\n')+
-    '\n\n'+(es?'Negocio':'Business')+': '+biz+'\n'+(es?'Contacto':'Contact')+': '+nm+'\nEmail: '+em;
-  window.__slp.href='mailto:'+MP_EMAIL+'?subject='+encodeURIComponent((es?'Pedido — ':'Order — ')+biz)+'&body='+encodeURIComponent(body);
-}
-function mpFlash(){var b=document.getElementById('mpBar');b.style.transform='scale(1.08)';setTimeout(function(){b.style.transform=''},180);}
-/* inyectar boton Versionar en cada tarjeta */
-document.querySelectorAll('.p-card').forEach(function(c){
-  var acts=c.querySelectorAll('.p-actions');
-  if(!acts.length)return;
-  var n=c.getAttribute('data-num');
-  var b=document.createElement('button');
-  b.className='mp-ver';b.setAttribute('data-es','&#10024; Versionar');b.setAttribute('data-en','&#10024; Version');b.innerHTML='&#10024; '+(mpLang()==='es'?'Versionar':'Version');
-  b.title=(mpLang()==='es'?'Versionar este diseno para tu negocio':'Version this design for your business');
-  b.onclick=function(e){e.stopPropagation();mpVersion(n);};
-  acts[0].appendChild(b);
-});
-mpRender();
-if(location.hash==='#pedido'){mpOpenPanel();}
-</script>
+<script src="../../../assets/cart.js"></script>
 
 <script>
 /* movil: al centrar una tarjeta en pantalla, el boton de giro llama la atencion */
@@ -817,6 +726,7 @@ if(window.matchMedia&&window.matchMedia('(max-width:760px)').matches&&'Intersect
 }
 </script>
 <script src="../../../assets/order.js"></script>
+<script src="../../../assets/flip.js"></script>
 
 <footer class="sl-sitefooter" aria-label="Navegación Studio Lab">
 <nav>

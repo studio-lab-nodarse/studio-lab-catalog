@@ -232,7 +232,8 @@ for p in THEMED_PAGES:
         err(f"[header] {p} has no <header> block"); continue
     h = m.group(0)
     need = ['class="logo-mark"', 'MIAMI <b>PECULIAR</b>', 'class="logo-sub"',
-            'class="hdr-nav"', 'class="lang-toggle"', 'brand-home']
+            'class="hdr-nav"', 'class="lang-toggle"', 'brand-home',
+            'class="mnav-toggle"', 'class="mnav-btn"']
     for token in need:
         if token not in h:
             err(f"[header] {p} masthead missing `{token}`")
@@ -248,6 +249,35 @@ for p in present:
     n = len(broken_i18n.findall(read(p)))
     if n:
         err(f"[i18n-attr] {p} has {n} data-es/en attribute(s) with unescaped double-quotes (use single quotes inside)")
+
+# 6j. flip cards: pages with .p-card load flip.js; brand.css carries the flip fixes
+if os.path.isfile("assets/flip.js"):
+    for p in THEMED_PAGES:
+        if p in present and 'class="p-card"' in read(p) and "assets/flip.js" not in read(p):
+            err(f"[flip] {p} has flip cards but does not load assets/flip.js (tap-to-flip broken)")
+    if os.path.isfile(BRAND_CSS):
+        bcss = read(BRAND_CSS)
+        for tok in [".dim-w", ".p-imgwrap::after", "p-card.flipped .p-front .p-img"]:
+            if tok not in bcss:
+                err(f"[flip] {BRAND_CSS} missing flip-card rule `{tok}`")
+else:
+    err("[flip] missing assets/flip.js")
+
+# 6k. shared cart: every themed page loads cart.js (single source); no page
+#     re-inlines the cart code; brand.css carries the order-bar styles.
+if not os.path.isfile("assets/cart.js"):
+    err("[cart] missing assets/cart.js")
+else:
+    for p in THEMED_PAGES:
+        if p not in present:
+            continue
+        s = read(p)
+        if "assets/cart.js" not in s:
+            err(f"[cart] {p} does not load assets/cart.js (cart broken / inconsistent)")
+        if "function mpGet(" in s:
+            err(f"[cart] {p} still inlines the cart code; it lives in assets/cart.js")
+    if os.path.isfile(BRAND_CSS) and ".mp-order-bar" not in read(BRAND_CSS):
+        err(f"[cart] {BRAND_CSS} missing shared .mp-order-bar / drawer styles")
 
 # 7. brand + ops assets exist
 for a in BRAND_ASSETS:
