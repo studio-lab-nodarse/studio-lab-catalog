@@ -7,12 +7,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://studio-lab-nodarse.github.io/studio-lab-catalog/apps/catalog/</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://studio-lab-nodarse.github.io/studio-lab-catalog/apps/storefront/</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>

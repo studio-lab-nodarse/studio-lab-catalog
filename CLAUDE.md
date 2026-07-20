@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static site (no build system) hosting **two independent single-file web apps**, deployed to GitHub Pages. There is no `package.json`, no bundler, no lint/test tooling — the repo is the deploy artifact.
+A static site (no build system) hosting **the "Miami Peculiar" storefront**, deployed to GitHub Pages. There is no `package.json`, no bundler, no lint/test tooling — the repo is the deploy artifact.
 
-- **`apps/catalog/index.html`** — "Catálogo 2026". Standalone product catalog with cart; generates PDFs (jsPDF from cdnjs) and places orders via WhatsApp (`wa.me/17864834268`). No links out to other pages.
-- **`apps/storefront/`** — "Miami Peculiar" storefront. Multi-page: `index.html` is the hub linking to `gorras.html`, `magnets.html`, `stickers.html`, and `colecciones/{miami,cuban-american,miami-beach}.html`. Category/collection pages link back to the hub.
-- **`index.html`** (root) — small hand-written landing linking to both apps. Keeps GitHub Pages `/` working.
+- **`apps/storefront/`** — the storefront, and the only live app. Multi-page: `index.html` is the hub linking to `gorras.html`, `magnets.html`, `stickers.html`, and `colecciones/{miami,cuban-american,miami-beach}.html`. Category/collection pages link back to the hub. Shared code lives in `assets/` (`order.js`, `cart.js`, `flip.js`, `brand.css`, `hub-nav.js`).
+- **`index.html`** (root) — a thin **redirect** to `apps/storefront/` (meta-refresh + JS), so opening `/` lands you in the storefront. Keeps GitHub Pages `/` working + retains site-level SEO/JSON-LD.
+- **`deprecated/catalog/`** — the retired "Catálogo 2026" app (was `apps/catalog/`). **Deprecated 2026-07-20**: unlinked from the storefront and **stripped from the GitHub Pages deploy** (see `.github/workflows/static.yml`), but kept in the repo for reference. Do not link to it or treat it as live.
 
 ## The critical constraint: pages are pre-built artifacts
 

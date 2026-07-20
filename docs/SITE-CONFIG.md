@@ -37,8 +37,8 @@ Single source of truth for the values that recur across the site (order channels
 
 | Page | Path |
 |------|------|
-| Root landing | `/studio-lab-catalog/` |
-| Catalog 2026 | `/apps/catalog/` |
+| Root landing | `/studio-lab-catalog/` → **redirects** to `/apps/storefront/` |
+| ~~Catalog 2026~~ | **Deprecated** (2026-07-20). Moved to `deprecated/catalog/`, unlinked, stripped from deploy. |
 | Storefront hub (Miami Peculiar) | `/apps/storefront/` |
 | Caps / Magnets / Stickers | `/apps/storefront/{gorras,magnets,stickers}.html` |
 | Collections | `/apps/storefront/colecciones/{miami,cuban-american,miami-beach}.html` |
@@ -76,6 +76,6 @@ Single source of truth: **`assets/brand.css`** (`:root`), linked by the category
 ## Where used (update these when a value changes)
 
 - **Order email** — the FormSubmit endpoint now lives in **one shared file, `assets/order.js`** (loaded by all 8 app pages via `<script src>`); change it there once. Also in the fallback `mailto:` strings + `MP_EMAIL` and the JSON-LD `contactPoint.email` (per page). CI (`tools/verify_site.py`) fails if the old address reappears, if a page inlines a FormSubmit endpoint, if `order.js`'s endpoint drifts from the order email, or if any app page stops loading `order.js`.
-- **WhatsApp number** — `apps/catalog/index.html` (`wa.me/17864834268`).
+- **WhatsApp number** — storefront order flow (`wa.me/17864834268`). (Also in the deprecated `deprecated/catalog/index.html`, no longer live.)
 - **Legal name / brand** — SEO JSON-LD (Phase 2), footers.
 - **Base URL** — canonical / OG / sitemap / robots (Phase 2).

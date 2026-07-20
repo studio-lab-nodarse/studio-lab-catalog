@@ -13,7 +13,6 @@ import re, os, sys, json
 BASE = "https://studio-lab-nodarse.github.io/studio-lab-catalog/"
 PAGES = [
     "index.html",
-    "apps/catalog/index.html",
     "apps/storefront/index.html",
     "apps/storefront/gorras.html",
     "apps/storefront/magnets.html",

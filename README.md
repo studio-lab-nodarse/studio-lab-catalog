@@ -1,16 +1,14 @@
 # Studio Lab
 
-Static site (GitHub Pages) hosting two self-contained apps. Each `.html` file inlines its own CSS/JS/images.
+Static site (GitHub Pages) hosting the **Miami Peculiar storefront**. Each `.html` file inlines its own CSS/JS/images; shared code lives in `assets/`.
 
 ## Structure
 
 ```
-index.html                 Root landing → links to both apps
+index.html                 Root → redirects to apps/storefront/
 apps/
-  catalog/
-    index.html             App A — "Catálogo 2026". Standalone catalog w/ cart.
   storefront/
-    index.html             App B home — "Miami Peculiar". Hub for the storefront.
+    index.html             Home — "Miami Peculiar" hub
     gorras.html            Caps
     magnets.html           Magnets
     stickers.html          Stickers
@@ -18,6 +16,9 @@ apps/
       miami.html
       cuban-american.html
       miami-beach.html
+assets/                    Shared: order.js, cart.js, flip.js, hub-nav.js, brand.css
+deprecated/
+  catalog/                 Retired "Catálogo 2026" — unlinked, not deployed
 ```
 
 ## Links between pages
@@ -25,11 +26,10 @@ apps/
 - storefront `index.html` → `gorras.html`, `magnets.html`, `stickers.html`, `colecciones/*.html`
 - storefront category pages → back to `index.html`
 - collections → `../index.html`
-- catalog app is fully standalone (no cross-links)
 
 ## Deploy
 
-GitHub Pages deploys the whole repo root (`.github/workflows/static.yml`) on push to `main`. Root `/` serves the landing page.
+GitHub Pages deploys the repo root (`.github/workflows/static.yml`) on push to `main`, **minus `deprecated/`** which a workflow step strips before upload. Root `/` redirects to the storefront.
 
 ## ⚠️ These pages are frozen source
 
