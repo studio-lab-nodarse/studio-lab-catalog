@@ -279,6 +279,21 @@ else:
     if os.path.isfile(BRAND_CSS) and ".mp-order-bar" not in read(BRAND_CSS):
         err(f"[cart] {BRAND_CSS} missing shared .mp-order-bar / drawer styles")
 
+# 6l. no dead anchors (href="#" / href="") in the hand-authored storefront pages.
+#     (The React hub's placeholder anchors render href=null at runtime — not in
+#     static HTML — and are wired by assets/hub-nav.js instead.)
+dead_anchor = re.compile(r'href="(?:#|)"')
+for p in present:
+    if "apps/catalog" in p:   # separate app, out of scope
+        continue
+    n = len(dead_anchor.findall(read(p)))
+    if n:
+        err(f'[dead-anchor] {p} has {n} href="#"/empty anchor(s) — link them or remove')
+# hub must load the nav shim that wires its placeholder anchors
+hub = "apps/storefront/index.html"
+if hub in present and "assets/hub-nav.js" not in read(hub):
+    err(f"[dead-anchor] {hub} does not load assets/hub-nav.js (hub nav anchors unwired)")
+
 # 7. brand + ops assets exist
 for a in BRAND_ASSETS:
     if not os.path.isfile(a):
