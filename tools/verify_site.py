@@ -2,13 +2,24 @@
 """Pre-deploy checks for the Studio Lab static site.
 
 Enforces the invariants established during the production-readiness work
-(see docs/REMEDIATION-PLAN.md). Run from the repo root:
+(see docs/REMEDIATION-PLAN.md). Checks run against a built site tree:
 
-    python3 tools/verify_site.py
+    python3 tools/verify_site.py _site
+
+The directory argument is optional and defaults to the current directory, so
+the old `cd _site && python3 ../tools/verify_site.py` form still works.
 
 Exits non-zero if any check fails. No third-party dependencies.
 """
 import re, os, sys, json
+
+# All checks below use paths relative to the site root, so just move there.
+if len(sys.argv) > 1:
+    root = sys.argv[1]
+    if not os.path.isdir(root):
+        print(f"FAIL — no such directory: {root}")
+        sys.exit(1)
+    os.chdir(root)
 
 BASE = "https://studio-lab-nodarse.github.io/studio-lab-catalog/"
 PAGES = [

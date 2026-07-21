@@ -1,6 +1,8 @@
 # Site Config — reusable constants
 
-Single source of truth for the values that recur across the site (order channels, identity, URLs). When one changes, update it here **and** in the frozen HTML files that hardcode it (see "Where used"). Kept as docs because there is no build step yet (Phase 5 will turn this into an injected config).
+Human-readable reference for the values that recur across the site (order channels, identity, URLs).
+
+**As of 2026-07-21 these are injected at build time from [`src/_data/site.json`](../src/_data/site.json)** for the six templated storefront pages — change them there first, then update this doc to match. Two places `site.json` does *not* reach and that still hardcode values: `assets/order.js` (the FormSubmit endpoint) and the pre-built hub `apps/storefront/index.html`. See "Where used" below; CI guards both.
 
 ## Identity
 
@@ -31,7 +33,7 @@ Single source of truth for the values that recur across the site (order channels
 | GitHub repo | `studio-lab-nodarse/studio-lab-catalog` |
 | Pages base URL | `https://studio-lab-nodarse.github.io/studio-lab-catalog/` |
 | Custom domain | none (no CNAME) |
-| Deploy | push to `main` → Pages serves repo root |
+| Deploy | push to `main` → Actions builds with Eleventy → Pages serves `_site/` |
 
 ## Canonical page URLs
 

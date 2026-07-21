@@ -1,0 +1,21 @@
+{#
+  One sticker figure. All five spec rows are identical across every sticker
+  except the size, so only num / rotation / image / size / title / sub are data.
+  `alt` is title + " " + sub. Values pass through `| safe` because a few titles
+  contain a literal "&" that must not be re-escaped.
+#}
+{% macro card(i, assetsBase) %}
+    <figure class="stk" style="--r:{{ i.r }}">
+      <div class="stkimg">
+        <img src="{{ assetsBase }}/img/{{ i.img }}" alt="{{ i.title | safe }} {{ i.sub | safe }}" loading="lazy">
+        <div class="spec">
+          <div class="spec-row"><span class="spec-k" data-es="Tipo" data-en="Type">Tipo</span><span class="spec-v" data-es="Sticker die-cut" data-en="Die-cut sticker">Sticker die-cut</span></div>
+          <div class="spec-row"><span class="spec-k" data-es="Tamano" data-en="Size">Tamano</span><span class="spec-v size">{{ i.size | safe }}</span></div>
+          <div class="spec-row"><span class="spec-k" data-es="Material" data-en="Material">Material</span><span class="spec-v" data-es="Vinilo resistente" data-en="Weatherproof vinyl">Vinilo resistente</span></div>
+          <div class="spec-row"><span class="spec-k" data-es="Acabado" data-en="Finish">Acabado</span><span class="spec-v" data-es="Troquelado, borde blanco" data-en="Kiss-cut, white border">Troquelado, borde blanco</span></div>
+          <div class="spec-row"><span class="spec-k" data-es="Origen" data-en="Origin">Origen</span><span class="spec-v" data-es="Hecho en Miami" data-en="Made in Miami">Hecho en Miami</span></div>
+        </div>
+      </div>
+      <figcaption><span class="num">#{{ i.num }}</span><b>{{ i.title | safe }}</b><i>{{ i.sub | safe }}</i></figcaption>
+    </figure>
+{%- endmacro %}

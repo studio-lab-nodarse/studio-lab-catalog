@@ -1,0 +1,36 @@
+---
+layout: base.njk
+permalink: apps/storefront/colecciones/cuban-american.html
+pagePath: apps/storefront/colecciones/cuban-american.html
+title: "Colección Cuban American | Studio Lab"
+description: "Colección Cuban American de Studio Lab: diseños que celebran la herencia cubano-americana en Miami."
+pageName: "Colección Cuban American"
+pageDescription: "Colección Cuban American de Studio Lab: diseños que celebran la herencia cubano-americana en Miami."
+breadcrumbName: "Colección Cuban American"
+navActive: ""
+navBase: "../"
+headerSubEs: "Studio Lab · Colección Cuban American"
+headerSubEn: "Studio Lab · Cuban American Collection"
+assetsBase: ../../../assets
+pageStyles: styles/cuban-american.css
+mpCol: "Cuban American"
+collection: "Cuban American"
+---
+{% import "product-card.njk" as pc %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-eyebrow" data-es="Coleccion - Cuban American" data-en="Collection - Cuban American">Collection - Cuban American</div>
+    <h1 class="hero-title" data-es="Cuban <span class='em'>American</span>" data-en="Cuban <span class='em'>American</span>">Cuban <span class="em">American</span></h1>
+    <p class="hero-text" data-es="Imanes de nevera impresos a todo color, resistentes y vibrantes. Cada diseno es producido en nuestro estudio de Miami - el souvenir perfecto que se queda a la vista todos los dias." data-en="Full-color fridge magnets, durable and vibrant. Every design is produced in our Miami studio - the perfect souvenir that stays in sight every day.">Imanes de nevera impresos a todo color, resistentes y vibrantes. Cada diseno es producido en nuestro estudio de Miami - el souvenir perfecto que se queda a la vista todos los dias.</p>
+    
+  </div>
+  </div>
+  </div>
+</section>
+<div class="cat-bar">
+  <h2 data-es="Imanes" data-en="Magnets">Miami Beach</h2>
+  <p data-es="Gira cada producto para ver el reverso, las medidas y el material." data-en="Flip each product to see the back, dimensions and material.">Gira cada producto para ver el reverso, las medidas y el material.</p>
+</div>
+<div class="grid">
+{% for p in magnets.items %}{% if p.col == collection %}{{ pc.card(p, magnets.descriptions, assetsBase, { addByNum: true }) }}
+{% endif %}{% endfor %}</div>

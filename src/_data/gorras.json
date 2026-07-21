@@ -1,0 +1,126 @@
+{
+  "colors": [
+    {
+      "slug": "charcoal",
+      "hex": "#3f3f3f",
+      "title": "Carbon"
+    },
+    {
+      "slug": "mostaza",
+      "hex": "#d9a531",
+      "title": "Mostaza"
+    },
+    {
+      "slug": "rosa",
+      "hex": "#e06a94",
+      "title": "Rosa"
+    },
+    {
+      "slug": "verde",
+      "hex": "#2f6b3f",
+      "title": "Verde"
+    },
+    {
+      "slug": "navy",
+      "hex": "#2b3d66",
+      "title": "Navy"
+    },
+    {
+      "slug": "rojo",
+      "hex": "#b23a45",
+      "title": "Rojo"
+    }
+  ],
+  "items": [
+    {
+      "num": 165,
+      "col": "Miami Beach",
+      "labelEs": "Torre de Salvavidas",
+      "labelEn": "Lifeguard Tower",
+      "back": "fbdd2f8fa8fb3553.webp",
+      "imgs": {
+        "charcoal": "9f886817edeab898.webp",
+        "mostaza": "fc37e85c38b7a491.webp",
+        "rosa": "40b385e5adb4c466.webp",
+        "verde": "56ed56264d36a20e.webp",
+        "navy": "356171fadf9422e9.webp",
+        "rojo": "30be229e42e7949e.webp"
+      }
+    },
+    {
+      "num": 166,
+      "col": "Miami Beach",
+      "labelEs": "Art Deco",
+      "labelEn": "Art Deco",
+      "back": "66abf0e1dc2b5440.webp",
+      "imgs": {
+        "charcoal": "d67ec91f55e4a098.webp",
+        "mostaza": "28918757881341f4.webp",
+        "rosa": "d896b7337e8a5675.webp",
+        "verde": "c9a4598426bbdb56.webp",
+        "navy": "2a0b718d17dc855b.webp",
+        "rojo": "691efce9ee83e5c1.webp"
+      }
+    },
+    {
+      "num": 92,
+      "col": "Miami",
+      "labelEs": "Skyline de Miami",
+      "labelEn": "Miami Skyline",
+      "back": "c3227bdb327ec36f.webp",
+      "imgs": {
+        "charcoal": "21ade8aa2e095711.webp",
+        "mostaza": "6d14cf076a853609.webp",
+        "rosa": "2b858104633caee9.webp",
+        "verde": "69e3b8160037d125.webp",
+        "navy": "719f8bbd69bd62fa.webp",
+        "rojo": "492bc7b6b5aca7c1.webp"
+      }
+    },
+    {
+      "num": 95,
+      "col": "Cuban American",
+      "labelEs": "Gallo de Little Havana",
+      "labelEn": "Little Havana Rooster",
+      "back": "c7edcf760ca284f6.webp",
+      "imgs": {
+        "charcoal": "10f433d533250ec5.webp",
+        "mostaza": "bc8e81b3f30d01d3.webp",
+        "rosa": "73c319be1ef90c31.webp",
+        "verde": "138656b925ea7eb4.webp",
+        "navy": "45a8295a7bc3a149.webp",
+        "rojo": "76370368e6ba841a.webp"
+      }
+    },
+    {
+      "num": 162,
+      "col": "Cuban American",
+      "labelEs": "Sello Little Havana",
+      "labelEn": "Little Havana Seal",
+      "back": "eda6618d8796c9e5.webp",
+      "imgs": {
+        "charcoal": "53d51c3c4898e5ff.webp",
+        "mostaza": "8072cf0769378012.webp",
+        "rosa": "5855f77121b09bb4.webp",
+        "verde": "bf142cd8e1ced8df.webp",
+        "navy": "1ec98070ae143318.webp",
+        "rojo": "441f0ee7bfa8d266.webp"
+      }
+    },
+    {
+      "num": 94,
+      "col": "Cuban American",
+      "labelEs": "Little Havana Retro",
+      "labelEn": "Little Havana Retro Script",
+      "back": "b5bb508ca2a939c5.webp",
+      "imgs": {
+        "charcoal": "3e8a885a2d0165d7.webp",
+        "mostaza": "72d2f6518dfab904.webp",
+        "rosa": "de61c19acb90e2e1.webp",
+        "verde": "99c13f72889160d4.webp",
+        "navy": "be843c0fd9ff9186.webp",
+        "rojo": "98fe917bf395837f.webp"
+      }
+    }
+  ]
+}

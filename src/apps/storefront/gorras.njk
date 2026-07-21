@@ -1,0 +1,47 @@
+---
+layout: base.njk
+permalink: apps/storefront/gorras.html
+pagePath: apps/storefront/gorras.html
+title: "Gorras con Parche de Cuero | Studio Lab"
+description: "Gorras Studio Lab con parche de cuero y diseños de Miami y la cultura cubano-americana. Personaliza y ordena por email."
+pageName: "Gorras con Parche de Cuero"
+pageDescription: "Gorras con parche de cuero de Studio Lab, con diseños de Miami y la cultura cubano-americana."
+breadcrumbName: "Gorras"
+navActive: gorras
+navBase: ""
+headerSubEs: "Studio Lab · Gorras"
+headerSubEn: "Studio Lab · Caps"
+headerSubText: "Studio Lab · Caps"
+langFn: "L"
+langIdEn: "be"
+langIdEs: "bs"
+langActive: "en"
+assetsBase: ../../assets
+pageStyles: styles/gorras.css
+pageStyles2: styles/gorras-2.css
+pageScripts: scripts/gorras-lang.njk
+cartCssExtra: styles/gorras-cart-extra.css
+extraScripts: scripts/gorras-capimg.njk
+mpCol: "Caps"
+footerTagEs: "Gorras con parche"
+footerTagEn: "Patch caps"
+footerTagText: "Patch caps"
+---
+{% import "cap-card.njk" as cc %}
+<section class="hero"><div class="hero-copy">
+  <div class="hero-eyebrow" data-es="Coleccion de gorras" data-en="Caps collection">Caps collection</div>
+  <h1 class="hero-title" data-es="Gorras con <span class=&quot;em&quot;>parche de cuero</span>" data-en="Caps with a <span class=&quot;em&quot;>leather patch</span>">Caps with a <span class="em">leather patch</span></h1>
+  <p class="hero-text" data-es="Dad hats vintage lavadas con parche de cuero impreso y cortado a laser en nuestro estudio. Se venden en paquetes surtidos de 15 gorras en colores variados." data-en="Vintage washed dad hats with a leather patch printed and laser-cut in our studio. Sold in assorted packs of 15 caps in mixed colors.">Vintage washed dad hats with a leather patch printed and laser-cut in our studio. Sold in assorted packs of 15 caps in mixed colors.</p>
+  </div></section>
+<div class="cat-bar" id="sec-beach"><h2 data-es="Miami Beach" data-en="Miami Beach">Miami Beach</h2><p data-es="Gira cada gorra para ver el parche de cerca." data-en="Flip each cap to see the patch up close.">Flip each cap to see the patch up close.</p></div>
+<div class="grid">
+{% for p in gorras.items %}{% if p.col == "Miami Beach" %}{{ cc.card(p, gorras.colors, assetsBase) }}
+{% endif %}{% endfor %}</div>
+<div class="cat-bar" id="sec-miami"><h2 data-es="Miami" data-en="Miami">Miami</h2></div>
+<div class="grid">
+{% for p in gorras.items %}{% if p.col == "Miami" %}{{ cc.card(p, gorras.colors, assetsBase) }}
+{% endif %}{% endfor %}</div>
+<div class="cat-bar" id="sec-cuban"><h2 data-es="Cuban American · Little Havana" data-en="Cuban American · Little Havana">Cuban American · Little Havana</h2></div>
+<div class="grid">
+{% for p in gorras.items %}{% if p.col == "Cuban American" %}{{ cc.card(p, gorras.colors, assetsBase) }}
+{% endif %}{% endfor %}</div>

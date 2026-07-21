@@ -1,4 +1,4 @@
-# Simple workflow for deploying static content to GitHub Pages
+# Builds the site with Eleventy and deploys the generated _site/ to GitHub Pages.
 name: Deploy static content to Pages
 
 on:
@@ -22,7 +22,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -31,17 +30,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build site
+        run: npm run build
+      - name: Verify site invariants
+        # Same gate as CI, run against the built output — a bad build never ships.
+        run: python3 tools/verify_site.py _site
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Strip deprecated content from the deploy
-        # deprecated/ (the retired Catálogo app) stays in the repo for
-        # reference but is not published to the live site.
-        run: rm -rf deprecated
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository (minus the stripped deprecated/ folder)
-          path: '.'
+          # Only the generated site. deprecated/ and src/ are never copied into
+          # _site, so no separate strip step is needed.
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5

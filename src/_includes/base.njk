@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+{% include "head.njk" %}
+<style>
+{% include pageStyles %}</style>
+{% if pageStyles2 %}<style>
+{% include pageStyles2 %}</style>
+{% endif %}</head>
+<body>
+{% include "header.njk" %}
+{{ content | safe }}
+{%- set _fEs = footerTagEs or "Prototipo de presentacion" -%}
+{%- set _fEn = footerTagEn or "Presentation prototype" -%}
+{%- set _fTxt = footerTagText or _fEs -%}
+{% if not noSmallFooter %}<footer>Studio Lab - Jesus Nodarse - Miami, FL - 2026 - <span data-es="{{ _fEs }}" data-en="{{ _fEn }}">{{ _fTxt }}</span></footer>
+{% endif %}
+{% include pageScripts or "scripts/lang-flip.njk" %}
+<script>window.MP_COL='{{ mpCol }}';</script>
+<style>
+{% include "styles/cart.css" %}{% if cartCssExtra %}{% include cartCssExtra %}{% endif %}</style>
+{% include "cart.njk" %}
+<script src="{{ assetsBase }}/cart.js"></script>
+
+{% include "scripts/mobile-center.njk" %}
+{% if extraScripts %}{% include extraScripts %}{% endif %}<script src="{{ assetsBase }}/order.js"></script>
+<script src="{{ assetsBase }}/flip.js"></script>
+
+{% include "site-footer.njk" %}
+</body>
+</html>

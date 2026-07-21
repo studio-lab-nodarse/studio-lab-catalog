@@ -1,0 +1,546 @@
+{
+  "descriptions": {
+    "standard": {
+      "es": "Diseno original producido en Miami.",
+      "en": "Original design produced in Miami."
+    },
+    "beach": {
+      "es": "Version beach de nuestro diseno, para el verano de Miami.",
+      "en": "Beach version of our design, for the Miami summer."
+    }
+  },
+  "items": [
+    {
+      "num": 1,
+      "col": "Miami Beach",
+      "img": "48f564258300a340.jpg",
+      "tint": "#efe9cf",
+      "tint2": "#f8f7f5",
+      "desc": "beach"
+    },
+    {
+      "num": 6,
+      "col": "Miami Beach",
+      "img": "df56ad67f1020fec.jpg",
+      "tint": "#efe2cf",
+      "tint2": "#f8f6f5",
+      "desc": "beach"
+    },
+    {
+      "num": 13,
+      "col": "Miami Beach",
+      "img": "df4c15a751f24c56.jpg",
+      "tint": "#cfefd3",
+      "tint2": "#f5f8f5",
+      "desc": "beach"
+    },
+    {
+      "num": 15,
+      "col": "Miami Beach",
+      "img": "ba0da0558e2f829e.jpg",
+      "tint": "#cfe4ef",
+      "tint2": "#f5f6f8",
+      "desc": "beach"
+    },
+    {
+      "num": 16,
+      "col": "Miami Beach",
+      "img": "8b04d72d3558b7b8.webp",
+      "tint": "#e4efcf",
+      "tint2": "#f6f8f5",
+      "cut": true,
+      "desc": "beach"
+    },
+    {
+      "num": 22,
+      "col": "Miami Beach",
+      "img": "08945220155e8492.jpg",
+      "tint": "#e4efcf",
+      "tint2": "#f6f8f5",
+      "desc": "beach"
+    },
+    {
+      "num": 33,
+      "col": "Miami Beach",
+      "img": "29742f4bb3f4268d.jpg",
+      "tint": "#efebcf",
+      "tint2": "#f8f7f5",
+      "desc": "beach"
+    },
+    {
+      "num": 38,
+      "col": "Miami Beach",
+      "img": "656597aea3465b45.jpg",
+      "tint": "#d4cfef",
+      "tint2": "#f5f5f8",
+      "desc": "beach"
+    },
+    {
+      "num": 57,
+      "col": "Miami Beach",
+      "img": "47f0ab36ab5535bc.jpg",
+      "tint": "#cfedef",
+      "tint2": "#f5f7f8",
+      "desc": "beach"
+    },
+    {
+      "num": 100,
+      "col": "Miami Beach",
+      "img": "7c6cc8100210ce38.webp",
+      "tint": "#efdfcf",
+      "tint2": "#f8f6f5",
+      "cut": true,
+      "desc": "beach"
+    },
+    {
+      "num": 106,
+      "col": "Miami Beach",
+      "img": "7872f70e7b733fd1.jpg",
+      "tint": "#dcefcf",
+      "tint2": "#f6f8f5",
+      "desc": "beach"
+    },
+    {
+      "num": 107,
+      "col": "Miami Beach",
+      "img": "6f8f31ca70c0e3d6.jpg",
+      "tint": "#d8efcf",
+      "tint2": "#f5f8f5",
+      "desc": "beach"
+    },
+    {
+      "num": 42,
+      "col": "Miami Beach",
+      "img": "a47d479061b42d46.webp",
+      "tint": "#efe3c8",
+      "tint2": "#f8f6f2",
+      "desc": "beach"
+    },
+    {
+      "num": 23,
+      "col": "Miami Beach",
+      "img": "2eb2e38e787c2dca.webp",
+      "tint": "#efe3c8",
+      "tint2": "#f8f6f2"
+    },
+    {
+      "num": 24,
+      "col": "Miami Beach",
+      "img": "1ed67f77e8d52773.webp",
+      "tint": "#efe3c8",
+      "tint2": "#f8f6f2"
+    },
+    {
+      "num": 26,
+      "col": "Miami Beach",
+      "img": "63de5a983ddcdd29.webp",
+      "tint": "#efe3c8",
+      "tint2": "#f8f6f2"
+    },
+    {
+      "num": 35,
+      "col": "Miami Beach",
+      "img": "2eac1eb8869b4363.webp",
+      "tint": "#efe3c8",
+      "tint2": "#f8f6f2"
+    },
+    {
+      "num": 36,
+      "col": "Miami Beach",
+      "img": "9a4600cbf33030a8.webp",
+      "tint": "#efe3c8",
+      "tint2": "#f8f6f2"
+    },
+    {
+      "num": 53,
+      "col": "Miami Beach",
+      "img": "42940bfa05bba510.webp",
+      "tint": "#efe3c8",
+      "tint2": "#f8f6f2"
+    },
+    {
+      "num": 92,
+      "col": "Miami Beach",
+      "img": "fcdd919d5f40f226.webp",
+      "tint": "#efe3c8",
+      "tint2": "#f8f6f2",
+      "shape": "round"
+    },
+    {
+      "num": 173,
+      "col": "Miami Beach",
+      "img": "6ac84295682b614f.webp",
+      "tint": "#efe3c8",
+      "tint2": "#f8f6f2",
+      "cut": true,
+      "shape": "hz",
+      "backImg": "178c71cb1649caeb.webp"
+    },
+    {
+      "num": 3,
+      "col": "Miami",
+      "img": "78b9a11102de291b.jpg",
+      "tint": "#efd8cf",
+      "tint2": "#f8f5f5"
+    },
+    {
+      "num": 4,
+      "col": "Miami",
+      "img": "7c982a9d2b3739fe.jpg",
+      "tint": "#efd5cf",
+      "tint2": "#f8f5f5"
+    },
+    {
+      "num": 20,
+      "col": "Miami",
+      "img": "d1ce9dea9bef535d.jpg",
+      "tint": "#e7cfef",
+      "tint2": "#f7f5f8"
+    },
+    {
+      "num": 23,
+      "col": "Miami",
+      "img": "902b51d24410adf7.webp",
+      "tint": "#efefcf",
+      "tint2": "#f7f8f5"
+    },
+    {
+      "num": 25,
+      "col": "Miami",
+      "img": "2114ebf44cf9338c.jpg",
+      "tint": "#efebcf",
+      "tint2": "#f8f7f5"
+    },
+    {
+      "num": 27,
+      "col": "Miami",
+      "img": "7d3176b3f321fba9.jpg",
+      "tint": "#ecefcf",
+      "tint2": "#f7f8f5"
+    },
+    {
+      "num": 28,
+      "col": "Miami",
+      "img": "f9a076fb7ccccc13.webp",
+      "tint": "#efcfe5",
+      "tint2": "#f8f5f7",
+      "shape": "round"
+    },
+    {
+      "num": 30,
+      "col": "Miami",
+      "img": "b4adad35af65c49f.webp",
+      "tint": "#efeecf",
+      "tint2": "#f8f7f5",
+      "shape": "round"
+    },
+    {
+      "num": 54,
+      "col": "Miami",
+      "img": "90bc66993bb56e90.webp",
+      "tint": "#efdecf",
+      "tint2": "#f8f6f5",
+      "shape": "hz"
+    },
+    {
+      "num": 80,
+      "col": "Miami",
+      "img": "267708ffe2f4a088.webp",
+      "tint": "#e1efcf",
+      "tint2": "#f6f8f5",
+      "cut": true
+    },
+    {
+      "num": 92,
+      "col": "Miami",
+      "img": "3a3728fc8be2d866.webp",
+      "tint": "#dfdfdf",
+      "tint2": "#f6f6f6",
+      "shape": "round"
+    },
+    {
+      "num": 104,
+      "col": "Miami",
+      "img": "3fa7ffec74d339e4.jpg",
+      "tint": "#e0efcf",
+      "tint2": "#f6f8f5"
+    },
+    {
+      "num": 171,
+      "col": "Miami",
+      "img": "31c0fa756c618a78.webp",
+      "tint": "#cfeeef",
+      "tint2": "#f5f7f8",
+      "cut": true,
+      "shape": "hz",
+      "backImg": "509ecf7e8b52466a.webp"
+    },
+    {
+      "num": 172,
+      "col": "Miami",
+      "img": "13fa18d8c2dceb1c.webp",
+      "tint": "#cfefe9",
+      "tint2": "#f5f8f7",
+      "cut": true,
+      "shape": "hz",
+      "backImg": "ecb77eca8c641e79.webp"
+    },
+    {
+      "num": 178,
+      "col": "Miami",
+      "img": "90c7057a584e93c5.jpg",
+      "tint": "#d0d8ef",
+      "tint2": "#f5f5f8",
+      "cut": true
+    },
+    {
+      "num": 1,
+      "col": "Miami",
+      "img": "9a66b11e398f0688.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5",
+      "shape": "hz"
+    },
+    {
+      "num": 6,
+      "col": "Miami",
+      "img": "83208764b1bf05a0.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5"
+    },
+    {
+      "num": 9,
+      "col": "Miami",
+      "img": "b0c3577ebfe603bb.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5",
+      "cut": true
+    },
+    {
+      "num": 15,
+      "col": "Miami",
+      "img": "6f49b6d093f9b2ba.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5"
+    },
+    {
+      "num": 22,
+      "col": "Miami",
+      "img": "ca7ff1c73a292773.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5"
+    },
+    {
+      "num": 38,
+      "col": "Miami",
+      "img": "ecd999f889cddd9b.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5"
+    },
+    {
+      "num": 42,
+      "col": "Miami",
+      "img": "f7ee88f0db75eb3f.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5"
+    },
+    {
+      "num": 43,
+      "col": "Miami",
+      "img": "cd1e1f967c176eee.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5"
+    },
+    {
+      "num": 44,
+      "col": "Miami",
+      "img": "fa4f67fa61af8fcc.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5",
+      "cut": true
+    },
+    {
+      "num": 53,
+      "col": "Miami",
+      "img": "70ef7586b0f5c0e8.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5"
+    },
+    {
+      "num": 57,
+      "col": "Miami",
+      "img": "8838c1b5a60b2201.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5"
+    },
+    {
+      "num": 100,
+      "col": "Miami",
+      "img": "b83daf9156eda1c3.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5",
+      "cut": true
+    },
+    {
+      "num": 2,
+      "col": "Cuban American",
+      "img": "59c0d342147aadf4.webp",
+      "tint": "#efd0cf",
+      "tint2": "#f8f5f5",
+      "cut": true
+    },
+    {
+      "num": 5,
+      "col": "Cuban American",
+      "img": "633bc2173c8b1753.jpg",
+      "tint": "#cfe8ef",
+      "tint2": "#f5f7f8"
+    },
+    {
+      "num": 7,
+      "col": "Cuban American",
+      "img": "80bb771216f0229a.webp",
+      "tint": "#efd6cf",
+      "tint2": "#f8f5f5",
+      "cut": true
+    },
+    {
+      "num": 10,
+      "col": "Cuban American",
+      "img": "656e4f969667c1d8.webp",
+      "tint": "#d2ecec",
+      "tint2": "#f5f8f7"
+    },
+    {
+      "num": 11,
+      "col": "Cuban American",
+      "img": "46a2b8316f5ae690.jpg",
+      "tint": "#cfefec",
+      "tint2": "#f5f8f7"
+    },
+    {
+      "num": 12,
+      "col": "Cuban American",
+      "img": "0486137ef7ba753c.jpg",
+      "tint": "#efddcf",
+      "tint2": "#f8f6f5"
+    },
+    {
+      "num": 14,
+      "col": "Cuban American",
+      "img": "2f6ae11d0a5e20d8.webp",
+      "tint": "#efdfcf",
+      "tint2": "#f8f6f5",
+      "cut": true,
+      "shape": "hz"
+    },
+    {
+      "num": 17,
+      "col": "Cuban American",
+      "img": "839192581b809382.jpg",
+      "tint": "#cfe0ef",
+      "tint2": "#f5f6f8"
+    },
+    {
+      "num": 19,
+      "col": "Cuban American",
+      "img": "fa811de686c580f3.jpg",
+      "tint": "#efe7cf",
+      "tint2": "#f8f7f5"
+    },
+    {
+      "num": 21,
+      "col": "Cuban American",
+      "img": "6d6e21088118613a.jpg",
+      "tint": "#efddcf",
+      "tint2": "#f8f6f5"
+    },
+    {
+      "num": 31,
+      "col": "Cuban American",
+      "img": "b148ab268b86c028.webp",
+      "tint": "#efe2cf",
+      "tint2": "#f8f6f5",
+      "shape": "round"
+    },
+    {
+      "num": 37,
+      "col": "Cuban American",
+      "img": "cf336840ca0aaa54.jpg",
+      "tint": "#cfefeb",
+      "tint2": "#f5f8f7"
+    },
+    {
+      "num": 50,
+      "col": "Cuban American",
+      "img": "076560031accf971.webp",
+      "tint": "#efe1cf",
+      "tint2": "#f8f6f5",
+      "cut": true
+    },
+    {
+      "num": 95,
+      "col": "Cuban American",
+      "img": "94be13f8398943ba.webp",
+      "tint": "#edd1d2",
+      "tint2": "#f8f5f5",
+      "shape": "round"
+    },
+    {
+      "num": 98,
+      "col": "Cuban American",
+      "img": "e48f2f56d1792443.jpg",
+      "tint": "#d1ede2",
+      "tint2": "#f5f8f6"
+    },
+    {
+      "num": 101,
+      "col": "Cuban American",
+      "img": "3d7a5d7f8f8aeaa7.jpg",
+      "tint": "#d0efcf",
+      "tint2": "#f5f8f5"
+    },
+    {
+      "num": 102,
+      "col": "Cuban American",
+      "img": "e4f0b57591f091cf.jpg",
+      "tint": "#efcfde",
+      "tint2": "#f8f5f6"
+    },
+    {
+      "num": 103,
+      "col": "Cuban American",
+      "img": "c152e07df4728345.jpg",
+      "tint": "#cfefec",
+      "tint2": "#f5f8f7"
+    },
+    {
+      "num": 130,
+      "col": "Cuban American",
+      "img": "6f04563b1378d476.webp",
+      "tint": "#d6dce8",
+      "tint2": "#f5f6f7",
+      "cut": true
+    },
+    {
+      "num": 179,
+      "col": "Cuban American",
+      "img": "09d7ee41ddc37361.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5",
+      "shape": "round",
+      "nameEs": "Iman Little Havana #179 · Domino",
+      "nameEn": "Little Havana Magnet #179 · Domino"
+    },
+    {
+      "num": 180,
+      "col": "Cuban American",
+      "img": "f2cf4353321545a5.webp",
+      "tint": "#e8e2d8",
+      "tint2": "#f8f5f5",
+      "shape": "round",
+      "nameEs": "Iman Little Havana · Gallo",
+      "nameEn": "Little Havana Magnet #180 · Gallo"
+    }
+  ]
+}

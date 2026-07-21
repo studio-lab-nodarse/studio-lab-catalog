@@ -1,0 +1,55 @@
+<script>
+function setLang(l){
+  document.getElementById('btEN').classList.toggle('active',l==='en');
+  document.getElementById('btES').classList.toggle('active',l==='es');
+  document.querySelectorAll('[data-en]').forEach(function(el){el.innerHTML=el.getAttribute('data-'+l);});
+  document.documentElement.lang=l;
+}
+document.querySelectorAll('.stk').forEach(function(s){
+  s.addEventListener('click',function(e){
+    var open=s.classList.contains('open');
+    document.querySelectorAll('.stk.open').forEach(function(o){o.classList.remove('open');});
+    if(!open) s.classList.add('open');
+    e.stopPropagation();
+  });
+});
+document.addEventListener('click',function(){document.querySelectorAll('.stk.open').forEach(function(o){o.classList.remove('open');});});
+
+function openModal(col){
+  var ov=document.getElementById('mov');
+  document.getElementById('mform').style.display='grid';
+  document.getElementById('mfoot').style.display='flex';
+  document.getElementById('mok').classList.remove('on');
+  if(col){var sel=document.getElementById('mcol');for(var i=0;i<sel.options.length;i++){if(sel.options[i].textContent.trim()===col.trim())sel.selectedIndex=i;}}
+  ov.classList.add('on');
+}
+function closeModal(){document.getElementById('mov').classList.remove('on');}
+document.querySelectorAll('.btn-custom').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var s=b.closest('.col');openModal(s?s.querySelector('h2').textContent:'');});});
+document.querySelectorAll('.btn-pack').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var s=b.closest('.col');var col=s?s.querySelector('h2').textContent.trim():'';var note=s&&s.querySelector('.pack-note')?s.querySelector('.pack-note').textContent.trim():'';var es=(document.documentElement.lang||'en')==='es';addPackToOrder([{n:'pack-'+col.toLowerCase().replace(/\s+/g,'-'),name:(es?'Paquete de stickers · ':'Sticker pack · ')+col+(note?' ('+note+')':''),col:col}]);});});
+document.querySelectorAll('.btn-add').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();openModal('Mix / Custom');});});
+document.getElementById('mov').addEventListener('click',function(e){if(e.target===this)closeModal();});
+function submitModal(){
+  var f=document.getElementById('mform');
+  if(!f.negocio.value.trim()||!f.contacto.value.trim()){alert('Completa nombre del negocio y contacto / Fill business name and contact');return;}
+  function lbl(el){var o=el.options?el.options[el.selectedIndex]:null;return o?o.textContent.trim():el.value;}
+  var L=[
+   'SOLICITUD DE COLECCIÓN DE STICKERS · Studio Lab',
+   'Negocio: '+f.negocio.value,
+   'Tipo: '+lbl(f.tipo),
+   'Colección base: '+lbl(f.coleccion),
+   'Nº de diseños: '+lbl(f.disenos),
+   'Temas/motivos: '+(f.temas.value||'-'),
+   'Incluir logo/nombre: '+lbl(f.logo),
+   'Cantidad por diseño: '+lbl(f.tiraje),
+   'Idioma del texto: '+lbl(f.idioma),
+   'Contacto: '+f.contacto.value,
+   'Notas: '+(f.notas.value||'-')
+  ].join('\n');
+  document.getElementById('msum').textContent=L;
+  try{navigator.clipboard.writeText(L);}catch(e){}
+  var mail='mailto:jesusnodarse1823@gmail.com?subject='+encodeURIComponent('Solicitud de colección de stickers')+'&body='+encodeURIComponent(L);
+  document.getElementById('mmail').setAttribute('href',mail);
+  f.style.display='none';document.getElementById('mfoot').style.display='none';
+  document.getElementById('mok').classList.add('on');
+}
+</script>

@@ -1,0 +1,47 @@
+---
+layout: base-stickers.njk
+permalink: apps/storefront/stickers.html
+pagePath: apps/storefront/stickers.html
+title: "Stickers y Packs de Miami | Studio Lab"
+description: "Stickers y packs de Studio Lab con diseños de Miami. Elige tu colección y haz tu pedido por email."
+pageName: "Stickers y Packs de Miami"
+pageDescription: "Stickers y packs de Studio Lab con diseños de Miami."
+breadcrumbName: "Stickers"
+navActive: stickers
+navBase: ""
+headerSubEs: "Studio Lab · Stickers"
+headerSubEn: "Studio Lab · Stickers"
+langFn: "setLang"
+langIdEn: "btEN"
+langIdEs: "btES"
+langActive: "en"
+assetsBase: ../../assets
+pageStyles: styles/stickers.css
+---
+{% import "sticker-card.njk" as sc %}
+<section class="hero">
+  <div class="hero-eyebrow" data-en="Die-Cut Stickers" data-es="Stickers Die-Cut">Die-Cut Stickers</div>
+  <h1 class="hero-title" data-en='All stickers, by <span class="em">collection</span>' data-es='Todos los stickers, por <span class="em">colección</span>'>All stickers, by <span class="em">collection</span></h1>
+  <p class="hero-text" data-en="Weatherproof vinyl die-cut stickers with a bold white kiss-cut border. Hover or tap a sticker for specs and size." data-es="Stickers de vinilo die-cut resistentes al agua con borde blanco troquelado. Pasa el cursor o toca un sticker para ver ficha y medidas.">Weatherproof vinyl die-cut stickers with a bold white kiss-cut border. Hover or tap a sticker for specs and size.</p>
+</section>
+<nav class="tabs">
+  <a href="#sec-miami">Miami</a>
+  <a href="#sec-beach">Miami Beach</a>
+  <a href="#sec-cuban">Cuban American</a>
+</nav>
+{% for sec in stickers.sections %}<section class="col" id="{{ sec.id }}">
+  <div class="cat-bar">
+    <div class="cat-head">
+      <h2>{{ sec.h2 }}</h2>
+      <p class="pack-note" data-es="{{ sec.packNoteEs }}" data-en="{{ sec.packNoteEn }}">{{ sec.packNoteEn }}</p>
+    </div>
+    <div class="cat-cta">
+      <button class="btn-pack" data-es="Ordenar colección · paquete" data-en="Order collection · pack">Order collection · pack</button>
+      <button class="btn-custom" data-es="Personalizar para tu negocio" data-en="Customize for your business">Customize for your business</button>
+    </div>
+  </div>
+  <main class="stage">
+{% for i in sec.items %}{{ sc.card(i, assetsBase) }}
+{% endfor %}  </main>
+</section>
+{% endfor %}{% include "stickers-cta.njk" %}

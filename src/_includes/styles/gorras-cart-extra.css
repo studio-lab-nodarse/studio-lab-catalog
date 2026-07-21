@@ -1,0 +1,7 @@
+
+.cap-lineup{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:24px;}
+.cl-cap{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.cl-img{width:116px;height:86px;border-radius:12px;background-size:cover;background-position:center;box-shadow:0 8px 20px rgba(0,0,0,.4);border:1px solid rgba(243,234,214,.18);}
+.cl-cap span{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#d9b25a;font-weight:700;}
+.cl-note{text-align:center;margin-top:14px;font-size:13px;color:#c9bfa6;}
+@media(max-width:600px){.cl-img{width:92px;height:70px;} .cap-lineup{gap:10px;}}

@@ -1,0 +1,12 @@
+<script>
+function L(l){
+  document.documentElement.lang=l;
+  document.getElementById('be').classList.toggle('active',l==='en');
+  document.getElementById('bs').classList.toggle('active',l==='es');
+  document.querySelectorAll('[data-es]').forEach(function(n){var v=n.getAttribute('data-'+l);if(v!==null)n.innerHTML=v;});
+}
+function flip(btn){var c=btn.closest('.p-card');c.classList.toggle('flipped');}
+document.querySelectorAll('.p-card').forEach(function(c){
+  c.addEventListener('mouseleave',function(){c.classList.remove('flipped');});
+});
+</script>

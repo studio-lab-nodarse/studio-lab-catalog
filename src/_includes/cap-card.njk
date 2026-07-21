@@ -1,0 +1,31 @@
+{#
+  One cap product card.
+
+  Every cap shares the same specs, description, pack note and colourway set, so
+  those live here once. The data file carries only: num, col, labelEs/labelEn,
+  the back-patch image, and the per-colour front images (`imgs`).
+  The front image is always the first colourway; swapCap() swaps it at runtime.
+#}
+{% macro card(p, colors, assetsBase) %}
+{%- set nameEs = "Gorra #" ~ p.num ~ " &middot; " ~ p.labelEs -%}
+{%- set nameEn = "Cap #" ~ p.num ~ " &middot; " ~ p.labelEn -%}
+<div class="p-card" data-num="{{ p.num }}" data-col="{{ p.col }}">
+        <div class="p-inner">
+          <div class="p-face p-front">
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" id="front-{{ p.num }}" class="p-img cap" src="{{ assetsBase }}/img/{{ p.imgs[colors[0].slug] }}" alt="#{{ p.num }}" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver parche / See patch">&#8635;</button><span class="flip-cue" data-es="Parche" data-en="Patch">Patch</span></div>
+            <div class="swrow">{% for c in colors %}<button class="cdot{% if loop.first %} active{% endif %}" style="background:{{ c.hex }}" title="{{ c.title }}" aria-label="{{ c.title }}" onclick="swapCap('{{ p.num }}','{{ c.slug }}',this)"></button>{% endfor %}</div><div class="p-body"><span class="p-tag"><span>{{ p.col }}</span></span>
+              <h3 class="p-name" data-es="{{ nameEs | safe }}" data-en="{{ nameEn | safe }}">{{ nameEn | safe }}</h3>
+              <p class="p-desc" data-es="Dad hat lavada &middot; parche de cuero cortado a laser." data-en="Washed dad hat &middot; laser-cut leather patch.">Washed dad hat &middot; laser-cut leather patch.</p>
+              <div class="p-actions"><button class="btn-add" onclick="addToOrder(this)"><span data-es="Agregar paquete" data-en="Add pack">Add pack</span> +</button></div></div>
+          </div>
+          <div class="p-face p-back"><div class="ph"><button class="flip-hint" onclick="flip(this)" title="Ver gorra / See cap">&#8634;</button><span class="flip-cue" data-es="Gorra" data-en="Cap">Cap</span><div class="back-cap"><img loading="lazy" decoding="async" src="{{ assetsBase }}/img/{{ p.back }}" alt=""></div></div>
+            <div class="p-body"><div class="spec-row"><span class="spec-k" data-es="Tipo" data-en="Type">Tipo</span><span class="spec-v" data-es="Dad hat vintage lavada" data-en="Vintage washed dad hat">Dad hat vintage lavada</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Parche" data-en="Patch">Parche</span><span class="spec-v" data-es="Cuero impreso, corte laser" data-en="Printed leather, laser cut">Cuero impreso, corte laser</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Pedido minimo" data-en="Minimum order">Pedido minimo</span><span class="spec-v" data-es="Paquete de 15" data-en="Pack of 15">Paquete de 15</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Colores" data-en="Colors">Colores</span><span class="spec-v" data-es="Surtidos del pack" data-en="Assorted">Surtidos</span></div>
+              <span class="pack-note" data-es="&#127744; Paquete surtido &middot; 15 gorras &middot; colores variados" data-en="&#127744; Assorted pack &middot; 15 caps &middot; mixed colors">&#127744; Assorted pack &middot; 15 caps &middot; mixed colors</span>
+              <div class="p-actions"><button class="btn-add" onclick="addToOrder(this)"><span data-es="Agregar paquete" data-en="Add pack">Agregar paquete</span> +</button></div></div>
+          </div>
+        </div>
+      </div>
+{%- endmacro %}

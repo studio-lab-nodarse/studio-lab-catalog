@@ -1,8 +1,9 @@
 name: Verify site
 
-# Runs the pre-deploy invariant checks (tools/verify_site.py) on pull requests
-# and on pushes to main. To make this a merge gate, enable branch protection on
-# `main` and mark "Verify site / verify" as a required status check.
+# Builds the site and runs the pre-deploy invariant checks (tools/verify_site.py)
+# against the generated output, on pull requests and on pushes to main. To make
+# this a merge gate, enable branch protection on `main` and mark
+# "Verify site / verify" as a required status check.
 on:
   pull_request:
   push:
@@ -14,5 +15,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build site
+        run: npm run build
       - name: Verify site invariants
-        run: python3 tools/verify_site.py
+        run: python3 tools/verify_site.py _site

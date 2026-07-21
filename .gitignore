@@ -1,0 +1,7 @@
+node_modules/
+_site/
+.DS_Store
+
+# Machine-local Claude Code settings; .claude/launch.json IS tracked (dev server config)
+.claude/settings.local.json
+.claude/worktrees/

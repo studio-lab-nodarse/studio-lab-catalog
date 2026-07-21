@@ -1,0 +1,18 @@
+<script>
+function flip(el){el.closest('.p-card').classList.toggle('flipped');}
+
+function setLang(l){
+  document.documentElement.lang=l;
+  document.getElementById('b-es').classList.toggle('active',l==='es');
+  document.getElementById('b-en').classList.toggle('active',l==='en');
+  document.querySelectorAll('[data-es]').forEach(function(n){var v=n.getAttribute('data-'+l);if(v!==null)n.innerHTML=v;});
+  try{localStorage.setItem('sl_lang',l);}catch(e){}
+}
+var _d="en";try{_d=localStorage.getItem('sl_lang')||"en";}catch(e){}setLang(_d);
+</script>
+<script>
+/* al sacar el cursor de una tarjeta volteada, vuelve al frente */
+document.querySelectorAll('.p-card').forEach(function(c){
+  c.addEventListener('mouseleave',function(){ c.classList.remove('flipped'); });
+});
+</script>

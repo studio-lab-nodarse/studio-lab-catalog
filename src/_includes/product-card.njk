@@ -1,0 +1,46 @@
+{#
+  One magnet product card.
+
+  Everything invariant (spec rows, buttons, flip affordances, bilingual labels)
+  lives here once. The data file only carries what actually varies per product:
+  num, col, img, tint, tint2, and the optional `cut` / `shape` modifiers.
+
+  shape: "round" -> circular magnet (⌀ 75 mm)
+         "hz"    -> horizontal 75x50
+         (unset) -> vertical 75x50
+  cut:   image-only modifier, independent of shape.
+#}
+{#
+  opts.dataCol  -> emit data-col (the combined magnets page needs it to filter;
+                   a single-collection page does not).
+  opts.addByNum -> call addToOrder(<num>) instead of addToOrder(this).
+                   Both call styles are supported by assets/cart.js.
+#}
+{% macro card(p, descriptions, assetsBase, opts={}) %}
+{%- set addArg = p.num if opts.addByNum else "this" -%}
+{%- set imgMods = (" cut" if p.cut else "") ~ (" hz" if p.shape == "hz" else (" rnd" if p.shape == "round" else "")) -%}
+{%- set backMods = (" round" if p.shape == "round" else (" hz" if p.shape == "hz" else "")) -%}
+{%- set nameEs = p.nameEs if p.nameEs else ("Iman " ~ p.col ~ " #" ~ p.num) -%}
+{%- set nameEn = p.nameEn if p.nameEn else (p.col ~ " Magnet #" ~ p.num) -%}
+{%- set d = descriptions[p.desc if p.desc else "standard"] -%}
+{%- set descEs = p.descEs if p.descEs else d.es -%}
+{%- set descEn = p.descEn if p.descEn else d.en -%}
+<div class="p-card"{% if opts.dataCol %} data-col="{{ p.col }}"{% endif %} data-num="{{ p.num }}" style="--tint2:{{ p.tint2 }};--tint:{{ p.tint }}">
+        <div class="p-inner">
+          <div class="p-face p-front">
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img{{ imgMods }}" src="{{ assetsBase }}/img/{{ p.img }}" alt="#{{ p.num }}" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-body"><span class="p-tag"><span data-es="{{ p.col }}" data-en="{{ p.col }}">{{ p.col }}</span></span>
+              <h3 class="p-name" data-es="{{ nameEs }}" data-en="{{ nameEn }}">{{ nameEn }}</h3>
+              <p class="p-desc" data-es="{{ descEs }}" data-en="{{ descEn }}">{{ descEn }}</p>
+              <div class="p-actions"><button class="btn-add" onclick="addToOrder({{ addArg }})"><span data-es="Agregar" data-en="Add">Agregar</span> +</button></div></div>
+          </div>
+          <div class="p-face p-back"><div class="ph"><button class="flip-hint" onclick="flip(this)" title="Ver diseno / See design">&#8634;</button><span class="flip-cue" data-es="Diseno" data-en="Design">Design</span><div class="back-stage{{ backMods }}"><div class="back-photo"{% if p.backImg %} style="background:url({{ assetsBase }}/img/{{ p.backImg }}) center/contain no-repeat;box-shadow:none;border-radius:0;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5));"{% endif %}></div><div class="dim-w"><b>{% if p.shape == "round" %}&#8960; 75 mm{% elif p.shape == "hz" %}75 mm{% else %}50 mm{% endif %}</b></div><div class="dim-h"><b>{% if p.shape == "hz" %}50 mm{% else %}75 mm{% endif %}</b></div></div></div>
+            <div class="p-body"><div class="spec-row"><span class="spec-k" data-es="Tipo" data-en="Type">Tipo</span><span class="spec-v" data-es="Iman de nevera" data-en="Fridge magnet">Iman de nevera</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Tamano" data-en="Size">Tamano</span><span class="spec-v">{% if p.size %}{{ p.size | safe }}{% elif p.shape == "round" %}&#8960; 75 mm{% else %}75 x 50 mm{% endif %}</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Material" data-en="Material">Material</span><span class="spec-v" data-es="Madera" data-en="Wood">Madera</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Coleccion" data-en="Collection">Coleccion</span><span class="spec-v">{{ p.col }}</span></div>
+              <div class="p-actions"><button class="btn-add" onclick="addToOrder({{ addArg }})"><span data-es="Agregar" data-en="Add">Agregar</span> +</button></div></div>
+          </div>
+        </div>
+      </div>
+{%- endmacro %}

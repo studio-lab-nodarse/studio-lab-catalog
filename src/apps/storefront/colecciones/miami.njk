@@ -1,0 +1,36 @@
+---
+layout: base.njk
+permalink: apps/storefront/colecciones/miami.html
+pagePath: apps/storefront/colecciones/miami.html
+title: "Colección Miami | Studio Lab"
+description: "Colección Miami de Studio Lab: gorras, magnets y stickers que capturan la esencia de la ciudad."
+pageName: "Colección Miami"
+pageDescription: "Colección Miami de Studio Lab: gorras, magnets y stickers que capturan la esencia de la ciudad."
+breadcrumbName: "Colección Miami"
+navActive: ""
+navBase: "../"
+headerSubEs: "Studio Lab · Colección Miami"
+headerSubEn: "Studio Lab · Miami Collection"
+assetsBase: ../../../assets
+pageStyles: styles/miami.css
+mpCol: "Miami"
+collection: "Miami"
+---
+{% import "product-card.njk" as pc %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-eyebrow" data-es="Coleccion - Miami" data-en="Collection - Miami">Collection - Miami</div>
+    <h1 class="hero-title" data-es="<span class='em'>Miami</span>" data-en="<span class='em'>Miami</span>"><span class="em">Miami</span></h1>
+    <p class="hero-text" data-es="Imanes de nevera impresos a todo color, resistentes y vibrantes. Cada diseno es producido en nuestro estudio de Miami - el souvenir perfecto que se queda a la vista todos los dias." data-en="Full-color fridge magnets, durable and vibrant. Every design is produced in our Miami studio - the perfect souvenir that stays in sight every day.">Imanes de nevera impresos a todo color, resistentes y vibrantes. Cada diseno es producido en nuestro estudio de Miami - el souvenir perfecto que se queda a la vista todos los dias.</p>
+    
+  </div>
+  </div>
+  </div>
+</section>
+<div class="cat-bar">
+  <h2 data-es="Imanes" data-en="Magnets">Miami Beach</h2>
+  <p data-es="Gira cada producto para ver el reverso, las medidas y el material." data-en="Flip each product to see the back, dimensions and material.">Gira cada producto para ver el reverso, las medidas y el material.</p>
+</div>
+<div class="grid">
+{% for p in magnets.items %}{% if p.col == collection %}{{ pc.card(p, magnets.descriptions, assetsBase, { addByNum: true }) }}
+{% endif %}{% endfor %}</div>

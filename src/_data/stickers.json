@@ -1,0 +1,280 @@
+{
+  "sections": [
+    {
+      "id": "sec-miami",
+      "h2": "Miami",
+      "packNoteEs": "Paquete de 13 stickers",
+      "packNoteEn": "Pack of 13 stickers",
+      "items": [
+        {
+          "num": 71,
+          "r": "-1.6deg",
+          "img": "bbc41738899fac38.webp",
+          "alt": "Miami Vibes Skyline & speedboat",
+          "size": "65 x 60 mm",
+          "title": "Miami Vibes",
+          "sub": "Skyline & speedboat"
+        },
+        {
+          "num": 88,
+          "r": "-3.1deg",
+          "img": "f1881dcde563e988.webp",
+          "alt": "Miami Vibes Palm & surfboard",
+          "size": "65 x 65 mm",
+          "title": "Miami Vibes",
+          "sub": "Palm & surfboard"
+        },
+        {
+          "num": 155,
+          "r": "1.4deg",
+          "img": "f174d7b3a9e71083.webp",
+          "alt": "Miami Sunset skyline",
+          "size": "65 x 64 mm",
+          "title": "Miami",
+          "sub": "Sunset skyline"
+        },
+        {
+          "num": 76,
+          "r": "-3.8deg",
+          "img": "db9bdf9774bc30cf.webp",
+          "alt": "Miami Coconut cocktail",
+          "size": "56 x 65 mm",
+          "title": "Miami",
+          "sub": "Coconut cocktail"
+        },
+        {
+          "num": 83,
+          "r": "0.3deg",
+          "img": "b4a3028825026ecb.webp",
+          "alt": "Miami Classic car · teal",
+          "size": "63 x 65 mm",
+          "title": "Miami",
+          "sub": "Classic car · teal"
+        },
+        {
+          "num": 84,
+          "r": "-1.2deg",
+          "img": "de7c57c7ad9bca1d.webp",
+          "alt": "Miami Classic car · sunset",
+          "size": "65 x 62 mm",
+          "title": "Miami",
+          "sub": "Classic car · sunset"
+        },
+        {
+          "num": 79,
+          "r": "-4.0deg",
+          "img": "9d2839750d485d9c.webp",
+          "alt": "Miami Retro Beetle",
+          "size": "65 x 60 mm",
+          "title": "Miami",
+          "sub": "Retro Beetle"
+        },
+        {
+          "num": 157,
+          "r": "0.1deg",
+          "img": "513bbc4d19415c11.webp",
+          "alt": "Miami Florida Pink Cadillac",
+          "size": "65 x 65 mm",
+          "title": "Miami Florida",
+          "sub": "Pink Cadillac"
+        },
+        {
+          "num": 80,
+          "r": "-4.2deg",
+          "img": "62440167f21a2fc0.webp",
+          "alt": "Miami Floral oval",
+          "size": "65 x 50 mm",
+          "title": "Miami",
+          "sub": "Floral oval"
+        },
+        {
+          "num": 75,
+          "r": "-0.6deg",
+          "img": "76422d759df32ec8.webp",
+          "alt": "Miami Florida Retro palms",
+          "size": "63 x 65 mm",
+          "title": "Miami Florida",
+          "sub": "Retro palms"
+        },
+        {
+          "num": 112,
+          "r": "-3.9deg",
+          "img": "59444dc955ad3f20.webp",
+          "alt": "Miami Graffiti cat",
+          "size": "53 x 65 mm",
+          "title": "Miami",
+          "sub": "Graffiti cat"
+        },
+        {
+          "num": 151,
+          "r": "-3.7deg",
+          "img": "ebd48348aa7195ab.webp",
+          "alt": "Miami Panda hoodie",
+          "size": "52 x 65 mm",
+          "title": "Miami",
+          "sub": "Panda hoodie"
+        },
+        {
+          "num": 152,
+          "r": "-0.7deg",
+          "img": "4ebe27fbe529c636.webp",
+          "alt": "Miami Frenchie hoodie",
+          "size": "49 x 65 mm",
+          "title": "Miami",
+          "sub": "Frenchie hoodie"
+        }
+      ]
+    },
+    {
+      "id": "sec-beach",
+      "h2": "Miami Beach",
+      "packNoteEs": "Paquete de 8 stickers",
+      "packNoteEn": "Pack of 8 stickers",
+      "items": [
+        {
+          "num": 73,
+          "r": "2.9deg",
+          "img": "94efe1cde1af442a.webp",
+          "alt": "Miami Beach Art Deco shield",
+          "size": "59 x 65 mm",
+          "title": "Miami Beach",
+          "sub": "Art Deco shield"
+        },
+        {
+          "num": 74,
+          "r": "-3.4deg",
+          "img": "30d7805403769920.webp",
+          "alt": "South Beach Palms & skyline",
+          "size": "59 x 65 mm",
+          "title": "South Beach",
+          "sub": "Palms & skyline"
+        },
+        {
+          "num": 78,
+          "r": "-2.5deg",
+          "img": "bcbc8f21a68d99dd.webp",
+          "alt": "South Beach Retro type",
+          "size": "44 x 65 mm",
+          "title": "South Beach",
+          "sub": "Retro type"
+        },
+        {
+          "num": 82,
+          "r": "1.1deg",
+          "img": "e81eccc86d716eb1.webp",
+          "alt": "Miami Flamingo wave",
+          "size": "65 x 65 mm",
+          "title": "Miami",
+          "sub": "Flamingo wave"
+        },
+        {
+          "num": 106,
+          "r": "4.0deg",
+          "img": "0dc14c9224764db9.webp",
+          "alt": "Salty Beach Retro van",
+          "size": "52 x 65 mm",
+          "title": "Salty Beach",
+          "sub": "Retro van"
+        },
+        {
+          "num": 107,
+          "r": "0.7deg",
+          "img": "b18d9734e0421fed.webp",
+          "alt": "Beach Life Type & palms",
+          "size": "65 x 40 mm",
+          "title": "Beach Life",
+          "sub": "Type & palms"
+        },
+        {
+          "num": 154,
+          "r": "-0.9deg",
+          "img": "822ef7ce04a01d08.webp",
+          "alt": "Summer Vibes Sunset hammock",
+          "size": "65 x 65 mm",
+          "title": "Summer Vibes",
+          "sub": "Sunset hammock"
+        },
+        {
+          "num": 158,
+          "r": "4.3deg",
+          "img": "efb6c9ee21577f03.webp",
+          "alt": "Miami Scooter round",
+          "size": "65 x 65 mm",
+          "title": "Miami",
+          "sub": "Scooter round"
+        }
+      ]
+    },
+    {
+      "id": "sec-cuban",
+      "h2": "Cuban American",
+      "packNoteEs": "Paquete de 7 stickers",
+      "packNoteEn": "Pack of 7 stickers",
+      "items": [
+        {
+          "num": 17,
+          "r": "-4.1deg",
+          "img": "d292dc0d46b312da.webp",
+          "alt": "Calle 8 Gallo USA",
+          "size": "55 x 65 mm",
+          "title": "Calle 8",
+          "sub": "Gallo USA"
+        },
+        {
+          "num": 31,
+          "r": "3.2deg",
+          "img": "f4d59b12d4503225.webp",
+          "alt": "Calle 8 · Little Havana Floral wreath",
+          "size": "64 x 65 mm",
+          "title": "Calle 8 · Little Havana",
+          "sub": "Floral wreath"
+        },
+        {
+          "num": 72,
+          "r": "-1.9deg",
+          "img": "ecfb36faf2b601e5.webp",
+          "alt": "Calle Ocho Miami type",
+          "size": "65 x 55 mm",
+          "title": "Calle Ocho",
+          "sub": "Miami type"
+        },
+        {
+          "num": 85,
+          "r": "-3.2deg",
+          "img": "a567dd3bcbebad81.webp",
+          "alt": "Little Havana Gallo Miami",
+          "size": "63 x 65 mm",
+          "title": "Little Havana",
+          "sub": "Gallo Miami"
+        },
+        {
+          "num": 86,
+          "r": "-3.4deg",
+          "img": "a7e09e4e024c07aa.webp",
+          "alt": "Little Havana Gallo · Cuban flag",
+          "size": "62 x 65 mm",
+          "title": "Little Havana",
+          "sub": "Gallo · Cuban flag"
+        },
+        {
+          "num": 111,
+          "r": "-1.7deg",
+          "img": "91e9dc3e16185f50.webp",
+          "alt": "Little Havana Miami storefront",
+          "size": "64 x 65 mm",
+          "title": "Little Havana",
+          "sub": "Miami storefront"
+        },
+        {
+          "num": 156,
+          "r": "2.8deg",
+          "img": "1630ae2a4fad1a9d.webp",
+          "alt": "Little Havana Gallo oval",
+          "size": "65 x 52 mm",
+          "title": "Little Havana",
+          "sub": "Gallo oval"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+<div class="mp-order-bar" id="mpBar" onclick="mpOpenPanel()">&#129530; <span data-es="Tu pedido" data-en="Your order">Your order</span> (<b id="mpCount">0</b>)</div>
+<div class="mp-ov" id="mpPanelOv" onclick="if(event.target===this)mpClose('mpPanelOv')">
+  <div class="mp-panel">
+    <div class="mp-head"><div class="mp-title" data-es="Tu pedido" data-en="Your order">Your order</div><button class="mp-x" onclick="mpClose('mpPanelOv')">&times;</button></div>
+    <div class="mp-body" id="mpItems"></div>
+    <div class="mp-foot">
+      <input class="mp-in" id="mpBizName" data-es-ph="Nombre del negocio *" data-en-ph="Business name *" placeholder="Business name *">
+      <input class="mp-in" id="mpName" data-es-ph="Tu nombre *" data-en-ph="Your name *" placeholder="Your name *">
+      <input class="mp-in" id="mpMail" type="email" data-es-ph="Email *" data-en-ph="Email *" placeholder="Email *">
+      <button class="mp-send" id="mpSend" onclick="mpSend()" data-es="Enviar pedido para cotizar &#8594;" data-en="Send order for a quote &#8594;">Send order for a quote &#8594;</button>
+      <a class="mp-create" href="{{ navBase }}index.html#crear" data-es="&#10024; &#191;Algo hecho solo para ti? Crea tu coleccion desde cero &#8594;" data-en="&#10024; Want something made just for you? Create your collection from scratch &#8594;">&#10024; Want something made just for you? Create your collection from scratch &#8594;</a>
+    </div>
+  </div>
+</div>
+<div class="mp-ov" id="mpVerOv" onclick="if(event.target===this)mpClose('mpVerOv')">
+  <div class="mp-panel" style="max-width:440px;">
+    <div class="mp-head"><div class="mp-title" id="mpVerTitle">Versionar</div><button class="mp-x" onclick="mpClose('mpVerOv')">&times;</button></div>
+    <div class="mp-body">
+      <div class="mp-vsub" data-es="Adaptamos este diseno a tu negocio. &#191;Que cambiamos?" data-en="We adapt this design to your business. What should change?">We adapt this design to your business. What should change?</div>
+      <div class="mp-chips" id="mpVerChips"></div>
+      <textarea class="mp-note" id="mpVerNote" rows="3" data-es-ph="Detalles (opcional): nombre exacto, colores, referencia de tu zona..." data-en-ph="Details (optional): exact name, colors, a local landmark..." placeholder="Details (optional): exact name, colors, a local landmark..."></textarea>
+    </div>
+    <div class="mp-foot"><button class="mp-send" onclick="mpVerAdd()" data-es="Agregar version al pedido &#8594;" data-en="Add version to order &#8594;">Add version to order &#8594;</button></div>
+  </div>
+</div>

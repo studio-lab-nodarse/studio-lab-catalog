@@ -1,0 +1,60 @@
+<section class="cta">
+  <p data-en="Want these for your store?" data-es="¿Quieres estos para tu tienda?">Want these for your store?</p>
+  <button class="btn-add" data-en="Request wholesale quote" data-es="Solicitar cotización mayorista">Request wholesale quote</button>
+</section>
+
+<div class="modal-ov" id="mov">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-h">
+      <button class="modal-x" onclick="closeModal()" aria-label="Cerrar">&times;</button>
+      <h3 data-en="Create your collection" data-es="Crea tu colección">Create your collection</h3>
+      <p data-en="Tell us about your business and we'll design a custom sticker pack for you." data-es="Cuéntanos sobre tu negocio y diseñamos un paquete de stickers a tu medida.">Tell us about your business and we'll design a custom sticker pack for you.</p>
+    </div>
+    <form id="mform" class="modal-b">
+      <div class="fld"><label data-en="Business name *" data-es="Nombre del negocio *">Business name *</label><input name="negocio" required placeholder="Ej: Ocean Gift Shop"></div>
+      <div class="fld"><label data-en="Business type" data-es="Tipo de negocio">Business type</label>
+        <select name="tipo">
+          <option data-en="Souvenir shop" data-es="Tienda de souvenirs">Souvenir shop</option>
+          <option data-en="Hotel / Resort" data-es="Hotel / Resort">Hotel / Resort</option>
+          <option data-en="Restaurant / Café" data-es="Restaurante / Café">Restaurant / Café</option>
+          <option data-en="Tour / Agency" data-es="Tour / Agencia">Tour / Agency</option>
+          <option data-en="Other" data-es="Otro">Other</option>
+        </select></div>
+      <div class="fld"><label data-en="Base collection" data-es="Colección base">Base collection</label>
+        <select name="coleccion" id="mcol">
+          <option>Miami</option><option>Miami Beach</option><option>Cuban American</option>
+          <option data-en="Mix / Custom" data-es="Mezcla / A medida">Mix / Custom</option>
+        </select></div>
+      <div class="fld"><label data-en="Number of designs" data-es="Número de diseños">Number of designs</label>
+        <select name="disenos" id="mdis">
+          <option data-en="Full pack" data-es="Paquete completo">Full pack</option>
+          <option>6</option><option>8</option><option>12</option><option>15</option>
+          <option data-en="Other" data-es="Otro">Other</option>
+        </select></div>
+      <div class="fld full"><label data-en="Themes / motifs" data-es="Temas / motivos">Themes / motifs</label><input name="temas" placeholder="Playa, skyline, Little Havana, flamencos, carros clásicos, comida cubana…"></div>
+      <div class="fld"><label data-en="Include your logo / name?" data-es="¿Incluir tu logo / nombre?">Include your logo / name?</label>
+        <select name="logo"><option data-en="No" data-es="No">No</option><option data-en="Yes" data-es="Sí">Yes</option></select></div>
+      <div class="fld"><label data-en="Qty per design" data-es="Cantidad por diseño">Qty per design</label>
+        <select name="tiraje"><option>50</option><option>100</option><option>250</option><option>500+</option></select></div>
+      <div class="fld"><label data-en="Text language" data-es="Idioma del texto">Text language</label>
+        <select name="idioma"><option>EN</option><option>ES</option><option data-en="Bilingual" data-es="Bilingüe">Bilingual</option></select></div>
+      <div class="fld"><label data-en="Contact (email / WhatsApp) *" data-es="Contacto (email / WhatsApp) *">Contact (email / WhatsApp) *</label><input name="contacto" required placeholder="tu@correo.com"></div>
+      <div class="fld full"><label data-en="Notes" data-es="Notas">Notes</label><textarea name="notas" placeholder="Fechas, presupuesto, ideas…"></textarea></div>
+    </form>
+    <div class="modal-f" id="mfoot">
+      <span class="modal-note" data-en="* required" data-es="* obligatorio">* required</span>
+      <button class="btn-cancel" onclick="closeModal()" data-en="Cancel" data-es="Cancelar">Cancel</button>
+      <button class="btn-send" onclick="submitModal()" data-en="Send request" data-es="Enviar solicitud">Send request</button>
+    </div>
+    <div class="modal-ok" id="mok">
+      <div class="big">✅</div>
+      <h4 data-en="Request ready!" data-es="¡Solicitud lista!">Request ready!</h4>
+      <p data-en="We copied your request. Send it to us by email or WhatsApp and we'll reply with a mockup and quote." data-es="Copiamos tu solicitud. Envíanosla por email o WhatsApp y te respondemos con una muestra y cotización.">We copied your request…</p>
+      <div class="sum" id="msum"></div>
+      <div class="modal-f" style="justify-content:center;padding:0;">
+        <a id="mmail" class="btn-send" style="text-decoration:none;" data-en="Send email" data-es="Enviar email">Send email</a>
+        <button class="btn-cancel" onclick="closeModal()" data-en="Close" data-es="Cerrar">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

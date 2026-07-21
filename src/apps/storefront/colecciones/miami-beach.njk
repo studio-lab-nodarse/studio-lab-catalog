@@ -1,0 +1,36 @@
+---
+layout: base.njk
+permalink: apps/storefront/colecciones/miami-beach.html
+pagePath: apps/storefront/colecciones/miami-beach.html
+title: "Colección Miami Beach | Studio Lab"
+description: "Colección Miami Beach de Studio Lab: arte y accesorios inspirados en el art déco y el mar."
+pageName: "Colección Miami Beach"
+pageDescription: "Colección Miami Beach de Studio Lab: arte y accesorios inspirados en el art déco y el mar."
+breadcrumbName: "Colección Miami Beach"
+navActive: ""
+navBase: "../"
+headerSubEs: "Studio Lab · Colección Miami Beach"
+headerSubEn: "Studio Lab · Miami Beach Collection"
+assetsBase: ../../../assets
+pageStyles: styles/miami-beach.css
+mpCol: "Miami Beach"
+collection: "Miami Beach"
+---
+{% import "product-card.njk" as pc %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-eyebrow" data-es="Coleccion - Miami Beach" data-en="Collection - Miami Beach">Collection - Miami Beach</div>
+    <h1 class="hero-title" data-es="Miami <span class='em'>Beach</span>" data-en="Miami <span class='em'>Beach</span>">Miami <span class="em">Beach</span></h1>
+    <p class="hero-text" data-es="Imanes de nevera impresos a todo color, resistentes y vibrantes. Cada diseno es producido en nuestro estudio de Miami - el souvenir perfecto que se queda a la vista todos los dias." data-en="Full-color fridge magnets, durable and vibrant. Every design is produced in our Miami studio - the perfect souvenir that stays in sight every day.">Imanes de nevera impresos a todo color, resistentes y vibrantes. Cada diseno es producido en nuestro estudio de Miami - el souvenir perfecto que se queda a la vista todos los dias.</p>
+    
+  </div>
+  </div>
+  </div>
+</section>
+<div class="cat-bar">
+  <h2 data-es="Imanes" data-en="Magnets">Miami Beach</h2>
+  <p data-es="Gira cada producto para ver el reverso, las medidas y el material." data-en="Flip each product to see the back, dimensions and material.">Gira cada producto para ver el reverso, las medidas y el material.</p>
+</div>
+<div class="grid">
+{% for p in magnets.items %}{% if p.col == collection %}{{ pc.card(p, magnets.descriptions, assetsBase, { addByNum: true }) }}
+{% endif %}{% endfor %}</div>

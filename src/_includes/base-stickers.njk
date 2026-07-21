@@ -1,0 +1,26 @@
+{#
+  Stickers uses the same head/header/cart/footer partials as base.njk, but a
+  different tail assembly: it loads order.js + flip.js BEFORE the cart markup
+  (cart.js comes last), carries no small <footer> and no MP_COL, and gets its
+  cart styling from brand.css rather than an inline copy. Rather than bend
+  base.njk with four more flags, stickers gets its own layout.
+#}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+{% include "head.njk" %}
+<style>
+{% include pageStyles %}</style>
+</head>
+<body>
+{% include "header.njk" %}
+{{ content | safe }}
+{% include "scripts/stickers.njk" %}
+<script src="{{ assetsBase }}/order.js"></script>
+<script src="{{ assetsBase }}/flip.js"></script>
+
+{% include "cart.njk" %}
+<script src="{{ assetsBase }}/cart.js"></script>
+{% include "site-footer.njk" %}
+</body>
+</html>

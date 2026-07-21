@@ -69,6 +69,16 @@ Site-level:
 - [x] Documented in CLAUDE.md / README: merge-to-`main` = release; work on branches; CI must stay green.
 - [ ] Owner action (GitHub setting, not a file): enable branch protection on `main` → require the "Verify site" check, so a red CI actually blocks the merge/deploy.
 
-## Phase 5 — Maintainability (post-MVP)
-- [ ] Config/data file for order email + social handles (single source of truth)
-- [ ] Optional re-apply script so SEO/order wiring survives a regeneration (only if owner insists on re-exporting)
+## Phase 5 — Maintainability — DONE 2026-07-21 (Eleventy build step)
+
+Goal was a DX/maintainability pass: making small changes was slow and risky because every page duplicated its chrome and hand-wrote every product card. Introduced an **Eleventy build step** (`src/` → `_site/`), optimised for AI-agent editing (the owner works through Claude Code).
+
+- [x] **All six hand-authored pages templated** — magnets, gorras, stickers, colecciones/{miami,cuban-american,miami-beach}. Product content moved to `src/_data/*.json`; chrome (head/SEO/JSON-LD, masthead, cart, footers) to shared partials in `src/_includes/`. **5191 lines of duplicated HTML → 2473 lines of source (−52%)**, most of it data rather than markup.
+- [x] **One data file drives four pages** — the three collection pages proved to be exactly the magnets set filtered by collection, so they reuse `magnets.json`. Add a magnet once; it appears on both.
+- [x] **Gorras' inline `CAPIMG` blob is now generated** from `gorras.json` (6 caps × 6 colourways) by an Eleventy filter, instead of hand-maintained JSON in the page.
+- [x] **Config injected** — `src/_data/site.json` feeds brand/legal/contact/base-URL into every templated page (Phase 5's "config file" item). `assets/order.js` and the hub still hardcode their own copies; CI guards both.
+- [x] **Deploy cut over** — `static.yml` now runs `npm ci → npm run build → verify_site.py → upload _site/`. The invariant checks run against the built output, so a bad build never ships. The old `deprecated/` strip step is gone (it is simply never copied). `ci.yml` builds too.
+- [x] **Migration validated by a parity gate** — every generated page had to match its frozen original with inter-tag whitespace collapsed. It caught a per-card back-photo variant, per-page footer taglines, gorras' extra cart CSS, and a missing `</head>` in gorras (**fixed**, the one intentional deviation). The six superseded `apps/storefront/*.html` files were deleted only after all six passed.
+- The hub (`apps/storefront/index.html`) stays **frozen and passthrough-copied** — it is compiled minified React with no source in the repo.
+- [ ] Not done: unifying the per-page i18n drift (gorras `L()`/`be`/`bs`, stickers `btEN`/`btES`, others `setLang()`/`b-en`/`b-es`) and the per-page CSS drift. Preserved deliberately to hold parity; see BACKLOG.
+- [ ] Not needed: the "re-apply script for regenerated exports" — the frozen-source rule stands, and the templated pages are now the source.

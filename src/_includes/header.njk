@@ -1,0 +1,22 @@
+{#
+  Shared masthead.
+  navBase   -> "" for pages at apps/storefront/, "../" one level deeper.
+  navActive -> highlights a category tab; collection pages set none.
+  The EN/ES toggle is parameterised because the pages still disagree on the
+  language-toggle wiring (gorras uses L()/be/bs, the rest setLang()/b-en/b-es).
+  Unifying that is a separate pass — see docs/BACKLOG.md.
+#}
+{%- set _langFn = langFn or "setLang" -%}
+{%- set _idEn = langIdEn or "b-en" -%}
+{%- set _idEs = langIdEs or "b-es" -%}
+{%- set _active = langActive or "es" -%}
+{%- set _subText = headerSubText or headerSubEs -%}
+<header>
+  <div class="wrap bar">
+    <a class="brand brand-home" href="{{ navBase }}index.html" title="{{ site.subBrand }}"><img loading="lazy" decoding="async" class="logo-mark" src="{{ assetsBase }}/img/9281355fb13182af.png" alt="{{ site.subBrand }}"><div><div class="logo-name">MIAMI <b>PECULIAR</b></div><div class="logo-sub" data-en="{{ headerSubEn }}" data-es="{{ headerSubEs }}">{{ _subText }}</div></div></a>
+    <input type="checkbox" id="mnav" class="mnav-toggle" aria-label="Abrir menú">
+    <nav class="hdr-nav" aria-label="Categorías"><a href="{{ navBase }}gorras.html"{% if navActive == 'gorras' %} class="active"{% endif %}>Gorras</a><a href="{{ navBase }}magnets.html"{% if navActive == 'magnets' %} class="active"{% endif %}>Magnets</a><a href="{{ navBase }}stickers.html"{% if navActive == 'stickers' %} class="active"{% endif %}>Stickers</a></nav>
+    <label for="mnav" class="mnav-btn" aria-hidden="true">☰</label>
+    <div class="lang-toggle"><button id="{{ _idEn }}"{% if _active == 'en' %} class="active"{% endif %} onclick="{{ _langFn }}('en')">EN</button><button id="{{ _idEs }}"{% if _active == 'es' %} class="active"{% endif %} onclick="{{ _langFn }}('es')">ES</button></div>
+  </div>
+</header>
