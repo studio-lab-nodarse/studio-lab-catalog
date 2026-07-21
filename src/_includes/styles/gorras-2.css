@@ -37,3 +37,11 @@
 .cdot{width:20px;height:20px;border-radius:50%;border:2px solid rgba(243,234,214,.35);cursor:pointer;padding:0;transition:transform .15s,border-color .15s;box-shadow:0 2px 6px rgba(0,0,0,.4);}
 .cdot:hover{transform:scale(1.18);}
 .cdot.active{border-color:#FFD447;transform:scale(1.12);}
+
+/* Cap cards carry an extra colourway row and size to their CONTENT (the front
+   face is in flow, above), so margin-top:auto has no slack to distribute and
+   the description-to-button gap collapsed to 13px while the fixed-height card
+   pages sit at 22px. Raising the padding adds the missing 9px directly — the
+   card just grows, whereas a taller .p-inner would only add dead space below
+   the face, since the front doesn't stretch to fill it. */
+.p-actions{padding-top:15px;}
