@@ -5,17 +5,6 @@
    navy card gradient show as letterbox bars down both sides.
    Scoped with :has() so only cap cards are affected; unsupporting browsers
    simply keep the old transparent wrapper. */
-/* Card height. BOTH faces were position:absolute, so neither contributed any
-   height and .p-inner sat at exactly its min-height (498px on desktop — the
-   540px rule is mobile-only). Anything taller was silently clipped by
-   .p-face's overflow:hidden, which is why the Cuban American cards — whose
-   names wrap to two lines — were cut off at the bottom of the page.
-   Put the FRONT face back in flow so the card sizes to its content; the back
-   stays absolutely positioned over it. min-height becomes a floor, not a cap. */
-.p-face.p-front{position:relative;height:auto;}
-/* .p-name is already clamped to 2 lines. Reserve both of them so a one-line
-   name and a two-line name yield the same card height across sections. */
-.p-name{min-height:2.4em;}
 
 .p-imgwrap:has(.p-img.cap){background:#e9e3e2;}
 /* The colourway picker sits on the same light panel, so the photo and the
@@ -38,10 +27,3 @@
 .cdot:hover{transform:scale(1.18);}
 .cdot.active{border-color:#FFD447;transform:scale(1.12);}
 
-/* Cap cards carry an extra colourway row and size to their CONTENT (the front
-   face is in flow, above), so margin-top:auto has no slack to distribute and
-   the description-to-button gap collapsed to 13px while the fixed-height card
-   pages sit at 22px. Raising the padding adds the missing 9px directly — the
-   card just grows, whereas a taller .p-inner would only add dead space below
-   the face, since the front doesn't stretch to fill it. */
-.p-actions{padding-top:15px;}
