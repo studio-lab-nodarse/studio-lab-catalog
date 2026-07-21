@@ -1,0 +1,19 @@
+{#
+  Pill links that jump to a section further down the same page.
+
+  Usage:
+    {% import "section-tabs.njk" as tabs %}
+    {{ tabs.nav([{ id: "sec-miami", label: "Miami" }, …]) }}
+
+  Each entry is { id, label } and optionally labelEs for a bilingual label
+  (most section names are proper nouns, so the default is one label for both).
+  Styles live in assets/brand.css (.tabs), and the shared
+  `[id^="sec-"] { scroll-margin-top }` rule there keeps the sticky masthead
+  from covering the heading you jump to.
+#}
+{% macro nav(tabs) %}<nav class="tabs">
+{%- for t in tabs %}
+  <a href="#{{ t.id }}"{% if t.labelEs %} data-es="{{ t.labelEs }}" data-en="{{ t.label }}"{% endif %}>{{ t.label }}</a>
+{%- endfor %}
+</nav>
+{% endmacro %}

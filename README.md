@@ -16,7 +16,7 @@ npm run verify    # build + invariant checks (tools/verify_site.py)
 ```
 src/                       ← edit here
   apps/storefront/         Page templates (.njk) + front matter
-    gorras.njk  magnets.njk  stickers.njk
+    index.njk (hub)  gorras.njk  magnets.njk  stickers.njk
     colecciones/{miami,cuban-american,miami-beach}.njk
   _data/                   Content + config
     site.json              Brand, contact, base URL (injected into every page)
@@ -24,10 +24,11 @@ src/                       ← edit here
     gorras.json            Caps + colourways
     stickers.json          Stickers, grouped into sections
   _includes/               Shared layout, partials, card macros, per-page CSS
+  _vendor/hub.html         Pre-built React hub — never edited, never parsed;
+                           index.njk injects the shared masthead into it
 
-apps/storefront/index.html Pre-built React hub — passed through verbatim, never edited
 assets/                    Shared runtime + images: order.js, cart.js, flip.js,
-                           hub-nav.js, brand.css, img/
+                           hub-nav.js, brand.css, masthead.css, img/
 index.html                 Root → redirects to apps/storefront/
 deprecated/catalog/        Retired "Catálogo 2026" — unlinked, not built, not deployed
 _site/                     Build output (gitignored — never commit)

@@ -12,10 +12,22 @@ navBase: ""
 headerSubEs: Studio Lab · Magnets
 headerSubEn: Studio Lab · Magnets
 assetsBase: ../../assets
-pageStyles: styles/magnets.css
+pageStyles: styles/card-base.css
 mpCol: Miami Beach
 ---
 {% import "product-card.njk" as pc %}
+{% import "section-tabs.njk" as tabs %}
+{#
+  The grid is grouped by collection so the page matches gorras/stickers: pill
+  links at the top jumping to each section. magnets.json is already ordered
+  Miami Beach -> Miami -> Cuban American, so this only inserts headings; the
+  card order on the page is unchanged.
+#}
+{% set sections = [
+  { id: "sec-beach", col: "Miami Beach",    label: "Miami Beach", h2: "Miami Beach" },
+  { id: "sec-miami", col: "Miami",          label: "Miami",       h2: "Miami" },
+  { id: "sec-cuban", col: "Cuban American", label: "Cuban American", h2: "Cuban American · Little Havana" }
+] %}
 <section class="hero">
   <div class="hero-copy">
     <div class="hero-eyebrow" data-es="Coleccion - Miami Beach" data-en="Collection - Miami Beach">Collection - Miami Beach</div>
@@ -26,10 +38,12 @@ mpCol: Miami Beach
   </div>
   </div>
 </section>
-<div class="cat-bar">
-  <h2 data-es="Imanes" data-en="Magnets">Miami Beach</h2>
-  <p data-es="Gira cada producto para ver el reverso, las medidas y el material." data-en="Flip each product to see the back, dimensions and material.">Gira cada producto para ver el reverso, las medidas y el material.</p>
-</div>
+{{ tabs.nav(sections) }}
+{% for s in sections %}<div class="cat-bar" id="{{ s.id }}">
+  <h2>{{ s.h2 }}</h2>
+{% if loop.first %}  <p data-es="Gira cada producto para ver el reverso, las medidas y el material." data-en="Flip each product to see the back, dimensions and material.">Flip each product to see the back, dimensions and material.</p>
+{% endif %}</div>
 <div class="grid">
-{% for p in magnets.items %}{{ pc.card(p, magnets.descriptions, assetsBase, { dataCol: true }) }}
-{% endfor %}</div>
+{% for p in magnets.items %}{% if p.col == s.col %}{{ pc.card(p, magnets.descriptions, assetsBase, { dataCol: true }) }}
+{% endif %}{% endfor %}</div>
+{% endfor %}

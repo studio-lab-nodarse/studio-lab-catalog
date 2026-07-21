@@ -1,0 +1,21 @@
+---
+permalink: apps/storefront/index.html
+assetsBase: ../../assets
+navBase: ""
+navActive: ""
+headerSubEs: "Studio Lab · Miami Peculiar"
+headerSubEn: "Studio Lab · Miami Peculiar"
+langFn: "slHubLang"
+---
+{#
+  The hub. Its body is the frozen compiled-React bundle (src/_vendor/hub.html),
+  which has no source in this repo and is never parsed as a template. All this
+  page does is render the SHARED masthead and hand it to the `hubShell` filter,
+  which injects it into the bundle at build time.
+
+  Language: the hub's own EN/ES lives in React state (not the data-es mechanism
+  the other pages use), so the masthead's buttons call slHubLang(), a shim in
+  assets/hub-nav.js that forwards to React's now-hidden toggle.
+#}
+{%- set hdr %}{% include "header.njk" %}{% endset -%}
+{{ "src/_vendor/hub.html" | hubShell(hdr, assetsBase) | safe }}

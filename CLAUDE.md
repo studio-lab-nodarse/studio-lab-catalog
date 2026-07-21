@@ -6,9 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A static site hosting **the "Miami Peculiar" storefront**, built with **Eleventy** (`src/` → `_site/`) and deployed to GitHub Pages. `_site/` is the deploy artifact and is gitignored — never commit it.
 
-- **`src/`** — the source for the six templated storefront pages: templates (`src/apps/storefront/*.njk`), content data (`src/_data/*.json`), and shared partials (`src/_includes/`). **This is where you edit.**
-- **`apps/storefront/index.html`** — the hub, the one remaining pre-built page, passed through verbatim (see "Two kinds of page" below).
-- **`assets/`** — shared runtime code + images, passed through verbatim: `order.js`, `cart.js`, `flip.js`, `brand.css`, `hub-nav.js`, and content-hashed images in `assets/img/`.
+- **`src/`** — the source for all seven storefront pages: templates (`src/apps/storefront/*.njk`), content data (`src/_data/*.json`), shared partials (`src/_includes/`), and the vendored hub bundle (`src/_vendor/hub.html`). **This is where you edit.**
+- **`assets/`** — shared runtime code + images, passed through verbatim: `order.js`, `cart.js`, `flip.js`, `hub-nav.js`, `brand.css`, `masthead.css`, and content-hashed images in `assets/img/`.
+
+**Two stylesheets, deliberately split:** `masthead.css` holds the site header and is loaded by **every** page including the hub; its tokens are declared on `header`, *not* `:root`. `brand.css` holds everything else (page tokens, cards, cart, footer) and is loaded only by the six templated pages. They are separate because the hub can't take `brand.css`: its `:root` block collides with the hub's shadcn tokens (`--card`, `--accent`), and its `body .grid` rule collides with Tailwind's `.grid` utility, which the hub uses. CI enforces both halves of this.
 - **`index.html`** (root) — a thin **redirect** to `apps/storefront/` (meta-refresh + JS), so opening `/` lands you in the storefront. Keeps GitHub Pages `/` working + retains site-level SEO/JSON-LD.
 - **`deprecated/catalog/`** — the retired "Catálogo 2026" app. **Deprecated 2026-07-20**: unlinked and not part of the build (it is simply never copied into `_site/`). Kept for reference only — do not link to it or treat it as live.
 
@@ -30,8 +31,18 @@ All six hand-authored storefront pages are now generated. Never edit their built
 
 Shared markup lives in `src/_includes/`: `base.njk` (layout), `base-stickers.njk` (stickers' different tail order), `head.njk` (SEO + JSON-LD), `header.njk`, `cart.njk`, `site-footer.njk`, and the card macros `product-card.njk` / `cap-card.njk` / `sticker-card.njk`. Page copy + SEO/meta live in each page's front matter.
 
-**2. Frozen pre-built page — surgical edits only.**
-- **`apps/storefront/index.html` (the hub)** is the *only* remaining frozen page: compiled, minified React (~195 KB on a *single line*; JSX already transpiled to `createElement`). **No source exists in this repo.** It is passthrough-copied — never parsed, never reformatted. Treat it as a vendored binary; do not "clean it up". Its dead nav anchors are wired externally by `assets/hub-nav.js`.
+**`header.njk` is used by all seven pages, including the hub** — change the masthead once, everywhere. It is parameterised by `navBase` (link depth), `navActive`, `headerSubEs`/`headerSubEn`/`headerSubText`, and the language-toggle wiring (`langFn`, `langIdEn`/`langIdEs`, `langActive`).
+
+**2. The hub — a frozen bundle with the masthead injected around it.**
+The hub's body is compiled, minified React (~195 KB on a *single line*, JSX already transpiled to `createElement`). **No source exists in this repo.** It lives untouched at **`src/_vendor/hub.html`** and is never parsed as a template (`eleventyConfig.ignores`). Treat it as a vendored binary — do not reformat or "clean it up".
+
+`src/apps/storefront/index.njk` renders the **shared `header.njk`** and hands it to the `hubShell` filter, which does two explicit string injections and nothing else:
+1. before `<body>` — the `masthead.css` link, a rule hiding React's own header, and the `</head>` the bundle never had;
+2. before `<div id=root>` — the shared `<header>`, **outside** the React mount so re-renders can't wipe it.
+
+The filter throws if either anchor is missing, so a bad injection fails the build rather than shipping a hub with no masthead.
+
+React's header stays in the DOM (hidden) because its EN/ES buttons still own the app's language state — the hub's bilingual content is React state, *not* the `data-es` mechanism the other pages use. `assets/hub-nav.js` defines `slHubLang()`, which forwards clicks from the shared toggle to those hidden buttons and mirrors the active state. It also still wires the bundle's dead placeholder anchors.
 
 Images are **not** inlined: they live as content-hashed files in `assets/img/` and are referenced by relative path. Do not re-inline base64 (CI fails on it).
 
@@ -41,7 +52,7 @@ The committed sources are **frozen** (2026-07-16). The pages were originally pro
 
 ## Project constants (single source of truth)
 
-For the templated pages these are **injected from `src/_data/site.json`** — change them there. [docs/SITE-CONFIG.md](docs/SITE-CONFIG.md) remains the human-readable reference and lists every "Where used" spot; keep the two in step. Quick reference: brand **Studio Lab** (storefront sub-brand **Miami Peculiar**), legal entity **Nodarse Arts LLC**, order email `jesusnodarse1823@gmail.com` (via FormSubmit; CI blocks the old `nodarsesartsllc@gmail.com`), WhatsApp `wa.me/17864834268`, bilingual **en/es** (runtime toggle), Pages base `https://studio-lab-nodarse.github.io/studio-lab-catalog/`.
+For the templated pages these are **injected from `src/_data/site.json`** — change them there. [docs/SITE-CONFIG.md](docs/SITE-CONFIG.md) remains the human-readable reference and lists every "Where used" spot; keep the two in step. Quick reference: brand **Studio Lab** (storefront sub-brand **Miami Peculiar**), legal entity **Nodarse Arts LLC**, order email `jesusnodarse1823@gmail.com` (via FormSubmit; CI blocks the old `nodarsesartsllc@gmail.com`), WhatsApp `wa.me/17864834268`, bilingual **en/es** (runtime toggle, ships **`en`**), Pages base `https://studio-lab-nodarse.github.io/studio-lab-catalog/`.
 
 Note: the order email also lives in `assets/order.js` (the FormSubmit endpoint) and the **hub** still hardcodes its own copies — `site.json` does not reach either. CI guards both.
 
@@ -77,6 +88,10 @@ npm run verify       # build, then run verify_site.py against _site/
 - *Add / edit a sticker* → `src/_data/stickers.json`, grouped into `sections`. Per sticker: `num`, `r` (rotation), `img`, `size`, `title`, `sub`.
 - *Change the header / footer / cart / SEO* → edit the one partial in `src/_includes/`. It applies to every templated page.
 - *Change a shared constant* (order email, WhatsApp, base URL) → `src/_data/site.json`, and keep [docs/SITE-CONFIG.md](docs/SITE-CONFIG.md) in step.
+
+**Language.** English is the primary market. Every page must **ship** English so the runtime `setLang()` is a no-op on first paint — the `defaultLangEn` transform in `eleventy.config.js` rewrites each bilingual element's default text to its `data-en` value at build time, and `verify_site.py` fails the build if any element ships `es`. Before this, ~1260 elements per build shipped Spanish and visibly repainted to English after first paint. Write whichever default reads naturally in a template; the transform normalises it.
+
+**Navigation.** `masthead.css` declares `@view-transition { navigation: auto }` and gives the header `view-transition-name: site-header`, so the masthead is carried across page loads instead of repainting. Pure CSS, no JS; unsupported browsers just navigate normally, and it is disabled under `prefers-reduced-motion`.
 
 **Known per-page quirks kept deliberately** (they preserve byte-parity with the frozen originals; unify only as a separate, deliberate pass):
 - gorras uses `L()` + button ids `be`/`bs`; stickers uses `setLang()` + `btEN`/`btES`; the rest use `setLang()` + `b-en`/`b-es`. Parameterised in `header.njk`.

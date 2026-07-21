@@ -1,17 +1,39 @@
-.p-img.cap{border:none;border-radius:10px;height:100%;width:auto;object-fit:contain;box-shadow:0 12px 26px rgba(0,0,0,.4);}
+/* The cap photos are shot on a light backdrop. Sampling the corner pixels of
+   all 36 colourway images gives a mean of rgb(233,227,226) with a spread of
+   only 5/3/6 per channel, so one flat colour hides the seam for every swatch.
+   The image is object-fit:contain, so a transparent wrapper previously let the
+   navy card gradient show as letterbox bars down both sides.
+   Scoped with :has() so only cap cards are affected; unsupporting browsers
+   simply keep the old transparent wrapper. */
+/* Card height. BOTH faces were position:absolute, so neither contributed any
+   height and .p-inner sat at exactly its min-height (498px on desktop — the
+   540px rule is mobile-only). Anything taller was silently clipped by
+   .p-face's overflow:hidden, which is why the Cuban American cards — whose
+   names wrap to two lines — were cut off at the bottom of the page.
+   Put the FRONT face back in flow so the card sizes to its content; the back
+   stays absolutely positioned over it. min-height becomes a floor, not a cap. */
+.p-face.p-front{position:relative;height:auto;}
+/* .p-name is already clamped to 2 lines. Reserve both of them so a one-line
+   name and a two-line name yield the same card height across sections. */
+.p-name{min-height:2.4em;}
+
+.p-imgwrap:has(.p-img.cap){background:#e9e3e2;}
+/* The colourway picker sits on the same light panel, so the photo and the
+   swatches read as one surface. `margin` becomes `padding` — margins would
+   leave 6px/2px navy strips above and below the row, breaking the panel. */
+.p-front:has(.p-img.cap) .swrow{background:#e9e3e2;margin:0;padding:8px 0 10px;}
+/* The swatch rings are cream (tuned for the navy card) and disappear on the
+   light panel. Give them a dark hairline instead, and outline the active gold
+   ring so it stays legible against BOTH the light panel and the navy swatch. */
+.p-front:has(.p-img.cap) .cdot{border-color:rgba(13,31,51,.3);box-shadow:0 1px 4px rgba(0,0,0,.18);}
+.p-front:has(.p-img.cap) .cdot.active{border-color:#FFD447;box-shadow:0 0 0 2px rgba(13,31,51,.55);}
+/* No radius/shadow on the image itself: against an identical backdrop they
+   render as a visible rounded outline and a dark halo rather than lifting it. */
+.p-img.cap{border:none;border-radius:0;height:100%;width:auto;object-fit:contain;}
 .back-cap{width:230px;height:230px;margin:0 auto;border-radius:14px;overflow:hidden;box-shadow:0 12px 26px rgba(0,0,0,.45);}
 .back-cap img{width:100%;height:100%;object-fit:cover;display:block;}
 .pack-note{margin-top:8px;font-size:11.5px;font-weight:800;letter-spacing:.4px;color:#0d1f33;background:linear-gradient(140deg,#FFD447,#e2b64f);border-radius:20px;padding:4px 10px;display:inline-block;}
-
-.cap-lineup{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:24px;}
-.cl-cap{display:flex;flex-direction:column;align-items:center;gap:6px;}
-.cl-img{width:116px;height:86px;border-radius:12px;background-size:cover;background-position:center;box-shadow:0 8px 20px rgba(0,0,0,.4);border:1px solid rgba(243,234,214,.18);}
-.cl-cap span{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#d9b25a;font-weight:700;}
-.cl-note{text-align:center;margin-top:14px;font-size:13px;color:#c9bfa6;}
-@media(max-width:600px){.cl-img{width:92px;height:70px;} .cap-lineup{gap:10px;}}
-
 .swrow{display:flex;gap:8px;justify-content:center;margin:6px 0 2px;flex-wrap:wrap;}
 .cdot{width:20px;height:20px;border-radius:50%;border:2px solid rgba(243,234,214,.35);cursor:pointer;padding:0;transition:transform .15s,border-color .15s;box-shadow:0 2px 6px rgba(0,0,0,.4);}
 .cdot:hover{transform:scale(1.18);}
 .cdot.active{border-color:#FFD447;transform:scale(1.12);}
-.brand-home{text-decoration:none;color:inherit;cursor:pointer;transition:opacity .15s,transform .15s;} .brand-home:hover{opacity:.85;transform:translateY(-1px);}

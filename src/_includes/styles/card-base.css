@@ -1,3 +1,9 @@
+/* Shared product-card surface: the flip card, image well, spec rows, order
+   buttons and grid used by magnets, gorras and the three collection pages.
+   Image URLs use {{ assetsBase }} so the same file works at any page depth —
+   that path difference was the only reason these were five separate files.
+   Per-page deviations live in a small *-look.css loaded after this via
+   `pageStyles2`. */
 
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -63,7 +69,7 @@ header{background:var(--surface);border-bottom:2px solid var(--accent);padding:1
 .ph{position:relative;height:300px;perspective:900px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:transparent;color:#a8b8c8;border-bottom:none;}
 .ph-ico{font-size:15px;margin-bottom:8px;letter-spacing:2px;font-weight:700;opacity:.7;}
 .back-stage{position:relative;width:219px;height:294px;margin:0 auto;}
-.back-photo{position:absolute;left:0;top:0;width:181px;height:272px;background:url(../../assets/img/c0339ed371ec3532.jpg) center/contain no-repeat;border-radius:2px;box-shadow:0 10px 22px rgba(40,28,14,.32);}
+.back-photo{position:absolute;left:0;top:0;width:181px;height:272px;background:url({{ assetsBase }}/img/c0339ed371ec3532.jpg) center/contain no-repeat;border-radius:2px;box-shadow:0 10px 22px rgba(40,28,14,.32);}
 .dim-w{position:absolute;left:0;top:280px;width:181px;border-top:1px solid var(--accent2);opacity:.9;}
 .dim-w::before,.dim-w::after{content:"";position:absolute;top:-3px;width:1px;height:7px;background:var(--accent2);}
 .dim-w::before{left:0;}.dim-w::after{right:0;}
@@ -106,7 +112,7 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
 .logo-sub{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:2px;}
 
 .seal{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:100%;text-align:center;opacity:.34;filter:blur(1px);transform:translate(22%,20px);}
-.seal .heart{width:270px;height:270px;background:#4e8a80;-webkit-mask:url(../../assets/img/9281355fb13182af.png) center/contain no-repeat;mask:url(../../assets/img/9281355fb13182af.png) center/contain no-repeat;}
+.seal .heart{width:270px;height:270px;background:#4e8a80;-webkit-mask:url({{ assetsBase }}/img/9281355fb13182af.png) center/contain no-repeat;mask:url({{ assetsBase }}/img/9281355fb13182af.png) center/contain no-repeat;}
 .seal .nm{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;color:#4e8a80;letter-spacing:1.5px;line-height:1;white-space:nowrap;}
 .seal .sub{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4e8a80;}
 
@@ -117,17 +123,16 @@ header{position:sticky;top:0;z-index:100;padding:0;border-bottom:1px solid rgba(
 .p-img.cut{border:none;border-radius:0;object-fit:contain;background:transparent;filter:drop-shadow(0 12px 20px rgba(0,0,0,.5));}
 .p-img.rnd{border:none;border-radius:0;width:240px;height:240px;object-fit:contain;filter:drop-shadow(0 12px 20px rgba(0,0,0,.5));}
 .back-stage.round{width:240px;}
-.back-stage.round .back-photo{width:240px;height:240px;top:14px;background:url(../../assets/img/6eaa9272f1634b07.webp) center/contain no-repeat;box-shadow:none;border-radius:0;filter:drop-shadow(0 12px 22px rgba(0,0,0,.5));}
+.back-stage.round .back-photo{width:240px;height:240px;top:14px;background:url({{ assetsBase }}/img/6eaa9272f1634b07.webp) center/contain no-repeat;box-shadow:none;border-radius:0;filter:drop-shadow(0 12px 22px rgba(0,0,0,.5));}
 .back-stage.round .dim-h{display:none;}
 .back-stage.round .dim-w{top:264px;width:240px;}
 .p-img.hz{width:calc(100% - 8px);height:auto;max-height:100%;object-fit:contain;}
 .p-img.cut.hz{width:94%;height:auto;}
 .back-stage.hz{width:238px;height:200px;}
-.back-stage.hz .back-photo{width:238px;height:156px;top:14px;background:url(../../assets/img/28320f5d9371c114.webp) center/contain no-repeat;}
+.back-stage.hz .back-photo{width:238px;height:156px;top:14px;background:url({{ assetsBase }}/img/28320f5d9371c114.webp) center/contain no-repeat;}
 .back-stage.hz .dim-w{top:180px;width:238px;}
 .back-stage.hz .dim-h{left:246px;height:156px;top:14px;}
 @keyframes attnsoft{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(240,180,41,.45);}5%{transform:scale(1.13);}10%{transform:scale(1);box-shadow:0 0 0 11px rgba(240,180,41,0);}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(240,180,41,0);}}
 @media(max-width:760px){
 .p-card.mp-center .flip-hint{background:var(--accent);color:#0d1f33;animation:attnsoft 5s ease-out infinite;}
 }
-.brand-home{text-decoration:none;color:inherit;cursor:pointer;transition:opacity .15s,transform .15s;} .brand-home:hover{opacity:.85;transform:translateY(-1px);}

@@ -11,24 +11,23 @@ navActive: stickers
 navBase: ""
 headerSubEs: "Studio Lab · Stickers"
 headerSubEn: "Studio Lab · Stickers"
-langFn: "setLang"
 langIdEn: "btEN"
 langIdEs: "btES"
-langActive: "en"
 assetsBase: ../../assets
 pageStyles: styles/stickers.css
 ---
 {% import "sticker-card.njk" as sc %}
+{% import "section-tabs.njk" as tabs %}
 <section class="hero">
   <div class="hero-eyebrow" data-en="Die-Cut Stickers" data-es="Stickers Die-Cut">Die-Cut Stickers</div>
   <h1 class="hero-title" data-en='All stickers, by <span class="em">collection</span>' data-es='Todos los stickers, por <span class="em">colección</span>'>All stickers, by <span class="em">collection</span></h1>
   <p class="hero-text" data-en="Weatherproof vinyl die-cut stickers with a bold white kiss-cut border. Hover or tap a sticker for specs and size." data-es="Stickers de vinilo die-cut resistentes al agua con borde blanco troquelado. Pasa el cursor o toca un sticker para ver ficha y medidas.">Weatherproof vinyl die-cut stickers with a bold white kiss-cut border. Hover or tap a sticker for specs and size.</p>
 </section>
-<nav class="tabs">
-  <a href="#sec-miami">Miami</a>
-  <a href="#sec-beach">Miami Beach</a>
-  <a href="#sec-cuban">Cuban American</a>
-</nav>
+{{ tabs.nav([
+  { id: "sec-miami", label: "Miami" },
+  { id: "sec-beach", label: "Miami Beach" },
+  { id: "sec-cuban", label: "Cuban American" }
+]) }}
 {% for sec in stickers.sections %}<section class="col" id="{{ sec.id }}">
   <div class="cat-bar">
     <div class="cat-head">

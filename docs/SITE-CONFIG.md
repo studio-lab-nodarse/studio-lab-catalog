@@ -13,9 +13,9 @@ Human-readable reference for the values that recur across the site (order channe
 | Legal entity | Nodarse Arts LLC |
 | Artist / founder | Jesús Nodarse |
 | Pricing model | Order-to-quote — **no public prices shown anywhere** ("Pedido para cotizar") |
-| Market / theme | Miami · Cuban-American |
+| Market / theme | Miami · Cuban-American (English-first audience; content is bilingual) |
 | Languages | `en` + `es` (bilingual, runtime JS toggle — same URL) |
-| Default `lang` | `es` (primary market) |
+| Default `lang` | **`en`** (primary market, decided 2026-07-21). Pages must SHIP English so `setLang()` is a no-op on load — the build's `defaultLangEn` transform enforces this, and CI fails on any element shipping `es`. `og:locale` is `en_US`, alternate `es_US`. |
 | Socials | none yet |
 
 ## Contact / order channels

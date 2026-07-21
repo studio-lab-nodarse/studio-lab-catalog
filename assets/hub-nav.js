@@ -40,7 +40,53 @@
     e.preventDefault();
     if (target) target.scrollIntoView({ block: 'start' });
   }, true);
+  /* ── Language shim ──────────────────────────────────────────────────
+     The hub renders the SHARED masthead (injected at build time, outside the
+     React mount) while React's own header is hidden by CSS. React's EN/ES
+     buttons still own the app's language state, so forward to them.
+     Hidden elements are still clickable programmatically. */
+  function reactLangBtn(l) {
+    var hdr = document.querySelector('#root header');
+    if (!hdr) return null;
+    return [].slice.call(hdr.querySelectorAll('button')).filter(function (b) {
+      return new RegExp('^' + l + '$', 'i').test((b.textContent || '').trim());
+    })[0] || null;
+  }
+  window.slHubLang = function (l) {
+    var b = reactLangBtn(l);
+    if (b) b.click();                       // React owns the page body's language
+    // …but the shared masthead uses the same data-es/data-en mechanism as every
+    // other page, so apply it here too. Without this the header would silently
+    // ignore the toggle on the hub alone. Scoped outside #root so we never
+    // fight React over its own subtree.
+    document.documentElement.lang = l;
+    var scope = document.querySelector('body > header');
+    if (scope) {
+      scope.querySelectorAll('[data-es]').forEach(function (n) {
+        var v = n.getAttribute('data-' + l);
+        if (v !== null) n.innerHTML = v;
+      });
+    }
+    // mirror the active state onto the visible masthead toggle
+    var en = document.getElementById('b-en'), es = document.getElementById('b-es');
+    if (en) en.classList.toggle('active', l === 'en');
+    if (es) es.classList.toggle('active', l === 'es');
+    try { localStorage.setItem('sl_lang', l); } catch (e) {}
+  };
+  // Adopt the language the rest of the site is already using, once React has
+  // mounted. Only acts if it differs from the hub's default (en).
+  function syncLang() {
+    var saved = null;
+    try { saved = localStorage.getItem('sl_lang'); } catch (e) {}
+    if (saved === 'es' && reactLangBtn('es')) window.slHubLang('es');
+  }
+
   // the React landing may mount after load — hide a few times to catch it.
-  function ready() { hideDeprecated(); setTimeout(hideDeprecated, 300); setTimeout(hideDeprecated, 900); }
+  function ready() {
+    hideDeprecated();
+    setTimeout(hideDeprecated, 300);
+    setTimeout(hideDeprecated, 900);
+    setTimeout(syncLang, 350);
+  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready); else ready();
 })();

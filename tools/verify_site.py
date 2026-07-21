@@ -47,6 +47,19 @@ THEMED_PAGES = [
     "apps/storefront/colecciones/cuban-american.html", "apps/storefront/colecciones/miami-beach.html",
 ]
 BRAND_TOKENS = ["--bg", "--accent", "--text", "--card", "--border", "--mataqua"]  # must be defined in BRAND_CSS
+MASTHEAD_CSS = "assets/masthead.css"          # shared header styles (every page, incl. the hub)
+HUB = "apps/storefront/index.html"
+# Every page that carries the unified masthead. The hub is included: its header
+# is injected into the pre-built React bundle at build time, so a broken
+# injection (or a passthrough regression) must fail the build, not ship.
+MASTHEAD_PAGES = THEMED_PAGES + [HUB]
+# English is the primary market: pages must SHIP English so setLang() is a no-op
+# on load. Shipping the other language caused a visible ES->EN repaint after
+# first paint on every page (~1260 elements). See the `defaultLangEn` transform.
+DEFAULT_LANG = "en"
+# Masthead nav, checked by its bilingual pair so the assertion holds whichever
+# language ships. es -> en.
+NAV_LINKS = [("Gorras", "Caps"), ("Magnets", "Magnets"), ("Stickers", "Stickers")]
 
 errors = []
 def err(msg): errors.append(msg)
@@ -107,7 +120,7 @@ for p in present:
     if s.count("<title>") != 1:
         err(f"[seo] {p} has {s.count('<title>')} <title> tags (want 1)")
     for need, label in [('rel="canonical"', "canonical"), ("og:title", "og:title"),
-                        ('lang="es"', 'lang=\"es\"')]:
+                        (f'lang="{DEFAULT_LANG}"', f'lang="{DEFAULT_LANG}"')]:
         if need not in s:
             err(f"[seo] {p} missing {label}")
 
@@ -232,9 +245,47 @@ for p in THEMED_PAGES:
     if re.search(r':root\{[^}]*--bg:#081420', s):
         err(f"[brand-css] {p} still inlines the Miami :root token block; it lives in {BRAND_CSS}")
 
-# 6h. unified masthead: every themed page shares the same header lockup + nav
+# 6h. unified masthead: every page (incl. the hub) shares the same header
+#     lockup + nav, and loads the shared masthead stylesheet.
+if not os.path.isfile(MASTHEAD_CSS):
+    err(f"[masthead] missing {MASTHEAD_CSS}")
+else:
+    mc = read(MASTHEAD_CSS)
+    # tokens must stay scoped to `header`, never :root — the hub's shadcn
+    # tokens live on :root and would collide (--card/--accent).
+    if re.search(r'^\s*:root\s*\{', mc, re.M):
+        err(f"[masthead] {MASTHEAD_CSS} defines :root tokens; scope them to `header` "
+            f"or they collide with the hub's shadcn set")
+    for sel in ["header .hdr-nav", "header .lang-toggle", "header .logo-name"]:
+        if sel not in mc:
+            err(f"[masthead] {MASTHEAD_CSS} missing `{sel}`")
+    # every token referenced must also be declared on `header`. An omission is
+    # invisible on the templated pages (falls back to brand.css :root) but breaks
+    # on the hub, whose :root carries shadcn HSL triplets, not colours.
+    # The :root ban above means every custom property declared in this file is
+    # header-scoped by construction, so a file-wide scan is the declared set.
+    declared = set(re.findall(r"(--[a-z0-9-]+)\s*:", mc))
+    referenced = set(re.findall(r"var\((--[a-z0-9-]+)\)", mc))
+    for tok in sorted(referenced - declared):
+        err(f"[masthead] {MASTHEAD_CSS} uses {tok} but never declares it on `header` "
+            f"(falls back to the hub's shadcn :root and renders invalid)")
+mast_ref = re.compile(r'<link[^>]+href="((?:\.\./)+assets/masthead\.css)"')
+for p in MASTHEAD_PAGES:
+    if p not in present:
+        continue
+    d = os.path.dirname(p); s = read(p)
+    refs = mast_ref.findall(s)
+    if not refs:
+        err(f"[masthead] {p} does not link {MASTHEAD_CSS} (header would be unstyled)")
+    for m in refs:
+        if os.path.normpath(os.path.join(d, m)) != os.path.normpath(MASTHEAD_CSS):
+            err(f"[masthead] {p} -> {m} does not resolve to {MASTHEAD_CSS}")
+# the hub hides the React bundle's own header; without this rule it renders twice
+if HUB in present and "#root header{display:none" not in read(HUB):
+    err(f"[masthead] {HUB} missing the rule hiding React's own header (duplicate headers)")
+
 hdr_re = re.compile(r'<header>.*?</header>', re.S)
-for p in THEMED_PAGES:
+for p in MASTHEAD_PAGES:
     if p not in present:
         continue
     m = hdr_re.search(read(p))
@@ -247,9 +298,12 @@ for p in THEMED_PAGES:
     for token in need:
         if token not in h:
             err(f"[header] {p} masthead missing `{token}`")
-    for label in ("Gorras", "Magnets", "Stickers"):
-        if f">{label}</a>" not in h:
-            err(f"[header] {p} masthead nav missing {label} link")
+    for es, en in NAV_LINKS:
+        if f'data-es="{es}"' not in h:
+            err(f"[header] {p} masthead nav missing {es} link")
+        elif f">{en}</a>" not in h:
+            err(f"[header] {p} masthead nav ships the wrong default text for {es} "
+                f"(want the {DEFAULT_LANG} string {en!r}, or setLang repaints it on load)")
 
 # 6i. bilingual attrs must hold valid HTML: a data-es/data-en value that contains
 #     a double-quoted tag (e.g. <span class="em">) terminates the attribute early
@@ -259,6 +313,25 @@ for p in present:
     n = len(broken_i18n.findall(read(p)))
     if n:
         err(f"[i18n-attr] {p} has {n} data-es/en attribute(s) with unescaped double-quotes (use single quotes inside)")
+
+# 6m. language flash: every bilingual element must SHIP the default language.
+#     If it ships the other one, setLang() rewrites it after first paint and the
+#     page visibly repaints on every load (this was ~1260 elements per build).
+bilingual = re.compile(r'<([a-z0-9]+)([^>]*\sdata-(?:es|en)="[^>]*)>([^<]*)<', re.I)
+other = "es" if DEFAULT_LANG == "en" else "en"
+for p in present:
+    wrong = 0
+    for _tag, attrs, text in bilingual.findall(read(p)):
+        m_def = re.search(r'\sdata-%s="([^"]*)"' % DEFAULT_LANG, attrs)
+        m_oth = re.search(r'\sdata-%s="([^"]*)"' % other, attrs)
+        if not m_def or not m_oth:
+            continue
+        d, o = m_def.group(1).strip(), m_oth.group(1).strip()
+        if d != o and text.strip() == o:
+            wrong += 1
+    if wrong:
+        err(f"[lang-flash] {p} has {wrong} element(s) shipping `{other}` text while the "
+            f"site default is `{DEFAULT_LANG}` — they repaint after first paint")
 
 # 6j. flip cards: pages with .p-card load flip.js; brand.css carries the flip fixes
 if os.path.isfile("assets/flip.js"):
