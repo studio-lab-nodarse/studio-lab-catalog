@@ -2,6 +2,9 @@
 
 Outstanding items. The remediation phases (P1–P4) are done; see [REMEDIATION-PLAN.md](REMEDIATION-PLAN.md) for detail and [SITE-CONFIG.md](SITE-CONFIG.md) for constants.
 
+## ✅ Catalog restored to the root (2026-07-23)
+- [x] The "Catálogo 2026" app is live again at `/` — its original URL before the 2026-07-16 reorg. Moved `deprecated/catalog/index.html` → `index.html` (replacing the redirect to the storefront), rewrote its 182 relative asset paths and 6 self-referencing URLs to root-relative, and dropped the now-redundant "Catálogo 2026" footer link (it duplicated "Inicio"). The storefront remains at `/apps/storefront/`, linked from the catalog's footer. CI exempts the catalog from the shipped-language and dead-anchor checks (Spanish-only page; onclick-driven tabs) and verifies its assets resolve.
+
 ## 🚦 Owner actions — required before go-live
 - [ ] **Activate FormSubmit.** Orders POST to `formsubmit.co/ajax/jesusnodarse1823@gmail.com`, which needs a one-time confirmation. Submit one test order → click the activation link FormSubmit emails to that inbox. Until then, orders fall back to opening the mail client / WhatsApp (nothing lost, but not captured to inbox).
 - [ ] **Branch protection on `main`.** Enable it and mark the "Verify site" check as required, so a red CI (`tools/verify_site.py`) actually blocks the merge/deploy. GitHub repo setting — cannot be done in a file.

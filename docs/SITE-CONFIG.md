@@ -39,8 +39,8 @@ Human-readable reference for the values that recur across the site (order channe
 
 | Page | Path |
 |------|------|
-| Root landing | `/studio-lab-catalog/` → **redirects** to `/apps/storefront/` |
-| ~~Catalog 2026~~ | **Deprecated** (2026-07-20). Moved to `deprecated/catalog/`, unlinked, stripped from deploy. |
+| **Catálogo 2026** | `/studio-lab-catalog/` — the root page (restored 2026-07-23) |
+
 | Storefront hub (Miami Peculiar) | `/apps/storefront/` |
 | Caps / Magnets / Stickers | `/apps/storefront/{gorras,magnets,stickers}.html` |
 | Collections | `/apps/storefront/colecciones/{miami,cuban-american,miami-beach}.html` |

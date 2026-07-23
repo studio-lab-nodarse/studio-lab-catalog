@@ -10,10 +10,9 @@ A static site hosting **the "Miami Peculiar" storefront**, built with **Eleventy
 - **`assets/`** — shared runtime code + images, passed through verbatim: `order.js`, `cart.js`, `flip.js`, `hub-nav.js`, `brand.css`, `masthead.css`, and content-hashed images in `assets/img/`.
 
 **Two stylesheets, deliberately split:** `masthead.css` holds the site header and is loaded by **every** page including the hub; its tokens are declared on `header`, *not* `:root`. `brand.css` holds everything else (page tokens, cards, cart, footer) and is loaded only by the six templated pages. They are separate because the hub can't take `brand.css`: its `:root` block collides with the hub's shadcn tokens (`--card`, `--accent`), and its `body .grid` rule collides with Tailwind's `.grid` utility, which the hub uses. CI enforces both halves of this.
-- **`index.html`** (root) — a thin **redirect** to `apps/storefront/` (meta-refresh + JS), so opening `/` lands you in the storefront. Keeps GitHub Pages `/` working + retains site-level SEO/JSON-LD.
-- **`deprecated/catalog/`** — the retired "Catálogo 2026" app. **Deprecated 2026-07-20**: unlinked and not part of the build (it is simply never copied into `_site/`). Kept for reference only — do not link to it or treat it as live.
+- **`index.html`** (root) — the **"Catálogo 2026" app**, restored to its original home at `/` on 2026-07-23 (it was the root page until the 2026-07-16 reorg, then briefly retired). Hand-authored, passed through verbatim — *not* templated, so edit it directly and surgically. It is Spanish-only (no `data-es`/`data-en` mechanism) and its category tabs are onclick-driven, so `verify_site.py` exempts it from the shipped-language and dead-anchor checks.
 
-The live page set is: the hub, `gorras`, `magnets`, `stickers`, and `colecciones/{miami,cuban-american,miami-beach}`.
+The live page set is: the **catalog at `/`**, the storefront hub at `/apps/storefront/`, plus `gorras`, `magnets`, `stickers`, and `colecciones/{miami,cuban-american,miami-beach}`.
 
 ## Two kinds of page — know which one you're editing
 
@@ -102,7 +101,7 @@ npm run verify       # build, then run verify_site.py against _site/
 
 ## Deploy
 
-`.github/workflows/static.yml` **builds with Eleventy and publishes `_site/`** on every push to `main` (or manual dispatch): `npm ci` → `npm run build` → `verify_site.py` → `upload-pages-artifact` → `deploy-pages`. The build runs the invariant checks too, so a bad build never ships. `deprecated/` and `src/` are simply never copied into `_site`, so no strip step is needed. `.nojekyll` is passed through to force raw file serving.
+`.github/workflows/static.yml` **builds with Eleventy and publishes `_site/`** on every push to `main` (or manual dispatch): `npm ci` → `npm run build` → `verify_site.py` → `upload-pages-artifact` → `deploy-pages`. The build runs the invariant checks too, so a bad build never ships. `src/` is never copied into `_site` (only its rendered output is), so no strip step is needed. `.nojekyll` is passed through to force raw file serving.
 
 Pushing to `main` publishes — so **work on a branch and open a PR**; the user controls merges to `main`.
 

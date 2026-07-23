@@ -20,7 +20,10 @@ const PASSTHROUGH = [
   "robots.txt",
   "sitemap.xml",
   "404.html",
-  "index.html", // root redirect -> apps/storefront/
+  // The root page IS the "Catálogo 2026" app — its original home, restored
+  // 2026-07-23. Hand-authored (not templated), so it is copied verbatim.
+  // The storefront remains at apps/storefront/, linked from the catalog's footer.
+  "index.html",
 
   // NOTE: the hub is NOT here. Its compiled-React bundle lives untouched at
   // src/_vendor/hub.html and is assembled by src/apps/storefront/index.njk,

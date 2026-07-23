@@ -57,6 +57,11 @@ MASTHEAD_PAGES = THEMED_PAGES + [HUB]
 # on load. Shipping the other language caused a visible ES->EN repaint after
 # first paint on every page (~1260 elements). See the `defaultLangEn` transform.
 DEFAULT_LANG = "en"
+# The root page is the "Catálogo 2026" app: hand-authored, Spanish-only (it has
+# no data-es/data-en mechanism at all), and its category tabs are onclick-driven
+# rather than href targets. It is therefore exempt from the shipped-language and
+# dead-anchor checks, both of which describe the bilingual storefront pages.
+CATALOG = "index.html"
 # Masthead nav, checked by its bilingual pair so the assertion holds whichever
 # language ships. es -> en.
 NAV_LINKS = [("Gorras", "Caps"), ("Magnets", "Magnets"), ("Stickers", "Stickers")]
@@ -119,8 +124,10 @@ for p in present:
     s = read(p)
     if s.count("<title>") != 1:
         err(f"[seo] {p} has {s.count('<title>')} <title> tags (want 1)")
-    for need, label in [('rel="canonical"', "canonical"), ("og:title", "og:title"),
-                        (f'lang="{DEFAULT_LANG}"', f'lang="{DEFAULT_LANG}"')]:
+    needs = [('rel="canonical"', "canonical"), ("og:title", "og:title")]
+    if p != CATALOG:      # Spanish-only page; declaring lang="es" is correct for it
+        needs.append((f'lang="{DEFAULT_LANG}"', f'lang="{DEFAULT_LANG}"'))
+    for need, label in needs:
         if need not in s:
             err(f"[seo] {p} missing {label}")
 
@@ -367,7 +374,7 @@ else:
 #     static HTML — and are wired by assets/hub-nav.js instead.)
 dead_anchor = re.compile(r'href="(?:#|)"')
 for p in present:
-    if "apps/catalog" in p:   # separate app, out of scope
+    if p == CATALOG:   # onclick-driven tabs, not dead links
         continue
     n = len(dead_anchor.findall(read(p)))
     if n:
@@ -376,6 +383,13 @@ for p in present:
 hub = "apps/storefront/index.html"
 if hub in present and "assets/hub-nav.js" not in read(hub):
     err(f"[dead-anchor] {hub} does not load assets/hub-nav.js (hub nav anchors unwired)")
+
+# 6m. the catalog (root page): its assets resolve and it keeps its own canonical.
+#     It is a hand-authored, Spanish-only app — see CATALOG exemptions above.
+if os.path.isfile(CATALOG):
+    for m in set(re.findall(r"(assets/[A-Za-z0-9_./\-]+)", read(CATALOG))):
+        if not os.path.isfile(m):
+            err(f"[catalog] {CATALOG} -> {m} (missing)")
 
 # 7. brand + ops assets exist
 for a in BRAND_ASSETS:

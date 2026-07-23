@@ -29,14 +29,13 @@ src/                       ← edit here
 
 assets/                    Shared runtime + images: order.js, cart.js, flip.js,
                            hub-nav.js, brand.css, masthead.css, img/
-index.html                 Root → redirects to apps/storefront/
-deprecated/catalog/        Retired "Catálogo 2026" — unlinked, not built, not deployed
+index.html                 Root → the "Catálogo 2026" app (hand-authored, not templated)
 _site/                     Build output (gitignored — never commit)
 ```
 
 ## Deploy
 
-Push to `main` → GitHub Actions builds with Eleventy and publishes `_site/` (`.github/workflows/static.yml`). The invariant checks run against the built output, so a bad build never ships. `deprecated/` and `src/` are never copied into `_site/`. Root `/` redirects to the storefront.
+Push to `main` → GitHub Actions builds with Eleventy and publishes `_site/` (`.github/workflows/static.yml`). The invariant checks run against the built output, so a bad build never ships. `deprecated/` and `src/` are never copied into `_site/`. Root `/` serves the Catálogo 2026 app; the storefront lives at `/apps/storefront/`.
 
 Work on a branch and open a PR — merging to `main` publishes.
 
