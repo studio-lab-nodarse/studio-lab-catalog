@@ -60,6 +60,14 @@
       "desc": "beach"
     },
     {
+      "num": 32,
+      "col": "Miami Beach",
+      "img": "ea4d06615ac6e6d0.webp",
+      "tint": "#cfefe1",
+      "tint2": "#f5f8f7",
+      "desc": "beach"
+    },
+    {
       "num": 33,
       "col": "Miami Beach",
       "img": "29742f4bb3f4268d.jpg",
