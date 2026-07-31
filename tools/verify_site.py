@@ -28,6 +28,7 @@ PAGES = [
     "apps/storefront/gorras.html",
     "apps/storefront/magnets.html",
     "apps/storefront/stickers.html",
+    "apps/storefront/totes.html",
     "apps/storefront/colecciones/miami.html",
     "apps/storefront/colecciones/cuban-american.html",
     "apps/storefront/colecciones/miami-beach.html",
@@ -43,7 +44,8 @@ BRAND_CSS = "assets/brand.css"               # shared Miami Peculiar tokens + fo
 # uses its own shadcn tokens; catalog/root are a separate surface)
 THEMED_PAGES = [
     "apps/storefront/gorras.html", "apps/storefront/magnets.html",
-    "apps/storefront/stickers.html", "apps/storefront/colecciones/miami.html",
+    "apps/storefront/stickers.html", "apps/storefront/totes.html",
+    "apps/storefront/colecciones/miami.html",
     "apps/storefront/colecciones/cuban-american.html", "apps/storefront/colecciones/miami-beach.html",
 ]
 BRAND_TOKENS = ["--bg", "--accent", "--text", "--card", "--border", "--mataqua"]  # must be defined in BRAND_CSS

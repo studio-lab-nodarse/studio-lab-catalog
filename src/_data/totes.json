@@ -1,0 +1,164 @@
+{
+  "specs": {
+    "sizeEs": "38 x 40 cm",
+    "sizeEn": "38 x 40 cm",
+    "materialEs": "Lona de algodon",
+    "materialEn": "Cotton canvas",
+    "typeEs": "Tote bag",
+    "typeEn": "Tote bag"
+  },
+  "items": [
+    {
+      "num": 16,
+      "col": "Miami Beach",
+      "img": "fcbb5c817f0025fe.webp",
+      "back": "ccca0b91edf8dbfc.webp",
+      "nameEs": "Torre de Salvavidas Art Deco",
+      "nameEn": "Art Deco Lifeguard Tower"
+    },
+    {
+      "num": 22,
+      "col": "Miami Beach",
+      "img": "149353a7c1c3f1ba.webp",
+      "back": "8b28d8a2cd38d253.webp",
+      "nameEs": "Fachada Art Deco",
+      "nameEn": "Art Deco Facade"
+    },
+    {
+      "num": 24,
+      "col": "Miami Beach",
+      "img": "921a3f7d029aba06.webp",
+      "back": "fb137ebd963dc112.webp",
+      "nameEs": "Ocean Drive",
+      "nameEn": "Ocean Drive"
+    },
+    {
+      "num": 33,
+      "col": "Miami Beach",
+      "img": "512e6df48f8e44c8.webp",
+      "back": "ddd198360daa9288.webp",
+      "nameEs": "Playa de Miami Beach",
+      "nameEn": "Miami Beach Shore"
+    },
+    {
+      "num": 38,
+      "col": "Miami Beach",
+      "img": "71880bc95fcda87d.webp",
+      "back": "22a75d4d522b598f.webp",
+      "nameEs": "Hotel Art Deco",
+      "nameEn": "Art Deco Hotel"
+    },
+    {
+      "num": 100,
+      "col": "Miami Beach",
+      "img": "a7c7c29f5d837200.webp",
+      "back": "6bcb7890c0c1e06f.webp",
+      "nameEs": "Edificio Art Deco",
+      "nameEn": "Art Deco Building"
+    },
+    {
+      "num": 161,
+      "col": "Miami Beach",
+      "img": "30853038e19a5a3d.webp",
+      "back": "5798667f03c135ce.webp",
+      "nameEs": "Caseta de Miami Beach",
+      "nameEn": "Miami Beach Lifeguard"
+    },
+    {
+      "num": 16,
+      "col": "Miami",
+      "img": "2a5a8e2b31605479.webp",
+      "back": "700e98acba5ff0de.webp",
+      "nameEs": "Torre de Salvavidas Art Deco",
+      "nameEn": "Art Deco Lifeguard Tower"
+    },
+    {
+      "num": 22,
+      "col": "Miami",
+      "img": "2c86275d645fa831.webp",
+      "back": "c0c00fb07bc53329.webp",
+      "nameEs": "Fachada Art Deco",
+      "nameEn": "Art Deco Facade"
+    },
+    {
+      "num": 33,
+      "col": "Miami",
+      "img": "8fd68a5cab1f54b3.webp",
+      "back": "f746ba11d2c65e4e.webp",
+      "nameEs": "Playa de Miami Beach",
+      "nameEn": "Miami Beach Shore"
+    },
+    {
+      "num": 38,
+      "col": "Miami",
+      "img": "a18b1eb0b6d4fed0.webp",
+      "back": "a3420ba0dbdffe39.webp",
+      "nameEs": "Hotel Art Deco",
+      "nameEn": "Art Deco Hotel"
+    },
+    {
+      "num": 100,
+      "col": "Miami",
+      "img": "19e414d6f149796d.webp",
+      "back": "acc37d9236547b35.webp",
+      "nameEs": "Edificio Art Deco",
+      "nameEn": "Art Deco Building"
+    },
+    {
+      "num": 105,
+      "col": "Miami",
+      "img": "10927f221a7cceeb.webp",
+      "back": "dcff04866a02474a.webp",
+      "nameEs": "Miami Retro",
+      "nameEn": "Miami Retro"
+    },
+    {
+      "num": 131,
+      "col": "Miami",
+      "img": "4218565d456f0e28.webp",
+      "back": "e0fe2946f16f93dd.webp",
+      "nameEs": "Miami Florida",
+      "nameEn": "Miami Florida"
+    },
+    {
+      "num": 158,
+      "col": "Miami",
+      "img": "37fe44f64ae73d3c.webp",
+      "back": "d3c68e10e07f3c5b.webp",
+      "nameEs": "Atardecer en Miami",
+      "nameEn": "Miami Sunset"
+    },
+    {
+      "num": 31,
+      "col": "Cuban American",
+      "img": "edcbdcc4b3c066da.webp",
+      "back": "e4521d77ebad8ba6.webp",
+      "nameEs": "Calle 8 Little Havana",
+      "nameEn": "Calle 8 Little Havana"
+    },
+    {
+      "num": 94,
+      "col": "Cuban American",
+      "img": "b983f8ccb1af114b.webp",
+      "back": "0997e297a0bc4c02.webp",
+      "nameEs": "Little Havana Retro",
+      "nameEn": "Little Havana Retro"
+    },
+    {
+      "num": 95,
+      "col": "Cuban American",
+      "img": "f0e8ff12a1f9c3a3.webp",
+      "back": "5c4ceb5a4beeaf72.webp",
+      "nameEs": "Gallo de Little Havana",
+      "nameEn": "Little Havana Rooster"
+    },
+    {
+      "num": 130,
+      "col": "Cuban American",
+      "img": "cfdfc4e10ef5708d.webp",
+      "back": "566a00e738b372d7.webp",
+      "nameEs": "Calle Ocho",
+      "nameEn": "Calle Ocho"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{#
+  One tote-bag product card.
+
+  Mirrors cap-card.njk: the front is the physical product (the tote with the
+  design printed on it), the back is the artwork on its own plus the spec rows.
+  Everything invariant (spec labels, buttons, flip affordances, bilingual copy)
+  lives here once; totes.json only carries what varies per product:
+  num, col, img (mounted tote), back (artwork), nameEs/nameEn.
+
+  A design that exists in both a base and a "Miami Beach" variant appears twice
+  in totes.json - once per collection, each with its own img/back - exactly as
+  magnets.json does for #1, #6, #22, #38 and #100.
+#}
+{% macro card(p, specs, assetsBase) %}
+{%- set nameEs = "Tote #" ~ p.num ~ " &middot; " ~ p.nameEs -%}
+{%- set nameEn = "Tote #" ~ p.num ~ " &middot; " ~ p.nameEn -%}
+<div class="p-card" data-num="{{ p.num }}" data-col="{{ p.col }}">
+        <div class="p-inner">
+          <div class="p-face p-front">
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img tote" src="{{ assetsBase }}/img/{{ p.img }}" alt="#{{ p.num }}" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver diseno / See design">&#8635;</button><span class="flip-cue" data-es="Diseno" data-en="Design">Design</span></div>
+            <div class="p-body"><span class="p-tag"><span>{{ p.col }}</span></span>
+              <h3 class="p-name" data-es="{{ nameEs | safe }}" data-en="{{ nameEn | safe }}">{{ nameEn | safe }}</h3>
+              <p class="p-desc" data-es="Bolsa de lona de algodon &middot; impresa en nuestro estudio de Miami." data-en="Heavy cotton canvas tote &middot; printed in our Miami studio.">Heavy cotton canvas tote &middot; printed in our Miami studio.</p>
+              <div class="p-actions"><button class="btn-add" onclick="addToOrder(this)"><span data-es="Agregar" data-en="Add">Add</span> +</button></div></div>
+          </div>
+          <div class="p-face p-back"><div class="ph"><button class="flip-hint" onclick="flip(this)" title="Ver bolsa / See tote">&#8634;</button><span class="flip-cue" data-es="Bolsa" data-en="Tote">Tote</span><div class="back-tote"><img loading="lazy" decoding="async" src="{{ assetsBase }}/img/{{ p.back }}" alt=""></div></div>
+            <div class="p-body"><div class="spec-row"><span class="spec-k" data-es="Tipo" data-en="Type">Tipo</span><span class="spec-v" data-es="{{ specs.typeEs }}" data-en="{{ specs.typeEn }}">{{ specs.typeEs }}</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Tamano" data-en="Size">Tamano</span><span class="spec-v" data-es="{{ specs.sizeEs }}" data-en="{{ specs.sizeEn }}">{{ specs.sizeEs }}</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Material" data-en="Material">Material</span><span class="spec-v" data-es="{{ specs.materialEs }}" data-en="{{ specs.materialEn }}">{{ specs.materialEs }}</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Coleccion" data-en="Collection">Coleccion</span><span class="spec-v">{{ p.col }}</span></div>
+              <div class="p-actions"><button class="btn-add" onclick="addToOrder(this)"><span data-es="Agregar" data-en="Add">Agregar</span> +</button></div></div>
+          </div>
+        </div>
+      </div>
+{%- endmacro %}

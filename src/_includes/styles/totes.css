@@ -1,0 +1,10 @@
+/* Tote cards.
+   Same treatment as caps (gorras-2.css): the card shows a physical product, so
+   the image drops the magnet's wood border and is contained, not cropped.
+   The panel is a navy gradient rather than the caps' flat #e9e3e2 because the
+   totes are natural cotton - on a light panel the bag melts into the
+   background. The drop-shadow lifts the bag off the gradient. */
+.p-imgwrap:has(.p-img.tote),.p-front:has(.p-img.tote) .ph,.p-card:has(.p-img.tote) .ph{background:linear-gradient(180deg,#113a5a 0%,#0b2233 62%,#081420 100%);}
+.p-img.tote{border:none;border-radius:0;height:100%;width:auto;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(0,0,0,.55));}
+.back-tote{height:100%;width:100%;display:flex;align-items:center;justify-content:center;padding:14px;}
+.back-tote img{max-height:100%;max-width:100%;object-fit:contain;border-radius:3px;box-shadow:0 8px 20px rgba(0,0,0,.45);}

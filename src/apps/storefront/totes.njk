@@ -1,0 +1,51 @@
+---
+layout: base.njk
+permalink: apps/storefront/totes.html
+pagePath: apps/storefront/totes.html
+title: "Tote Bags de Lona con Disenos de Miami | Studio Lab"
+description: "Tote bags de lona de algodon de Studio Lab con disenos originales de Miami, Miami Beach y la cultura cubano-americana. Ordena al por mayor por email."
+pageName: "Tote Bags de Lona con Disenos de Miami"
+pageDescription: "Tote bags de lona de algodon de Studio Lab con disenos originales de Miami y la cultura cubano-americana."
+breadcrumbName: "Totes"
+navActive: totes
+navBase: ""
+headerSubEs: "Studio Lab · Totes"
+headerSubEn: "Studio Lab · Totes"
+headerSubText: "Studio Lab · Totes"
+assetsBase: ../../assets
+pageStyles: styles/card-base.css
+pageStyles2: styles/totes.css
+mpCol: "Totes"
+footerTagEs: "Tote bags de lona"
+footerTagEn: "Canvas totes"
+footerTagText: "Canvas totes"
+---
+{% import "tote-card.njk" as tc %}
+{% import "section-tabs.njk" as tabs %}
+{#
+  Same shape as gorras/magnets: pill links jump to a section per collection.
+  totes.json is already ordered Miami Beach -> Miami -> Cuban American, so the
+  loops below only insert headings; card order on the page is unchanged.
+#}
+<section class="hero"><div class="hero-copy">
+  <div class="hero-eyebrow" data-es="Coleccion de totes" data-en="Totes collection">Totes collection</div>
+  <h1 class="hero-title" data-es="Tote bags de <span class=&quot;em&quot;>lona</span>" data-en="Heavy <span class=&quot;em&quot;>canvas</span> totes">Heavy <span class="em">canvas</span> totes</h1>
+  <p class="hero-text" data-es="Bolsas de lona de algodon impresas en nuestro estudio de Miami. Toca cada bolsa para ver el diseno, la medida y el material." data-en="Cotton canvas totes printed in our Miami studio. Tap each bag to see the artwork, size and material.">Cotton canvas totes printed in our Miami studio. Tap each bag to see the artwork, size and material.</p>
+  </div></section>
+{{ tabs.nav([
+  { id: "sec-beach", label: "Miami Beach" },
+  { id: "sec-miami", label: "Miami" },
+  { id: "sec-cuban", label: "Cuban American" }
+]) }}
+<div class="cat-bar" id="sec-beach"><h2 data-es="Miami Beach" data-en="Miami Beach">Miami Beach</h2><p data-es="Gira cada bolsa para ver el diseno de cerca." data-en="Flip each bag to see the artwork up close.">Flip each bag to see the artwork up close.</p></div>
+<div class="grid">
+{% for p in totes.items %}{% if p.col == "Miami Beach" %}{{ tc.card(p, totes.specs, assetsBase) }}
+{% endif %}{% endfor %}</div>
+<div class="cat-bar" id="sec-miami"><h2 data-es="Miami" data-en="Miami">Miami</h2></div>
+<div class="grid">
+{% for p in totes.items %}{% if p.col == "Miami" %}{{ tc.card(p, totes.specs, assetsBase) }}
+{% endif %}{% endfor %}</div>
+<div class="cat-bar" id="sec-cuban"><h2 data-es="Cuban American · Little Havana" data-en="Cuban American · Little Havana">Cuban American · Little Havana</h2></div>
+<div class="grid">
+{% for p in totes.items %}{% if p.col == "Cuban American" %}{{ tc.card(p, totes.specs, assetsBase) }}
+{% endif %}{% endfor %}</div>
