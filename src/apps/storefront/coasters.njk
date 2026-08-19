@@ -1,0 +1,51 @@
+---
+layout: base.njk
+permalink: apps/storefront/coasters.html
+pagePath: apps/storefront/coasters.html
+title: "Posavasos de Ceramica con Disenos de Miami | Studio Lab"
+description: "Posavasos de ceramica de Studio Lab con disenos originales de Miami, Miami Beach y la cultura cubano-americana. Sublimados en Miami, pedidos al por mayor."
+pageName: "Posavasos de Ceramica con Disenos de Miami"
+pageDescription: "Posavasos de ceramica sublimados de Studio Lab con disenos originales de Miami y la cultura cubano-americana."
+breadcrumbName: "Coasters"
+navActive: coasters
+navBase: ""
+headerSubEs: "Studio Lab · Posavasos"
+headerSubEn: "Studio Lab · Coasters"
+headerSubText: "Studio Lab · Coasters"
+assetsBase: ../../assets
+pageStyles: styles/card-base.css
+pageStyles2: styles/coasters.css
+mpCol: "Coasters"
+footerTagEs: "Posavasos de ceramica"
+footerTagEn: "Ceramic coasters"
+footerTagText: "Ceramic coasters"
+---
+{% import "coaster-card.njk" as cc %}
+{% import "section-tabs.njk" as tabs %}
+{#
+  Same shape as gorras/magnets/totes: pill links jump to a section per
+  collection. coasters.json is already ordered Miami Beach -> Miami ->
+  Cuban American, so the loops below only insert headings.
+#}
+<section class="hero"><div class="hero-copy">
+  <div class="hero-eyebrow" data-es="Coleccion de posavasos" data-en="Coasters collection">Coasters collection</div>
+  <h1 class="hero-title" data-es="Posavasos de <span class=&quot;em&quot;>ceramica</span>" data-en="Ceramic <span class=&quot;em&quot;>coasters</span>">Ceramic <span class="em">coasters</span></h1>
+  <p class="hero-text" data-es="Posavasos de ceramica esmaltada con base de corcho, sublimados en nuestro estudio de Miami. Toca cada pieza para verla por detras con sus medidas." data-en="Glossy glazed ceramic coasters with a cork base, sublimated in our Miami studio. Tap each piece to see its back and measurements.">Glossy glazed ceramic coasters with a cork base, sublimated in our Miami studio. Tap each piece to see its back and measurements.</p>
+  </div></section>
+{{ tabs.nav([
+  { id: "sec-beach", label: "Miami Beach" },
+  { id: "sec-miami", label: "Miami" },
+  { id: "sec-cuban", label: "Cuban American" }
+]) }}
+<div class="cat-bar" id="sec-beach"><h2 data-es="Miami Beach" data-en="Miami Beach">Miami Beach</h2><p data-es="Gira cada posavasos para ver el reverso de corcho." data-en="Flip each coaster to see the cork back.">Flip each coaster to see the cork back.</p></div>
+<div class="grid">
+{% for p in coasters.items %}{% if p.col == "Miami Beach" %}{{ cc.card(p, coasters.specs, assetsBase) }}
+{% endif %}{% endfor %}</div>
+<div class="cat-bar" id="sec-miami"><h2 data-es="Miami" data-en="Miami">Miami</h2></div>
+<div class="grid">
+{% for p in coasters.items %}{% if p.col == "Miami" %}{{ cc.card(p, coasters.specs, assetsBase) }}
+{% endif %}{% endfor %}</div>
+<div class="cat-bar" id="sec-cuban"><h2 data-es="Cuban American · Little Havana" data-en="Cuban American · Little Havana">Cuban American · Little Havana</h2></div>
+<div class="grid">
+{% for p in coasters.items %}{% if p.col == "Cuban American" %}{{ cc.card(p, coasters.specs, assetsBase) }}
+{% endif %}{% endfor %}</div>

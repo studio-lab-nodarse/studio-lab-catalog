@@ -1,0 +1,111 @@
+{
+  "specs": {
+    "typeEs": "Posavasos de ceramica",
+    "typeEn": "Ceramic coaster",
+    "sizeEs": "102 x 102 mm",
+    "sizeEn": "102 x 102 mm",
+    "materialEs": "Ceramica y base de corcho",
+    "materialEn": "Ceramic with cork base",
+    "back": "832ca9d383c0bb44.webp"
+  },
+  "items": [
+    {
+      "num": 33,
+      "col": "Miami Beach",
+      "img": "c260fa631c304599.webp",
+      "nameEs": "Playa de Miami Beach",
+      "nameEn": "Miami Beach Shore"
+    },
+    {
+      "num": 38,
+      "col": "Miami Beach",
+      "img": "53ef1ace6295207f.webp",
+      "nameEs": "Hotel Art Deco",
+      "nameEn": "Art Deco Hotel"
+    },
+    {
+      "num": 57,
+      "col": "Miami Beach",
+      "img": "7ac19df1e9e89c41.webp",
+      "nameEs": "Torre de Salvavidas",
+      "nameEn": "Lifeguard Tower"
+    },
+    {
+      "num": 59,
+      "col": "Miami Beach",
+      "img": "d15f26c2ef6c9d64.webp",
+      "nameEs": "Torre Morada",
+      "nameEn": "Purple Lifeguard Tower"
+    },
+    {
+      "num": 60,
+      "col": "Miami Beach",
+      "img": "b4e992161fee8d48.webp",
+      "nameEs": "Torre Redonda",
+      "nameEn": "Round Lifeguard Tower"
+    },
+    {
+      "num": 61,
+      "col": "Miami Beach",
+      "img": "8551650fbdb8f778.webp",
+      "nameEs": "Torre Arcoiris",
+      "nameEn": "Rainbow Lifeguard Tower"
+    },
+    {
+      "num": 63,
+      "col": "Miami Beach",
+      "img": "8871ef6a6bb172d1.webp",
+      "nameEs": "Collage Miami Beach",
+      "nameEn": "Miami Beach Collage"
+    },
+    {
+      "num": 65,
+      "col": "Miami",
+      "img": "35c2e9e441fd9054.webp",
+      "nameEs": "Hotel de Miami",
+      "nameEn": "Miami Hotel"
+    },
+    {
+      "num": 66,
+      "col": "Miami",
+      "img": "2969c9837f70b27d.webp",
+      "nameEs": "Skyline de Miami",
+      "nameEn": "Miami Skyline"
+    },
+    {
+      "num": 67,
+      "col": "Miami",
+      "img": "5584dca78a8391d2.webp",
+      "nameEs": "Miami Retro",
+      "nameEn": "Miami Retro Script"
+    },
+    {
+      "num": 89,
+      "col": "Miami",
+      "img": "28ba14f18a4ea7c0.webp",
+      "nameEs": "Palmas de Miami",
+      "nameEn": "Miami Palms"
+    },
+    {
+      "num": 14,
+      "col": "Cuban American",
+      "img": "60346db705575dde.webp",
+      "nameEs": "Gallo de Little Havana",
+      "nameEn": "Little Havana Rooster"
+    },
+    {
+      "num": 90,
+      "col": "Cuban American",
+      "img": "8a96cd061ceaf0cd.webp",
+      "nameEs": "Gallos Cubanos",
+      "nameEn": "Cuban Roosters"
+    },
+    {
+      "num": 91,
+      "col": "Cuban American",
+      "img": "1320f3d6ca64fbd2.webp",
+      "nameEs": "Calle de Little Havana",
+      "nameEn": "Little Havana Street"
+    }
+  ]
+}

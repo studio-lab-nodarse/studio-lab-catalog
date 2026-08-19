@@ -1,0 +1,15 @@
+/* Coaster cards.
+   The piece is a physical object like the caps and totes, so the image drops
+   the magnet's wood border. Front artwork and back photo are pre-normalised to
+   the same square canvas and pinned to the same box here, so the coaster keeps
+   its footprint when the card flips - the back's white ceramic rim is part of
+   the product and must not make it read larger. */
+.p-imgwrap:has(.p-img.co),.p-back:has(.co-back) .ph{background:linear-gradient(180deg,#113a5a 0%,#0b2233 62%,#081420 100%);}
+.p-imgwrap .p-img.co,.ph .co-back{width:200px;height:200px;object-fit:fill;border:none;display:block;}
+.p-imgwrap .p-img.co{border-radius:4px;box-shadow:0 10px 22px rgba(0,0,0,.5);}
+.ph .co-back{filter:drop-shadow(0 10px 20px rgba(0,0,0,.5));}
+.co-stage{position:relative;width:200px;height:200px;}
+.co-dw{position:absolute;left:0;top:208px;width:200px;border-top:1px solid var(--accent2);opacity:.9;display:block;}
+.co-dw b{position:absolute;left:50%;top:3px;transform:translateX(-50%);font-size:9px;font-weight:700;color:var(--accent2);white-space:nowrap;}
+.co-dh{position:absolute;left:208px;top:0;height:200px;border-left:1px solid var(--accent2);opacity:.9;display:block;}
+.co-dh b{position:absolute;left:5px;top:50%;transform:translateY(-50%);font-size:9px;font-weight:700;color:var(--accent2);white-space:nowrap;}

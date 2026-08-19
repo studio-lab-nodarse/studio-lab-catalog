@@ -1,0 +1,34 @@
+{#
+  One ceramic-coaster product card.
+
+  Same shape as product-card.njk (magnets): the FRONT is the artwork, the BACK
+  is a photo of the real product with its measurements. Unlike magnets, the back
+  photo is identical for every coaster - the cork side is the same piece - so it
+  lives once in coasters.json under specs.back instead of per item.
+
+  Front artwork and back photo are pre-normalised to the same square canvas, so
+  the piece keeps its footprint when the card flips. The white ceramic rim
+  visible around the cork is part of the product and is deliberately kept.
+#}
+{% macro card(p, specs, assetsBase) %}
+{%- set nameEs = "Posavasos #" ~ p.num ~ " &middot; " ~ p.nameEs -%}
+{%- set nameEn = "Coaster #" ~ p.num ~ " &middot; " ~ p.nameEn -%}
+<div class="p-card" data-num="{{ p.num }}" data-col="{{ p.col }}">
+        <div class="p-inner">
+          <div class="p-face p-front">
+            <div class="p-imgwrap"><img loading="lazy" decoding="async" class="p-img co" src="{{ assetsBase }}/img/{{ p.img }}" alt="#{{ p.num }}" draggable="false" oncontextmenu="return false"><button class="flip-hint" onclick="flip(this)" title="Ver reverso / See back">&#8635;</button><span class="flip-cue" data-es="Girar" data-en="Flip">Flip</span></div>
+            <div class="p-body"><span class="p-tag"><span>{{ p.col }}</span></span>
+              <h3 class="p-name" data-es="{{ nameEs | safe }}" data-en="{{ nameEn | safe }}">{{ nameEn | safe }}</h3>
+              <p class="p-desc" data-es="Posavasos de ceramica brillante &middot; base de corcho." data-en="Glossy ceramic coaster &middot; cork backing.">Glossy ceramic coaster &middot; cork backing.</p>
+              <div class="p-actions"><button class="btn-add" onclick="addToOrder(this)"><span data-es="Agregar" data-en="Add">Add</span> +</button></div></div>
+          </div>
+          <div class="p-face p-back"><div class="ph"><button class="flip-hint" onclick="flip(this)" title="Ver diseno / See design">&#8634;</button><span class="flip-cue" data-es="Diseno" data-en="Design">Design</span><div class="co-stage"><img loading="lazy" decoding="async" class="co-back" src="{{ assetsBase }}/img/{{ specs.back }}" alt=""><span class="co-dw"><b>102 mm</b></span><span class="co-dh"><b>102 mm</b></span></div></div>
+            <div class="p-body"><div class="spec-row"><span class="spec-k" data-es="Tipo" data-en="Type">Tipo</span><span class="spec-v" data-es="{{ specs.typeEs }}" data-en="{{ specs.typeEn }}">{{ specs.typeEs }}</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Tamano" data-en="Size">Tamano</span><span class="spec-v" data-es="{{ specs.sizeEs }}" data-en="{{ specs.sizeEn }}">{{ specs.sizeEs }}</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Material" data-en="Material">Material</span><span class="spec-v" data-es="{{ specs.materialEs }}" data-en="{{ specs.materialEn }}">{{ specs.materialEs }}</span></div>
+              <div class="spec-row"><span class="spec-k" data-es="Coleccion" data-en="Collection">Coleccion</span><span class="spec-v">{{ p.col }}</span></div>
+              <div class="p-actions"><button class="btn-add" onclick="addToOrder(this)"><span data-es="Agregar" data-en="Add">Agregar</span> +</button></div></div>
+          </div>
+        </div>
+      </div>
+{%- endmacro %}
