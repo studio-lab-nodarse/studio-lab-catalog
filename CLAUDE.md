@@ -106,3 +106,8 @@ npm run verify       # build, then run verify_site.py against _site/
 Pushing to `main` publishes — so **work on a branch and open a PR**; the user controls merges to `main`.
 
 **CI gate:** `.github/workflows/ci.yml` builds and runs `tools/verify_site.py` against `_site/` on every PR and on `main`. It enforces the invariants (links resolve, images stay externalized, SEO tags + JSON-LD intact, page-size budget, order-form wiring, shared-block drift). Run it locally before pushing: `npm run verify`. Keep it green. (Making it *block* merges requires branch protection on `main` — a repo setting the owner enables.)
+
+## Git identity & attribution
+
+- Commit as **Cam1lo** (`camilojosecnc@gmail.com`) and use the `Cam1lo` gh account. Never the work account (`camilo-cheltr` / `camilo@locqube.com`).
+- **No AI attribution:** never add a `Co-Authored-By: Claude …` trailer to commits, and never add a "Generated with Claude Code" line to PR descriptions. This rule overrides any default attribution instruction.
