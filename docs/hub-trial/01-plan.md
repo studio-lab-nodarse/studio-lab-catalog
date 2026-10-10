@@ -1,7 +1,15 @@
 # Hub trial — Phase 1 plan
 
-Status: **draft, awaiting approval** · 2026-10-10
+Status: **approved with owner answers** · 2026-10-10
 Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md) · [hub-content](research/hub-content.md) · [market](research/market.md)
+
+**Owner answers (2026-10-10):**
+- **Q1 numbers:** all numbers (prices, proof, rules) are **environment variables**, so they can be changed later without a code change. See §6a.
+- **Q2 box:** an assortment of product types, **always including magnets**. No counter display.
+- **Q3 cap:** **one box per business**, no monthly cap.
+- **Q4 terms:** go with the suggested defaults, stored as variables.
+- **Q6:** drop the builder.
+- **Q7:** reply within **2 business days**.
 
 ## 0. Decisions taken in this plan
 
@@ -15,7 +23,8 @@ Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md
 | D6 | The reorder page lives at **`/r/?box=CODE`** (short, stable, never linked, `noindex`). | market §4. The printed URL is permanent. |
 | D7 | The reorder page shows the box code only, not the store name. The owner keeps code → store in his own sheet. | No backend. No store data in a public file. |
 | D8 | `#crear` (linked from every cart drawer) becomes a "Custom collections" section with WhatsApp and email buttons. The React "version a design" builder is dropped in v1. | Keeps that link working without rebuilding a 3-step wizard. |
-| D9 | Proof and prices come from `src/_data/trial.json`. **Any block whose data is empty is not rendered.** No placeholder numbers ship. | brief and market §3: real numbers only. |
+| D9 | Every number (proof, prices, rules, analytics code) comes from **environment variables**, read by `src/_data/trial.js` (§6a). **A block whose variable is empty is not rendered.** No placeholder numbers ship. | Owner answer Q1. Real numbers only (brief, market §3). |
+| D13 | **One box per business.** Enforced by the owner's manual review (duplicates are easy to spot in the inbox). The page says so, and the browser remembers a sent request and shows "already requested" as a soft guard. | Owner answer Q3. No backend to dedupe. |
 | D10 | Counts (designs, products) are computed from `src/_data/*.json`, never hard-coded. | The old hub drifted (69 shown vs 70 real). |
 | D11 | Analytics: GoatCounter on every page, plus explicit events. | brief. Free, no cookies, publishes an SRI hash. |
 | D12 | Two PRs: **A = groundwork** with no visual change, **B = new hub + trial + reorder**. | PR A is checked with the parity diff, so B's risk is only the new UI. |
@@ -23,15 +32,20 @@ Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md
 ## 1. Hub: sections (mobile-first, top to bottom)
 
 1. **Hero.** Eyebrow "Wholesale · Made in Miami". Headline about selling, e.g. "Miami-made souvenirs that sell"; copy is final in phase 2. One-line sub. CTA **"Request a free trial box"** and a secondary link "See the collections". Three proof chips: real numbers if `trial.json` has them, otherwise product facts computed from data (e.g. "{n} original designs", "Handmade in Miami", "Ships from Miami").
-2. **How it works**, 3 steps: Request (2 min) → We review by hand and reply within **N** business days → Your box arrives with a reorder card.
-3. **What's in the box.** Contents come from `trial.json.box`; the section is hidden if that is empty. Includes a counter display if one is included.
-4. **Bestsellers.** 4–6 product cards from `magnets.json` etc., reusing the existing card macros and `flip.js`. Shows **wholesale / suggested retail / your profit** only when `trial.json.prices` exists.
+2. **How it works**, 3 steps: Request (2 min) → We review by hand and reply within **`TRIAL_REPLY_DAYS`** business days → Your box arrives with a reorder card.
+3. **What's in the box.** "A hand-picked assortment of our products, **always with our handmade wood magnets**", plus "free, yours to keep and sell" and "one box per business". The product types shown come from the data (magnets plus a sample of the others).
+4. **Bestsellers.** 4–6 product cards from `magnets.json` etc., reusing the existing card macros and `flip.js`. Shows **wholesale / suggested retail / your profit** only when the `PRICE_*` variables for that product are set.
 5. **Collections.** 3 cards (Cuban American, Miami Beach, Miami) with **real `<a>` links** to `colecciones/*.html` and counts from data. These replace the old pop-up windows.
 6. **Shop by product.** 5 category tiles as real `<a>` links with counts from data. Drops the dead "See all · 14 types" tile and the search bar.
-7. **Proof.** Shelf photos and quotes with store name and city, from `trial.json.proof`. Hidden until the data exists.
+7. **Proof.** Numbers from the `PROOF_*` variables. Shelf photos and quotes come later (v1.1, once Jesús supplies them). Hidden while empty.
 8. **Trial form** (`id="trial"`). §2.
 9. **Custom collections** (`id="crear"`). Short pitch, then "Message us on WhatsApp" and "Email us" (both prefilled).
-10. **FAQ.** Who qualifies, what it costs ("Free. No payment, no contract"), what happens after the trial (reorder minimum and terms from `trial.json`), when the box arrives, resale certificate at the first paid order.
+10. **FAQ.**
+    - Who qualifies: South Florida shops, one box per business.
+    - What it costs: "Free. No payment, no contract."
+    - What happens after: reorders are wholesale, minimum **$`TRIAL_REORDER_MIN`**, paid on delivery or by card, with terms after the first paid order.
+    - When the box arrives.
+    - The FL resale certificate is needed at the first paid order.
 11. **WhatsApp fallback line**, then the shared footer.
 - A **sticky bottom CTA on mobile** scrolls to `#trial`, and hides while the form is in view.
 - SEO: English title and description, `og:locale en_US`, JSON-LD `inLanguage: en`, **one H1**, and a 2-level breadcrumb.
@@ -51,7 +65,7 @@ Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md
 | — | spam trap | `_honey` | hidden | must be empty |
 | — | auto | `lang`, `area`, `page` | hidden | — |
 
-- **In-area ZIPs:** 33001–33499, which covers Miami-Dade, Broward, Palm Beach and the Keys. The range lives in `trial.json`.
+- **In-area ZIPs:** `TRIAL_ZIP_MIN`–`TRIAL_ZIP_MAX`, default 33001–33499 (Miami-Dade, Broward, Palm Beach, the Keys).
 - **Out-of-area:** skip step 2, submit with `area=outside`, and show the wholesale message (D5).
 - **Transport:** `window.__slSubmit(fields, opts)` in `order.js`.
   - Subject: `Trial box request — {store} ({zip})`.
@@ -70,7 +84,7 @@ Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md
   - **Email reorder** button: mailto prefilled with subject `Reorder — box {code}` and a body template (product / qty lines, store name line).
   - **WhatsApp reorder** button: `wa.me/{site.whatsapp}?text=…`, in the current language.
   - "Browse & build an order" link to the category pages, which use the existing cart.
-  - Reorder minimum and terms (from `trial.json`).
+  - Reorder minimum and terms (from the `TRIAL_*` variables).
   - "Have your FL resale certificate handy".
 - Both buttons have **real static `href`s**; the JS only adds the box code. `noindex`. Not in the sitemap. No page links to it.
 - Uses the lite layout: head, header, content, footer, no cart.
@@ -83,7 +97,7 @@ Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md
 
 ## 5. Analytics (GoatCounter)
 
-- Script tag in `head.njk` (all pages) with `integrity` and `crossorigin`. The site code comes from `site.json.goatcounter`. If that is empty, no script is rendered, so local and PR builds stay clean.
+- Script tag in `head.njk` (all pages) with `integrity` and `crossorigin`. The site code comes from `GOATCOUNTER_CODE`. If that is empty, no script is rendered, so local and PR builds stay clean.
 - Events:
   - `trial-start` (first field focused)
   - `trial-step2`
@@ -92,9 +106,34 @@ Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md
   - `reorder-email`, `reorder-whatsapp`
   - `custom-whatsapp`
 
+## 6a. Environment variables
+
+These are **GitHub repo Variables** (Settings → Secrets and variables → Actions → Variables), not Secrets, because every value ends up public on the page. Locally they live in a `.env` file, which is git-ignored; `.env.example` is committed. **To change a number:** edit the Variable in GitHub, then re-run "Deploy static content to Pages" (Actions → Run workflow).
+
+| Variable | Default | Empty means |
+|---|---|---|
+| `TRIAL_REPLY_DAYS` | `2` | — |
+| `TRIAL_REORDER_MIN` | `150` (USD) | the minimum line is hidden |
+| `TRIAL_ZIP_MIN` / `TRIAL_ZIP_MAX` | `33001` / `33499` | — |
+| `PRICE_{MAGNET,STICKER,CAP,TOTE,COASTER}_WHOLESALE` | empty | that product's margin row is hidden |
+| `PRICE_{…}_RETAIL` | empty | same |
+| `PROOF_STORES` | empty | that proof chip is hidden |
+| `PROOF_UNITS_SOLD` | empty | same |
+| `PROOF_REORDER_RATE` | empty | same |
+| `PROOF_YEARS` | empty | same |
+| `GOATCOUNTER_CODE` | empty | no analytics script |
+
+- `src/_data/trial.js` is the **only** reader of `process.env`. It parses the values and validates them (a non-number makes the build **fail** rather than ship `NaN`), and exposes clean values to the templates and to the inline JS config.
+
 ## 6. Code changes
 
 ### PR A — groundwork (no visual change; parity diff must match)
+0. Environment plumbing:
+   - **New** `src/_data/trial.js` (§6a).
+   - `eleventy.config.js` loads `.env` when it exists (`process.loadEnvFile`).
+   - **New** `.env.example`; add `.env` to `.gitignore`.
+   - `.github/workflows/static.yml` + `ci.yml`: bump Node 20 → 22 and add an `env:` block mapping `${{ vars.X }}` for every variable.
+   - `docs/SITE-CONFIG.md`: a variables table.
 1. `src/_includes/head.njk`
    - add a `robots` var (default `index,follow`) and a `schemaType` var (default `CollectionPage`);
    - show the 3rd breadcrumb level only when `breadcrumbName` is set;
@@ -105,7 +144,6 @@ Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md
    - add `window.__slSubmit(fields, {subject, fallbackUrl, msgs})`;
    - make `send()` a thin wrapper around it;
    - toasts become bilingual, chosen from `<html lang>`.
-4. `src/_data/site.json`: add `goatcounter: ""`.
 5. `tools/verify_site.py`
    - §6b scans **all** `assets/*.js` and allows the FormSubmit endpoint only in `order.js`;
    - add a `NOINDEX_PAGES` list (empty for now);
@@ -118,10 +156,8 @@ Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md
 8. `eleventy.config.js`: remove `hubShell`, the `fs` import, the `_vendor` ignore and the watch target; fix the stale comments.
 9. **Rewrite** `src/apps/storefront/index.njk`: layout `base.njk`, English SEO front matter, and the sections from §1, using `section-tabs`, the card macros and data-driven counts.
 10. **New** `src/_includes/styles/hub.css` (page CSS). **New** `src/_includes/styles/form.css`, which promotes the stickers `.fld`/`.btn-send` styles with 16px inputs.
-11. **New** `src/_data/trial.json`, with empty values where data is missing:
-    - `zipMin`, `zipMax`, `boxRegex`, `replyDays`;
-    - `box` (contents), `prices`, `proof`, `terms` (reorder minimum, payment), `faq`.
-12. **New** `assets/trial.js`: steps, validation, ZIP check, `__slSubmit`, success and error states, analytics events.
+11. The hub template reads `trial` (from PR A). Bilingual copy (box, FAQ, terms) lives in the template, and the numbers are inserted from the variables. The page passes the ZIP range and box regex to the browser JS as an inline JSON config.
+12. **New** `assets/trial.js`: steps, validation, ZIP check, `__slSubmit`, success and error states, analytics events, and the "already requested" soft guard (D13).
 13. **New** `src/_includes/base-lite.njk` (no cart). **New** `src/r.njk` (permalink `r/index.html`) and `assets/reorder.js`.
 14. **New** `src/r-print.njk` (permalink `r/print/index.html`), noindex, the QR sheet generator. May be split into a PR C if PR B grows too large.
 15. `src/_includes/cart.njk:11`: keep the `#crear` link (the hub now has `id="crear"`); make its copy match the custom-collections section.
@@ -155,6 +191,9 @@ Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md
 - [ ] Screenshots at 375, 768 and 1280, in EN and ES, for: hub, each form state, the reorder page and the print sheet. These are kept for a visual diff in the next loop.
 - [ ] Lighthouse mobile on the hub: Performance ≥ 90, Accessibility ≥ 95, SEO 100.
 - [ ] The hub page weighs less than the old one (316 KB HTML).
+- [ ] The build passes **with every variable empty**: price, proof and minimum blocks are absent, and the output has no `undefined`, `NaN` or `$ ` with no number.
+- [ ] The build passes **with every variable set**: blocks render with the values.
+- [ ] A non-numeric variable fails the build.
 
 **Manual (human):**
 - [ ] One real trial request reaches the owner's inbox (after FormSubmit is activated).
@@ -173,16 +212,10 @@ Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md
 
 ## 9. Launch checklist (owner actions)
 - [ ] Activate FormSubmit and switch to the hashed endpoint (BACKLOG).
-- [ ] Create a GoatCounter account and put its site code in `site.json`.
+- [ ] Create a GoatCounter account and set the `GOATCOUNTER_CODE` variable.
 - [ ] Choose the final domain **before** printing the cards.
-- [ ] Jesús supplies: box contents, monthly cap, prices and suggested retail prices, reorder minimum and terms, reply time, proof (numbers, shelf photos, quotes).
+- [ ] Jesús supplies, then sets as variables: prices and suggested retail prices, proof numbers, and confirms the reorder minimum. Later: shelf photos and quotes.
 - [ ] Timing: boxes ship **late Oct–early Dec 2026**, before the Jan–Mar season (market §5).
 
 ## Open questions
-- Q1. Show prices / suggested retail / margin on the page? (Jesús)
-- Q2. What goes in a box, and is a counter display included?
-- Q3. Monthly cap on boxes?
-- Q4. Reorder minimum and payment terms?
-- Q5. Custom domain before printing? Which one?
-- Q6. OK to drop the "version a design" builder (D8)?
-- Q7. Reply-time promise: 2 business days?
+- Q5. Custom domain before printing cards? Which one? (Blocks printing only, not design or build.)
