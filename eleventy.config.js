@@ -25,6 +25,11 @@ const PASSTHROUGH = [
   // The storefront remains at apps/storefront/, linked from the catalog's footer.
   "index.html",
 
+  // Hub-trial design preview (noindex, not in the sitemap, never linked).
+  // Published at the same depth as in the repo so its `../../../../assets/img/`
+  // paths resolve. Remove once the new hub ships. See docs/hub-trial/01-plan.md.
+  "docs/hub-trial/mockups/v3",
+
   // NOTE: the hub is NOT here. Its compiled-React bundle lives untouched at
   // src/_vendor/hub.html and is assembled by src/apps/storefront/index.njk,
   // which injects the shared masthead into it at build time.
