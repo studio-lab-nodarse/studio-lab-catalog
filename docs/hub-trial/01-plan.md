@@ -200,7 +200,11 @@ These are **GitHub repo Variables** (Settings → Secrets and variables → Acti
 - [ ] The printed QR card scans on 3 phones (iPhone and Android) in shop lighting.
 - [ ] The owner reads the page in Spanish and English and approves the copy.
 
-## 8. Phase 2 (design) brief — what the design agent gets
+## 8. Phase 2 (design)
+
+**Decision (2026-10-11): mockup [`mockups/v2`](mockups/v2/index.html) "Coastal editorial" is the approved base.** It was built from the owner's Pinterest board "Clean Store UI" with a fresh look; the current site's styles are not reused. Colours, fonts and wordmark are in [mockups/README](mockups/README.md). The A/B/C directions and v1 were rejected. Next: iterate on v2, then implement it.
+
+### Original phase 2 brief (superseded by the decision above) — what the design agent gets
 - **Inputs:** this plan, hub-content §7 (current visual system: navy/gold, Playfair + Archivo, glass panels, grain), and the brand tokens in `brand.css`.
 - **Output:** 2–3 directions as static HTML mockups in `docs/hub-trial/design/` (not deployed), for the hub on phone and desktop. **After a direction is picked:** every form state, the reorder page and the QR card. Screenshots go in the same folder.
 - **Rules:**

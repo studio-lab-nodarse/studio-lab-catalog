@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Miami Peculiar — Free trial box for South Florida shops (mockup v2 · Coastal editorial)</title>
+<meta name="description" content="Mockup v2 “Coastal editorial”: Miami-made souvenirs for gift shops. Request a free trial box.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/shared.css">
+<style>
+/* ---------- v2 “Coastal editorial” — page composition ---------- */
+.idx { display: inline-flex; align-items: baseline; gap: 10px; font: 800 15px/1 var(--f-display); letter-spacing: .14em; text-transform: uppercase; }
+.idx b { font-size: 30px; letter-spacing: .02em; font-weight: 900; }
+.idx i { font-style: normal; opacity: .6; }
+.rule { flex: 1; height: 1.5px; background: currentColor; opacity: .25; }
+.chap { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
+.outline-num { font: 900 1em/.8 var(--f-display); color: transparent; -webkit-text-stroke: 1.5px currentColor; }
+
+/* Header over the hero */
+.ehdr { position: absolute; inset: 0 0 auto; z-index: 30; color: var(--paper); }
+.ehdr .wrap { display: flex; align-items: center; gap: 16px; min-height: 72px; }
+.ehdr .hdr__nav a { color: var(--paper); }
+.ehdr .hdr__nav a:hover { border-color: var(--sun); }
+.ehdr .menu-btn { background: transparent; border-color: rgba(250, 247, 240, .45); color: var(--paper); }
+
+/* Hero */
+.ehero { position: relative; overflow: hidden; color: var(--paper); background: var(--teal-deep); isolation: isolate; }
+.ehero__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.ehero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(6, 52, 58, .72) 0%, rgba(8, 69, 74, .58) 45%, rgba(6, 46, 52, .9) 100%); }
+.ehero__inner { padding-top: 96px; padding-bottom: 28px; display: grid; gap: 30px; }
+.ehero__copy { display: grid; gap: 18px; justify-items: start; position: relative; z-index: 2; }
+.ehero__meta span { white-space: nowrap; }
+.ehero__meta { display: flex; gap: 14px; align-items: center; font: 600 12px/1 var(--f-sans); letter-spacing: .18em; text-transform: uppercase; color: rgba(250, 247, 240, .8); width: 100%; }
+.ehero__h1 { color: var(--sun); font-size: clamp(60px, 17.4vw, 158px); }
+.ehero__h1 .sv { font-family: var(--f-serif); font-style: italic; font-weight: 400; text-transform: none; color: var(--paper); font-size: 1.04em; letter-spacing: -.02em; line-height: .7; }
+.ehero__sub { font-size: 18px; line-height: 1.5; max-width: 30em; color: rgba(250, 247, 240, .92); }
+.ehero__ctas { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; width: 100%; }
+.ehero__ctas .btn--sun { width: 100%; }
+.ehero__ctas .link-arrow { color: var(--paper); }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 999px; border: 1.5px solid rgba(250, 247, 240, .5); font-size: 13.5px; font-weight: 500; white-space: nowrap; }
+.pill .ico { width: 16px; height: 16px; color: var(--aqua); }
+.pile { position: relative; height: 330px; margin-inline: calc(var(--gutter) * -1); }
+.pile__photo { position: absolute; width: 190px; left: 50%; top: 4px; translate: -50% 0; rotate: 4deg; background: var(--paper); padding: 8px 8px 30px; border-radius: 4px; box-shadow: 0 24px 40px -18px rgba(0, 0, 0, .55); }
+.pile__photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; }
+.pile__photo figcaption { position: absolute; bottom: 7px; left: 0; right: 0; text-align: center; color: var(--ink); font: italic 400 16px/1 var(--f-serif); }
+.pile__m1 { position: absolute; width: 104px; left: 8%; top: 70px; rotate: -10deg; }
+.pile__m2 { position: absolute; width: 96px; right: 7%; top: 128px; rotate: 9deg; }
+.pile__stk { position: absolute; width: 104px; left: 22%; bottom: 0; rotate: -6deg; }
+.pile__seal { position: absolute; right: 9%; top: 0; width: 100px; height: 100px; }
+.pile__seal .seal__mark { width: 30px; height: 28px; }
+.ehero__foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 18px 22px; border-top: 1px solid rgba(250, 247, 240, .22); font: 600 12px/1 var(--f-sans); letter-spacing: .18em; text-transform: uppercase; color: rgba(250, 247, 240, .78); }
+.ehero__foot .idx b { color: var(--sun); }
+@media (min-width: 720px) { .ehero__ctas .btn--sun { width: auto; } }
+@media (min-width: 1000px) {
+  .ehdr .wrap { min-height: 88px; }
+  .ehero__inner { grid-template-columns: 1fr 380px; align-items: end; padding-top: 128px; padding-bottom: 36px; min-height: 760px; }
+  .ehero__h1 { font-size: min(10.8vw, 158px); }
+
+  .ehero__copy { gap: 22px; }
+  .ehero__sub { font-size: 20px; }
+  .pile { height: 560px; margin: 0; }
+  .pile__photo { width: 300px; left: auto; right: 4%; translate: 0 0; top: 0; padding: 12px 12px 44px; }
+  .pile__photo figcaption { font-size: 21px; bottom: 11px; }
+  .pile__m1 { width: 150px; left: -8%; top: 250px; }
+  .pile__m2 { width: 138px; right: -2%; top: 360px; }
+  .pile__stk { width: 150px; left: 26%; bottom: 0; }
+  .pile__seal { width: 132px; height: 132px; right: auto; left: 2%; top: 40px; }
+  .pile__seal .seal__mark { width: 40px; height: 37px; }
+}
+
+/* Story — Key West editorial */
+.story { position: relative; overflow: hidden; }
+.story__grid { display: grid; gap: 22px; }
+.story__side { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.story__places { display: none; }
+.story__big { font-size: clamp(80px, 23vw, 236px); color: var(--ink); position: relative; z-index: 2; }
+.story__big span { display: block; }
+.story__art { position: relative; margin-top: -34px; margin-bottom: 26px; }
+.story__art .wave { aspect-ratio: 1 / .95; }
+.story__num { position: absolute; right: 6%; bottom: 12%; font-size: 150px; z-index: 2; }
+.story__num.outline-num { color: transparent; -webkit-text-stroke: 2px var(--paper); }
+.story__seal { position: absolute; left: 4%; bottom: -8px; width: 112px; height: 112px; z-index: 3; }
+.story__copy { display: grid; gap: 16px; justify-items: start; max-width: 34rem; }
+.story__copy p { font-size: 17.5px; color: var(--ink-2); }
+.story__copy p:first-child { font-size: 21px; line-height: 1.4; color: var(--ink); letter-spacing: -.01em; }
+@media (min-width: 1000px) {
+  .story__grid { grid-template-columns: 220px 1fr; grid-template-rows: auto auto; gap: 0 48px; }
+  .story__side { grid-row: 1 / 3; flex-direction: column; align-items: flex-start; justify-content: space-between; padding-block: 12px; }
+  .story__places { display: grid; gap: 6px; font-size: 14px; color: var(--ink-2); }
+  .story__places b { color: var(--ink); font-weight: 600; }
+  .story__stage { position: relative; display: grid; grid-template-columns: 1.08fr .92fr; min-height: 600px; align-items: center; }
+  .story__big { grid-column: 1 / 3; grid-row: 1; align-self: center; }
+  .story__art { grid-column: 2; grid-row: 1; margin: 0; height: 600px; }
+  .story__art .wave { height: 100%; aspect-ratio: auto; }
+  .story__copy { grid-column: 2; margin-top: 44px; }
+  .story__num { font-size: 260px; }
+  .story__seal { width: 140px; height: 140px; left: auto; right: -34px; bottom: -26px; }
+  .story__num { bottom: auto; top: 13%; right: 7%; }
+}
+
+/* How it works */
+.how { background: var(--sand); }
+.how__steps { display: grid; border-top: 1.5px solid var(--ink); }
+.hstep { display: grid; grid-template-columns: 92px 1fr; gap: 16px; padding: 24px 0; border-bottom: 1px solid rgba(13, 34, 48, .18); align-items: start; }
+.hstep__n { font-size: 96px; }
+.hstep__n.outline-num { color: transparent; -webkit-text-stroke: 2px var(--teal); }
+.hstep h3 { margin-bottom: 6px; }
+.hstep p { color: var(--ink-2); }
+.hstep--hl .hstep__n.outline-num { color: var(--teal); }
+@media (min-width: 900px) {
+  .how__steps { grid-template-columns: repeat(3, 1fr); }
+  .hstep { grid-template-columns: 1fr; padding: 32px 32px 36px 0; border-bottom: 0; }
+  .hstep + .hstep { padding-left: 32px; border-left: 1px solid rgba(13, 34, 48, .18); }
+  .hstep__n { font-size: 150px; margin-bottom: 12px; }
+}
+
+/* The box */
+.ebox { position: relative; }
+.ebox__band { position: relative; height: 440px; overflow: hidden; display: grid; place-items: center; border-block: 2px solid var(--ink); }
+.ebox__pol { position: relative; width: min(78%, 420px); background: var(--white); padding: 10px 10px 42px; border-radius: 6px; box-shadow: 0 26px 50px -24px rgba(13, 34, 48, .55); rotate: 3deg; }
+.ebox__pol img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; }
+.ebox__pol figcaption { position: absolute; left: 0; right: 0; bottom: 11px; text-align: center; font: italic 400 20px/1 var(--f-serif); }
+.ebox__band .o1 { position: absolute; width: 92px; left: 6%; top: 36px; rotate: -12deg; }
+.ebox__band .o2 { position: absolute; width: 88px; right: 5%; top: 30px; rotate: 10deg; }
+.ebox__band .o3 { position: absolute; width: 100px; left: 4%; bottom: 82px; rotate: 8deg; }
+.ebox__band .o4 { position: absolute; width: 92px; right: 5%; bottom: 76px; rotate: -9deg; }
+.ebox__band .tag { position: absolute; left: 50%; translate: -50% 0; top: 22px; rotate: -3deg; z-index: 2; }
+.ebox__card { position: relative; z-index: 2; margin: -60px var(--gutter) 0; background: var(--white); border: 2px solid var(--ink); border-radius: var(--r-l); padding: 26px 20px; display: grid; gap: 16px; justify-items: start; box-shadow: 8px 8px 0 var(--ink); }
+.ebox__card .checks { display: grid; gap: 11px; }
+.ebox__card .checks li { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; line-height: 1.45; }
+.ebox__card .ck { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--teal); color: var(--paper); display: grid; place-items: center; }
+.ebox__card .ck .ico { width: 15px; height: 15px; stroke-width: 2.8; }
+.ebox__card .ck--sun { background: var(--sun); color: var(--ink); border: 1.5px solid var(--ink); }
+@media (min-width: 1000px) {
+  .ebox__wrap { display: grid; grid-template-columns: 1fr 560px; align-items: center; }
+  .ebox__band { height: 640px; grid-column: 1 / 3; grid-row: 1; place-items: center start; padding-left: 8%; }
+  .ebox__pol { width: 500px; }
+  .ebox__band .o1 { width: 130px; left: 4%; top: 70px; }
+  .ebox__band .o2 { width: 120px; left: 38%; right: auto; top: 54px; }
+  .ebox__band .o3 { width: 150px; left: 31%; bottom: 60px; }
+  .ebox__band .o4 { display: none; }
+  .ebox__band .tag { left: 9%; translate: 0 0; top: 40px; }
+  .ebox__card { grid-column: 2; grid-row: 1; margin: 0 var(--gutter) 0 0; padding: 40px 40px 36px; max-width: 520px; justify-self: end; }
+}
+
+/* Bestsellers — a 6-up shelf on wide screens */
+@media (min-width: 1200px) {
+  .pgrid--shelf { grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .pgrid--shelf .pcard__body { padding: 14px 14px 16px; }
+  .pgrid--shelf .pcard__name { font-size: 15.5px; }
+  .pgrid--shelf .margin { font-size: 12.5px; }
+}
+.shelfline { height: 12px; margin-top: -2px; border-radius: 0 0 6px 6px; background: linear-gradient(180deg, #D9C8A6, #C7B288); box-shadow: 0 10px 20px -12px rgba(13, 34, 48, .5); display: none; }
+
+/* Collections — editorial panels */
+.epanels { display: grid; gap: 14px; }
+.epanel { position: relative; border-radius: var(--r-l); overflow: hidden; text-decoration: none; display: grid; border: 1.5px solid var(--ink); }
+.epanel__text { padding: 22px 20px 22px; display: grid; gap: 10px; align-content: start; position: relative; z-index: 2; }
+.epanel__name { font-size: clamp(54px, 15vw, 136px); color: var(--ink); }
+.epanel__row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 4px; }
+.epanel__count { font: 800 20px/1 var(--f-display); letter-spacing: .04em; text-transform: uppercase; }
+.epanel__count small { display: block; font: 500 13px/1.3 var(--f-sans); letter-spacing: 0; text-transform: none; color: var(--ink-2); margin-top: 4px; }
+.epanel__go { flex: none; width: 52px; height: 52px; border-radius: 50%; background: var(--ink); color: var(--paper); display: grid; place-items: center; transition: background .2s, color .2s; }
+.epanel:hover .epanel__go { background: var(--sun); color: var(--ink); }
+.epanel__fan { position: relative; height: 250px; }
+.epanel__fan img { position: absolute; width: 31%; top: 50%; left: 50%; }
+.epanel__fan img:nth-child(1) { translate: -132% -44%; rotate: -11deg; }
+.epanel__fan img:nth-child(2) { translate: -50% -52%; width: 35%; z-index: 2; }
+.epanel__fan img:nth-child(3) { translate: 32% -42%; rotate: 10deg; }
+.epanel__tag { position: absolute; top: 16px; right: 16px; z-index: 3; }
+@media (min-width: 900px) {
+  .epanels { gap: 20px; }
+  .epanel { grid-template-columns: 1.15fr .85fr; min-height: 400px; }
+  .epanel:nth-child(even) { grid-template-columns: .85fr 1.15fr; }
+  .epanel:nth-child(even) .epanel__fan { order: -1; }
+  .epanel__text { padding: 44px 48px; align-content: end; }
+  .epanel__fan { height: auto; }
+}
+
+/* Shop by product — index list */
+.plist { border-top: 1.5px solid var(--ink); }
+.prow { display: grid; grid-template-columns: 64px 1fr auto; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); text-decoration: none; transition: background .2s; }
+.prow:hover { background: rgba(255, 210, 63, .14); }
+.prow__img { width: 64px; height: 64px; border-radius: 14px; display: grid; place-items: center; overflow: hidden; position: relative; }
+.prow__img img { width: 58%; height: auto; }
+.prow__img img.sticker { width: 78%; }
+.prow__img img.tote { width: 46%; }
+.prow__img img.obj--coaster { width: 62%; }
+.prow__img img.cap { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.prow__name { font: 900 38px/.9 var(--f-display); text-transform: uppercase; letter-spacing: .005em; }
+.prow__count { font-size: 13.5px; color: var(--ink-2); text-align: right; white-space: nowrap; display: flex; align-items: center; gap: 12px; }
+.prow__count .ico { width: 22px; height: 22px; color: var(--ink); }
+@media (min-width: 900px) {
+  .prow { grid-template-columns: 96px 1fr auto; padding: 18px 8px; gap: 28px; }
+  .prow__img { width: 96px; height: 96px; border-radius: 18px; }
+  .prow__name { font-size: 72px; }
+  .prow__count { font-size: 16px; gap: 22px; }
+}
+
+/* Proof band */
+.eproof { background: var(--teal-deep); color: var(--paper); }
+.eproof__grid { display: grid; gap: 28px; }
+.eproof .eyebrow { color: var(--aqua); }
+.eproof .h2 em { color: var(--sun); }
+.eproof__stats { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(250, 247, 240, .22); }
+.estat { padding: 18px 12px 20px 0; border-bottom: 1px solid rgba(250, 247, 240, .22); display: grid; gap: 8px; }
+.estat:nth-child(even) { padding-left: 16px; border-left: 1px solid rgba(250, 247, 240, .22); }
+.estat .estat__n { font: 900 54px/.85 var(--f-display); color: var(--sun); }
+.estat .estat__n .ph { font-size: 11px; display: flex; width: max-content; margin-top: 10px; }
+.estat p { font-size: 14px; color: rgba(250, 247, 240, .82); }
+.eproof__photo { position: relative; border-radius: var(--r-l); overflow: hidden; aspect-ratio: 4 / 3; }
+.eproof__photo img { width: 100%; height: 100%; object-fit: cover; }
+.eproof__photo .ph { position: absolute; left: 12px; bottom: 12px; right: 12px; white-space: normal; font-size: 12px; justify-content: center; text-align: center; }
+.eproof__note { font-size: 13.5px; color: rgba(250, 247, 240, .75); display: flex; gap: 8px; }
+.eproof__note .ico { width: 16px; height: 16px; margin-top: 2px; color: var(--aqua); }
+@media (min-width: 1000px) {
+  .eproof__grid { grid-template-columns: 1.1fr .9fr; gap: 40px 72px; align-items: center; }
+  .eproof__stats { grid-template-columns: repeat(4, 1fr); grid-column: 1 / -1; }
+  .estat, .estat:nth-child(even) { padding: 26px 20px 26px 24px; border-left: 1px solid rgba(250, 247, 240, .22); }
+  .estat:first-child { padding-left: 0; border-left: 0; }
+  .estat .estat__n { font-size: 84px; }
+}
+
+/* Trial — sunny band */
+.etrial { background: var(--sun); color: var(--ink); border-top: 2px solid var(--ink); }
+.etrial__grid { display: grid; gap: 30px; }
+.etrial__copy { display: grid; gap: 18px; justify-items: start; align-content: start; }
+.etrial__h { font-size: clamp(64px, 17vw, 132px); }
+.etrial__h .sv { font-family: var(--f-serif); font-style: italic; font-weight: 400; text-transform: none; font-size: 1.04em; letter-spacing: -.02em; color: var(--teal-deep); line-height: .7; }
+.etrial .checks { display: grid; gap: 11px; }
+.etrial .checks li { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; line-height: 1.45; }
+.etrial .ck { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: var(--sun); display: grid; place-items: center; }
+.etrial .ck .ico { width: 15px; height: 15px; stroke-width: 2.8; }
+.etrial .fcard { border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); }
+.etrial__alt a { font-weight: 600; }
+.etrial .demo-hint code { background: rgba(13, 34, 48, .1); }
+@media (min-width: 1000px) {
+  .etrial__grid { grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .etrial__copy { padding-top: 10px; }
+}
+
+/* Custom collections — ink */
+.ecrear { background: var(--ink); color: var(--paper); }
+.ecrear__grid { display: grid; gap: 30px; align-items: center; }
+.ecrear__art { position: relative; max-width: 300px; width: 100%; justify-self: center; }
+@media (min-width: 900px) { .ecrear__art { max-width: 420px; } }
+.ecrear__art .arch { aspect-ratio: 3 / 4; border: 8px solid var(--paper); }
+.ecrear__art .tag { position: absolute; left: -6px; bottom: 28px; rotate: -6deg; }
+.ecrear__copy { display: grid; gap: 18px; justify-items: start; }
+.ecrear .eyebrow { color: var(--aqua); }
+.ecrear .h2 em { color: var(--sun); }
+.ecrear .lede { color: rgba(250, 247, 240, .82); }
+.ecrear__btns { display: flex; flex-wrap: wrap; gap: 12px; width: 100%; }
+.ecrear__btns .btn { flex: 1 1 220px; }
+.ecrear .muted { color: rgba(250, 247, 240, .7); }
+@media (min-width: 900px) { .ecrear__grid { grid-template-columns: .8fr 1.2fr; gap: 88px; } }
+
+/* FAQ */
+.efaq { display: grid; gap: 28px; }
+.efaq__big { font-size: clamp(72px, 20vw, 168px); }
+.efaq__big .sv { display: block; font-family: var(--f-serif); font-style: italic; font-weight: 400; text-transform: none; color: var(--teal); letter-spacing: -.02em; padding-bottom: .14em; }
+@media (min-width: 900px) { .efaq { grid-template-columns: .9fr 1.1fr; gap: 72px; } .efaq__intro { position: relative; } }
+</style>
+</head>
+<body id="top">
+
+<!-- ======== SVG sprite: heart mark (faithful redraw), icons, wave mask ======== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="wave-clip" clipPathUnits="objectBoundingBox">
+      <path d="M0,.07 C.08,0 .17,0 .25,.05 C.33,.1 .42,.1 .5,.05 C.58,0 .67,0 .75,.05 C.83,.1 .92,.1 1,.05 L1,.93 C.92,.88 .83,.88 .75,.93 C.67,.98 .58,.98 .5,.93 C.42,.88 .33,.88 .25,.93 C.17,.98 .08,.98 0,.93 Z"/>
+    </clipPath>
+  </defs>
+  <symbol id="mark" viewBox="-16 -16 499 463">
+    <path d="M233.5 80 C 210 24, 160 3, 108 5 C 46 8, 5 52, 5 122 C 5 182, 42 232, 100 288 C 150 336, 205 384, 233.5 426 C 262 384, 317 336, 367 288 C 425 232, 462 182, 462 122 C 462 52, 421 8, 359 5 C 307 3, 257 24, 233.5 80 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:var(--ms,24)"/>
+    <path transform="translate(230 200) rotate(-141) scale(1.65 2.02)" d="M0 -26 C -8 -50, -40 -60, -58 -40 C -74 -22, -64 8, -40 26 C -22 38, -4 44, 0 64 C 4 44, 22 38, 40 26 C 64 8, 74 -22, 58 -40 C 40 -60, 8 -50, 0 -26 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9M7.5 5.2l9 4.6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.4A7 7 0 0 1 19 9.6C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.6" r="2.6"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3c.6 4.6 3.4 7.4 8 8-4.6.6-7.4 3.4-8 8-.6-4.6-3.4-7.4-8-8 4.6-.6 7.4-3.4 8-8z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.4 7.4L3.5 20.5l1.5-4.4a8.4 8.4 0 1 1 15.5-4.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.8 6.8 8.2 6.2 8.2-6.2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.4v.1"/></symbol>
+  <symbol id="i-spin" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 1-9 9"/></symbol>
+</svg>
+
+<main>
+
+<!-- 1 · Hero — big editorial, ocean -->
+<section class="ehero" aria-labelledby="h1">
+  <img class="ehero__bg" src="https://images.unsplash.com/photo-1744648617182-519c4bf39e30?w=2000&q=80&auto=format&fit=crop" alt="">
+
+  <header class="ehdr">
+    <div class="wrap">
+      <a class="wm wm--light" href="#top" aria-label="Miami Peculiar by Studio Lab — home">
+        <svg class="wm__mark" aria-hidden="true"><use href="#mark"/></svg>
+        <span class="wm__text"><span class="wm__name"><b>Miami</b><i>Peculiar</i></span><span class="wm__by">by Studio Lab</span></span>
+      </a>
+      <nav class="hdr__nav" aria-label="Main">
+        <a href="#story">Our story</a>
+        <a href="#collections">Collections</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="hdr__tools">
+        <div class="lang lang--light" role="group" aria-label="Language">
+          <button type="button" aria-pressed="true" data-lang="en">EN</button>
+          <button type="button" aria-pressed="false" data-lang="es">ES</button>
+        </div>
+        <a class="btn btn--sun btn--sm hdr__cta" href="#trial">Request a trial box</a>
+        <button class="menu-btn" type="button" aria-label="Menu"><svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap ehero__inner">
+    <div class="ehero__copy">
+      <div class="ehero__meta rise"><span>Wholesale · South Florida</span><span class="rule"></span><span>25.79° N</span></div>
+      <span class="tag tag--onphoto rise" style="--d:1"><span class="star" aria-hidden="true">★</span> Made in Miami</span>
+      <h1 id="h1" class="display ehero__h1 rise" style="--d:2">Miami-made souvenirs that <span class="sv">sell.</span></h1>
+      <p class="ehero__sub rise" style="--d:3">Handmade wood magnets, stickers, caps, totes and coasters — for the gift shops tourists walk into. Try a box on your shelf, free.</p>
+      <div class="ehero__ctas rise" style="--d:4" data-hide-sticky>
+        <a class="btn btn--sun" href="#trial">Request a free trial box <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="link-arrow" href="#collections">See the collections <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="pills rise" style="--d:5" aria-label="At a glance">
+        <li class="pill"><svg class="ico" aria-hidden="true"><use href="#i-grid"/></svg>70 magnet designs</li>
+        <li class="pill"><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg>137 products</li>
+        <li class="pill"><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg>Handmade in Miami</li>
+      </ul>
+    </div>
+
+    <div class="pile" aria-hidden="true">
+      <figure class="pile__photo"><img src="https://images.unsplash.com/photo-1721930498106-1b325feb99fc?w=700&q=80&auto=format&fit=crop" alt=""><figcaption>greetings from the shop</figcaption></figure>
+      <img class="obj pile__m1" src="../../../../assets/img/2eac1eb8869b4363.webp" alt="">
+      <img class="obj pile__m2" src="../../../../assets/img/0486137ef7ba753c.jpg" alt="">
+      <img class="obj--cut pile__stk" src="../../../../assets/img/bbc41738899fac38.webp" alt="">
+      <div class="seal pile__seal">
+        <svg class="seal__ring" viewBox="0 0 132 132"><defs><path id="ring-h" d="M66,66 m-49,0 a49,49 0 1,1 98,0 a49,49 0 1,1 -98,0"/></defs><text><textPath href="#ring-h" textLength="304" lengthAdjust="spacing">Free trial box ★ One per shop ★ </textPath></text></svg>
+        <svg class="seal__mark" aria-hidden="true"><use href="#mark"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="wrap"><div class="ehero__foot"><span class="idx"><b>01</b><i>/05</i></span><span>We reply within 2 business days</span></div></div>
+</section>
+
+<div class="marquee marquee--sun" aria-hidden="true">
+  <div class="marquee__track">
+    <ul class="marquee__list"><li>Free trial box</li><li>Handmade in Miami</li><li>One box per business</li><li>Reply in 2 business days</li><li>Always with magnets</li><li>Free trial box</li><li>Handmade in Miami</li><li>One box per business</li><li>Reply in 2 business days</li><li>Always with magnets</li></ul>
+    <ul class="marquee__list" aria-hidden="true"><li>Free trial box</li><li>Handmade in Miami</li><li>One box per business</li><li>Reply in 2 business days</li><li>Always with magnets</li><li>Free trial box</li><li>Handmade in Miami</li><li>One box per business</li><li>Reply in 2 business days</li><li>Always with magnets</li></ul>
+  </div>
+</div>
+
+<!-- Story (storytelling before products) -->
+<section class="sec story" id="story" aria-labelledby="story-h">
+  <div class="wrap story__grid">
+    <div class="story__side">
+      <span class="idx"><b>02</b><i>/05</i></span>
+      <ul class="story__places"><li><b>Miami Beach</b></li><li>Miami</li><li>Little Havana</li></ul>
+    </div>
+    <div class="story__stage">
+      <h2 id="story-h" class="display story__big"><span>Made in</span><span>Miami</span></h2>
+      <div class="story__art">
+        <figure class="wave"><img src="https://images.unsplash.com/photo-1754269675159-38dfb1650a35?w=1200&q=80&auto=format&fit=crop" alt="Miami Beach seen from above at sunset" loading="lazy"></figure>
+        <span class="outline-num story__num" aria-hidden="true">01</span>
+        <div class="seal seal--ink story__seal" aria-hidden="true">
+          <svg class="seal__ring" viewBox="0 0 132 132"><defs><path id="ring-s" d="M66,66 m-49,0 a49,49 0 1,1 98,0 a49,49 0 1,1 -98,0"/></defs><text><textPath href="#ring-s" textLength="304" lengthAdjust="spacing">Handmade ★ Miami, Florida ★ </textPath></text></svg>
+          <svg class="seal__mark"><use href="#mark"/></svg>
+        </div>
+      </div>
+      <div class="story__copy">
+        <p>The city tourists came to see — Art Deco hotels, lifeguard towers, Little Havana’s roosters — in a form they can take home.</p>
+        <p>Original designs, produced in Miami by Studio Lab, Jesús Nodarse’s studio. Our wood magnets are made by hand.</p>
+        <a class="link-arrow" href="#collections">Meet the collections <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · How it works -->
+<section class="sec how" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="chap"><span class="idx"><b>03</b><i>/05</i></span><span class="rule"></span><span class="eyebrow" style="color:var(--ink)">How it works</span></div>
+    <h2 id="how-h" class="h2" style="margin-bottom:36px">Request. Review. <em>Restock.</em></h2>
+    <ol class="how__steps">
+      <li class="hstep"><span class="outline-num hstep__n">1</span><div><h3 class="h3">Request your box</h3><p>Tell us about your shop. It takes about two minutes, and there’s nothing to pay.</p></div></li>
+      <li class="hstep"><span class="outline-num hstep__n">2</span><div><h3 class="h3">We review it by hand</h3><p>Jesús reads every request himself and replies within <b>2 business days</b>.</p></div></li>
+      <li class="hstep hstep--hl"><span class="outline-num hstep__n">3</span><div><h3 class="h3">Stock it, then reorder</h3><p>Your box arrives with a reorder card. Scan its QR code when you run low.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 3 · What's in the box -->
+<section class="ebox" id="box" aria-labelledby="box-h">
+  <div class="ebox__wrap">
+    <div class="ebox__band stripes--bold" aria-hidden="true">
+      <span class="tag tag--sun"><span class="star">★</span> Always with magnets</span>
+      <figure class="ebox__pol">
+        <img src="https://images.unsplash.com/photo-1618381297523-e6c0ab13a5b2?w=1000&q=80&auto=format&fit=crop" alt="">
+        <figcaption>one box, on us</figcaption>
+      </figure>
+      <img class="obj o1" src="../../../../assets/img/1ed67f77e8d52773.webp" alt="">
+      <img class="obj o2" src="../../../../assets/img/839192581b809382.jpg" alt="">
+      <img class="obj--cut o3" src="../../../../assets/img/a567dd3bcbebad81.webp" alt="">
+      <img class="obj obj--coaster o4" src="../../../../assets/img/2969c9837f70b27d.webp" alt="">
+    </div>
+    <div class="ebox__card">
+      <div class="chap" style="margin:0;width:100%"><span class="idx"><b>04</b><i>/05</i></span><span class="rule"></span></div>
+      <h2 id="box-h" class="h2">What’s in <em>the box</em></h2>
+      <p class="muted">A hand-picked assortment of our products — always with our handmade wood magnets.</p>
+      <ul class="checks">
+        <li><span class="ck ck--sun"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span><b>Wood magnets, always.</b> Our core product.</span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span><b>A mix of the rest</b> — stickers, caps, totes or coasters.</span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span><b>Free, yours to keep and sell.</b></span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span><b>A reorder card</b> with a QR code.</span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span><b>One box per business.</b></span></li>
+      </ul>
+      <p class="muted" style="font-size:14px">Pieces per box: <span class="ph">[placeholder] units</span></p>
+      <a class="btn btn--sun" href="#trial">Request a free trial box <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · Bestsellers -->
+<section class="sec" id="bestsellers" aria-labelledby="best-h">
+  <div class="wrap">
+    <div class="shead">
+      <div class="shead__main">
+        <p class="eyebrow">★ Bestsellers</p>
+        <h2 id="best-h" class="h2">Straight from <em>the shelf</em></h2>
+      </div>
+      <p class="pnote" style="margin:0;font-size:13px;color:var(--ink-2)"><span class="ph">[placeholder]</span>&nbsp;picks &amp; prices from Jesús</p>
+    </div>
+    <div class="pgrid pgrid--shelf">
+      <a class="pcard" href="#products">
+        <div class="pcard__img tint-sea"><span class="tag tag--soft pcard__tag"><span class="star">★</span> Magnet</span><img class="obj" src="../../../../assets/img/47f0ab36ab5535bc.jpg" alt="Lifeguard tower wood magnet, Miami Beach"></div>
+        <div class="pcard__body"><p class="pcard__meta">Miami Beach · #57</p><h3 class="pcard__name">Lifeguard Tower</h3>
+          <dl class="margin"><div><dt>Wholesale</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt>Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="margin__profit"><dt>Your profit</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+      <a class="pcard" href="#products">
+        <div class="pcard__img tint-sun"><span class="tag tag--soft pcard__tag"><span class="star">★</span> Magnet</span><img class="obj" src="../../../../assets/img/3d7a5d7f8f8aeaa7.jpg" alt="Domino Park wood magnet, Little Havana"></div>
+        <div class="pcard__body"><p class="pcard__meta">Cuban American · #101</p><h3 class="pcard__name">Domino Park</h3>
+          <dl class="margin"><div><dt>Wholesale</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt>Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="margin__profit"><dt>Your profit</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+      <a class="pcard" href="#products">
+        <div class="pcard__img tint-blush"><span class="tag tag--soft pcard__tag"><span class="star">★</span> Sticker</span><img class="obj--cut" src="../../../../assets/img/513bbc4d19415c11.webp" alt="Pink Cadillac Miami Florida sticker"></div>
+        <div class="pcard__body"><p class="pcard__meta">Miami · #157</p><h3 class="pcard__name">Pink Cadillac</h3>
+          <dl class="margin"><div><dt>Wholesale</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt>Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="margin__profit"><dt>Your profit</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+      <a class="pcard" href="#products">
+        <div class="pcard__img tint-cap"><span class="tag tag--soft pcard__tag"><span class="star">★</span> Cap</span><img class="cap" src="../../../../assets/img/40b385e5adb4c466.webp" alt="Pink cap with lifeguard tower patch"></div>
+        <div class="pcard__body"><p class="pcard__meta">Miami Beach · #165</p><h3 class="pcard__name">Lifeguard Tower cap</h3>
+          <dl class="margin"><div><dt>Wholesale</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt>Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="margin__profit"><dt>Your profit</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+      <a class="pcard" href="#products">
+        <div class="pcard__img tint-sea"><span class="tag tag--soft pcard__tag"><span class="star">★</span> Tote</span><img class="obj--cut tote" src="../../../../assets/img/921a3f7d029aba06.webp" alt="Cotton tote with Miami Beach print"></div>
+        <div class="pcard__body"><p class="pcard__meta">Miami Beach · #24</p><h3 class="pcard__name">Ocean Drive</h3>
+          <dl class="margin"><div><dt>Wholesale</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt>Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="margin__profit"><dt>Your profit</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+      <a class="pcard" href="#products">
+        <div class="pcard__img tint-sun"><span class="tag tag--soft pcard__tag"><span class="star">★</span> Coaster</span><img class="obj obj--coaster" src="../../../../assets/img/8551650fbdb8f778.webp" alt="Ceramic coaster with rainbow lifeguard tower"></div>
+        <div class="pcard__body"><p class="pcard__meta">Miami Beach · #61</p><h3 class="pcard__name">Rainbow Lifeguard Tower</h3>
+          <dl class="margin"><div><dt>Wholesale</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt>Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="margin__profit"><dt>Your profit</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · Collections -->
+<section class="sec" id="collections" aria-labelledby="col-h" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow" style="margin-bottom:12px">Collections</p>
+    <h2 id="col-h" class="h2" style="margin-bottom:32px">Three collections, <em>one city</em></h2>
+    <div class="epanels">
+      <a class="epanel tint-sea" href="#collections">
+        <div class="epanel__text">
+          <h3 class="display epanel__name">Miami Beach</h3>
+          <p class="muted">Art Deco hotels, lifeguard towers and Ocean Drive.</p>
+          <div class="epanel__row"><p class="epanel__count">22 magnet designs<small>46 products across 5 types</small></p><span class="epanel__go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
+        </div>
+        <div class="epanel__fan" aria-hidden="true">
+          <img class="obj" src="../../../../assets/img/6f8f31ca70c0e3d6.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/656597aea3465b45.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/42940bfa05bba510.webp" alt="">
+        </div>
+      </a>
+      <a class="epanel tint-sun" href="#collections">
+        <div class="epanel__text">
+          <h3 class="display epanel__name">Miami</h3>
+          <p class="muted">Skyline, Wynwood walls, palms and sunsets.</p>
+          <div class="epanel__row"><p class="epanel__count">27 magnet designs<small>53 products across 5 types</small></p><span class="epanel__go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
+        </div>
+        <div class="epanel__fan" aria-hidden="true">
+          <img class="obj" src="../../../../assets/img/78b9a11102de291b.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/7d3176b3f321fba9.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/2114ebf44cf9338c.jpg" alt="">
+        </div>
+      </a>
+      <a class="epanel tint-blush" href="#collections">
+        <div class="epanel__text">
+          <h3 class="display epanel__name">Cuban American</h3>
+          <p class="muted">Little Havana, Calle Ocho, dominoes and the rooster.</p>
+          <div class="epanel__row"><p class="epanel__count">21 magnet designs<small>38 products across 5 types</small></p><span class="epanel__go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
+        </div>
+        <div class="epanel__fan" aria-hidden="true">
+          <img class="obj" src="../../../../assets/img/fa811de686c580f3.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/3d7a5d7f8f8aeaa7.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/cf336840ca0aaa54.jpg" alt="">
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · Shop by product -->
+<section class="sec" id="products" aria-labelledby="prod-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead"><div class="shead__main"><p class="eyebrow">Shop by product</p><h2 id="prod-h" class="h2">Five things <em>tourists</em> take home</h2></div></div>
+    <nav class="plist" aria-label="Products">
+      <a class="prow" href="#products"><span class="prow__img tint-sand"><img class="obj--cut" src="../../../../assets/img/7c6cc8100210ce38.webp" alt=""></span><span class="prow__name">Magnets</span><span class="prow__count">70 designs <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+      <a class="prow" href="#products"><span class="prow__img tint-blush"><img class="obj--cut sticker" src="../../../../assets/img/e81eccc86d716eb1.webp" alt=""></span><span class="prow__name">Stickers</span><span class="prow__count">28 designs <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+      <a class="prow" href="#products"><span class="prow__img tint-cap"><img class="cap" src="../../../../assets/img/356171fadf9422e9.webp" alt=""></span><span class="prow__name">Caps</span><span class="prow__count">6 designs · 6 colors <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+      <a class="prow" href="#products"><span class="prow__img tint-sea"><img class="obj--cut tote" src="../../../../assets/img/f0e8ff12a1f9c3a3.webp" alt=""></span><span class="prow__name">Totes</span><span class="prow__count">19 designs <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+      <a class="prow" href="#products"><span class="prow__img tint-sun"><img class="obj obj--coaster" src="../../../../assets/img/5584dca78a8391d2.webp" alt=""></span><span class="prow__name">Coasters</span><span class="prow__count">14 designs <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+    </nav>
+  </div>
+</section>
+
+<!-- 7 · Proof (hidden in production until PROOF_* variables are set) -->
+<section class="sec eproof" id="proof" aria-labelledby="proof-h">
+  <div class="wrap eproof__grid">
+    <div style="display:grid;gap:16px;justify-items:start">
+      <p class="eyebrow">Proof</p>
+      <h2 id="proof-h" class="h2">The proof, <em>in numbers</em></h2>
+      <p class="eproof__note"><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg>Real numbers only — each figure stays hidden until Jesús supplies it.</p>
+    </div>
+    <figure class="eproof__photo">
+      <img src="https://images.unsplash.com/photo-1741276889229-f71ba39bdf1e?w=1100&q=80&auto=format&fit=crop" alt="" loading="lazy">
+      <figcaption class="ph">[placeholder] Stock photo for mood — swap for a real stockist’s shelf</figcaption>
+    </figure>
+    <div class="eproof__stats">
+      <div class="estat"><p class="estat__n">[&thinsp;—&thinsp;]<span class="ph">placeholder</span></p><p>South Florida shops carry our products</p></div>
+      <div class="estat"><p class="estat__n">[&thinsp;—&thinsp;]<span class="ph">placeholder</span></p><p>pieces sold</p></div>
+      <div class="estat"><p class="estat__n">[&thinsp;—&thinsp;]%<span class="ph">placeholder</span></p><p>of shops reorder</p></div>
+      <div class="estat"><p class="estat__n">[&thinsp;—&thinsp;]<span class="ph">placeholder</span></p><p>years making souvenirs in Miami</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · Trial form -->
+<section class="sec etrial" id="trial" aria-labelledby="trial-h" data-hide-sticky>
+  <div class="wrap etrial__grid">
+    <div class="etrial__copy">
+      <div class="chap" style="margin:0;width:100%"><span class="idx"><b>05</b><i>/05</i></span><span class="rule"></span><span class="tag tag--ink"><span class="star" aria-hidden="true">★</span> Free trial box</span></div>
+      <h2 id="trial-h" class="display etrial__h">Request your <span class="sv">free</span> trial box</h2>
+      <p class="lede" style="color:var(--ink)">Two short steps. Jesús reviews every request by hand — this is a request, not an order.</p>
+      <ul class="checks">
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span><b>Free.</b> No payment, no contract.</span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span>For South Florida shops — ZIP 33001–33499.</span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span>One box per business.</span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span>We reply within <b>2 business days</b>.</span></li>
+      </ul>
+      <p class="etrial__alt">Just want pricing? <a href="https://wa.me/17864834268">Message us on WhatsApp</a></p>
+    </div>
+
+    <div>
+      <form class="fcard" id="tform" novalidate data-zip-min="33001" data-zip-max="33499" aria-labelledby="trial-h">
+        <div class="fcard__head">
+          <p class="fcard__step"><span>Step <b data-step-no>1</b> of 2 · <span data-step-name>Your shop</span></span><span>~2 min</span></p>
+          <div class="fbar" aria-hidden="true"><span class="is-on"></span><span></span></div>
+        </div>
+
+        <fieldset class="fstep" data-step="1">
+          <legend class="sr-only">Your shop and how to reach you</legend>
+          <div class="field">
+            <label for="f-store">Store name</label>
+            <input id="f-store" name="store" autocomplete="organization" required aria-describedby="e-store">
+            <p class="field__err" id="e-store" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" autocomplete="name" required aria-describedby="e-name">
+            <p class="field__err" id="e-name" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="fgrid2">
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="e-email">
+              <p class="field__err" id="e-email" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone / WhatsApp</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="e-phone">
+              <p class="field__err" id="e-phone" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-zip">Shop ZIP code</label>
+            <input id="f-zip" name="zip" inputmode="numeric" pattern="\d{5}" maxlength="5" autocomplete="postal-code" required aria-describedby="h-zip e-zip" style="max-width:200px">
+            <p class="field__hint" id="h-zip">Trial boxes ship to ZIP 33001–33499.</p>
+            <p class="field__err" id="e-zip" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+          <button class="btn btn--sun btn--block" type="button" data-next>Continue <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <p class="ffine">Free · No payment, no contract · One box per business</p>
+        </fieldset>
+
+        <fieldset class="fstep" data-step="2" hidden>
+          <legend class="sr-only">Where we ship the box</legend>
+          <div class="field">
+            <label for="f-street">Street address</label>
+            <input id="f-street" name="street" autocomplete="street-address" required aria-describedby="e-street">
+            <p class="field__err" id="e-street" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="field">
+            <label for="f-city">City</label>
+            <input id="f-city" name="city" autocomplete="address-level2" required aria-describedby="e-city">
+            <p class="field__err" id="e-city" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="field">
+            <label for="f-social">Instagram or website <span class="opt">(optional)</span></label>
+            <input id="f-social" name="social" autocomplete="url" aria-describedby="h-social">
+            <p class="field__hint" id="h-social">Helps Jesús get to know your shop faster.</p>
+          </div>
+          <div class="frow">
+            <button class="btn btn--ghost" type="button" data-back>Back</button>
+            <button class="btn btn--sun" type="submit">Send request <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </fieldset>
+
+        <div class="fpanel" data-outside hidden>
+          <div class="fnote" role="status"><b>We’re only shipping trial boxes in South Florida right now.</b>Send your details anyway — we’ll reply about wholesale.</div>
+          <button class="btn btn--sun btn--block" type="button" data-send-outside>Send my details <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="btn btn--ghost btn--block" type="button" data-change-zip>Change ZIP code</button>
+        </div>
+
+        <div class="fpanel fdone" data-done hidden tabindex="-1" role="status">
+          <div class="fdone__mark"><svg aria-hidden="true"><use href="#mark"/></svg></div>
+          <h3>Thanks, <span data-first>there</span>!</h3>
+          <p data-in>Your request is in. Jesús reviews every request by hand — we’ll reply within <b>2 business days</b>.</p>
+          <p data-out hidden>Your details are in. Trial boxes are South Florida only for now — we’ll reply within <b>2 business days</b> about wholesale.</p>
+          <ol>
+            <li>Jesús reviews your shop.</li>
+            <li>You get a reply by email or WhatsApp.</li>
+            <li>If approved, your box ships from Miami.</li>
+          </ol>
+        </div>
+
+        <div class="hp" aria-hidden="true"><label>Leave this empty <input name="_honey" tabindex="-1" autocomplete="off"></label></div>
+        <input type="hidden" name="lang" value="en"><input type="hidden" name="area" value=""><input type="hidden" name="page" value="hub">
+
+        <p class="fprivacy"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><span>We collect your shop and contact details only to review this request and reply to you. No newsletter, never shared.</span></p>
+      </form>
+      <p class="demo-hint">Mockup demo — try ZIP <code>33139</code> (in area) or <code>10001</code> (outside).</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · Custom collections -->
+<section class="sec ecrear" id="crear" aria-labelledby="crear-h">
+  <div class="wrap ecrear__grid">
+    <div class="ecrear__art">
+      <figure class="arch"><img src="https://images.unsplash.com/photo-1754265222750-687ab87f5549?w=900&q=80&auto=format&fit=crop" alt="Palm trees against a bright blue sky" loading="lazy"></figure>
+      <span class="tag tag--sun"><span class="star" aria-hidden="true">★</span> Made for your shop</span>
+    </div>
+    <div class="ecrear__copy">
+      <p class="eyebrow">Custom collections</p>
+      <h2 id="crear-h" class="h2">Your town, <em>your</em> designs</h2>
+      <p class="lede">Want a collection made for your shop — your beach, your street, your landmark? Tell us what your customers ask for and we’ll talk it through.</p>
+      <div class="ecrear__btns">
+        <a class="btn btn--sun" href="https://wa.me/17864834268?text=Hi%20Jes%C3%BAs%2C%20I%27d%20like%20a%20custom%20collection%20for%20my%20shop."><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg> Message us on WhatsApp</a>
+        <a class="btn btn--ghost-light" href="mailto:jesusnodarse1823@gmail.com?subject=Custom%20collection"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg> Email us</a>
+      </div>
+      <p class="muted" style="font-size:14px">Minimums and lead times: <span class="ph">[placeholder]</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · FAQ -->
+<section class="sec" id="faq" aria-labelledby="faq-h">
+  <div class="wrap efaq">
+    <div class="efaq__intro" style="display:grid;gap:18px;align-content:start;justify-items:start">
+      <h2 id="faq-h" class="display efaq__big">Good <span class="sv">questions.</span></h2>
+      <p class="muted">Anything else? Jesús answers personally.</p>
+      <a class="link-arrow" href="https://wa.me/17864834268">Ask on WhatsApp <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="faq">
+      <details open><summary>Who can request a trial box? <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>Gift, souvenir and tourist shops in South Florida — ZIP codes 33001 to 33499. One box per business.</p></details>
+      <details><summary>What does it cost? <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>Nothing. The box is free and yours to keep and sell. No payment, no contract.</p></details>
+      <details><summary>What happens after the trial? <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>Reorder when you’re ready. Reorders are wholesale with a $150 minimum, paid on delivery or by card. Terms are available after your first paid order.</p></details>
+      <details><summary>When will my box arrive? <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>We reply within 2 business days. Once approved, your box ships from Miami in <span class="ph">[placeholder] days</span>.</p></details>
+      <details><summary>Do I need a resale certificate? <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>Not for the trial. Have your Florida resale certificate ready for your first paid order.</p></details>
+      <details><summary>My shop is outside South Florida. <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p>Send the form anyway. Trial boxes are South Florida only for now, but we’ll reply about wholesale.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 11 · WhatsApp fallback + footer -->
+<div class="waline">
+  <div class="wrap">
+    <span>Rather talk it through?</span>
+    <a href="https://wa.me/17864834268"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg> WhatsApp Jesús · +1 (786) 483-4268</a>
+  </div>
+</div>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__about">
+        <a class="wm wm--light wm--lg" href="#top" aria-label="Miami Peculiar by Studio Lab">
+          <svg class="wm__mark" aria-hidden="true"><use href="#mark"/></svg>
+          <span class="wm__text"><span class="wm__name"><b>Miami</b><i>Peculiar</i></span><span class="wm__by">by Studio Lab</span></span>
+        </a>
+        <p>Original souvenirs, produced in Miami. Wholesale for gift and souvenir shops across South Florida.</p>
+      </div>
+      <div class="ftr__cols">
+        <div><h4>Collections</h4><ul><li><a href="#collections">Miami Beach</a></li><li><a href="#collections">Miami</a></li><li><a href="#collections">Cuban American</a></li></ul></div>
+        <div><h4>Products</h4><ul><li><a href="#products">Magnets</a></li><li><a href="#products">Stickers</a></li><li><a href="#products">Caps</a></li><li><a href="#products">Totes</a></li><li><a href="#products">Coasters</a></li></ul></div>
+        <div><h4>Wholesale</h4><ul><li><a href="#trial">Free trial box</a></li><li><a href="#crear">Custom collections</a></li><li><a href="https://wa.me/17864834268">WhatsApp</a></li><li><a href="mailto:jesusnodarse1823@gmail.com">Email</a></li></ul></div>
+      </div>
+    </div>
+    <div class="ftr__base"><span>© 2026 Nodarse Arts LLC · Miami Peculiar is a Studio Lab brand</span><span>Made in Miami, FL</span></div>
+  </div>
+</footer>
+
+<div class="sticky-cta is-hidden">
+  <a class="btn btn--sun" href="#trial">Request a free trial box <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+</div>
+
+<script src="../shared/mockup.js"></script>
+</body>
+</html>

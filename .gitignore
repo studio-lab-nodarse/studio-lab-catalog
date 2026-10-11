@@ -11,3 +11,5 @@ docs/hub-trial/mockups/refs/
 docs/hub-trial/mockups/**/*.png
 # Superseded phase-2 mockups (screenshots are large)
 docs/hub-trial/design/
+# Rejected mockup variant (kept locally)
+docs/hub-trial/mockups/v1/
