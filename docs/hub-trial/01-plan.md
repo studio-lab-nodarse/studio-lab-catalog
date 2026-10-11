@@ -11,6 +11,16 @@ Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md
 - **Q6:** drop the builder.
 - **Q7:** reply within **2 business days**.
 
+**Owner feedback on mockup v2 (2026-10-11):** these override anything below that conflicts.
+- **No section numbers** (drop "01/05").
+- **Copy sells benefits, not rules.** Lines like "One box per business" and "Always with magnets" are business rules: they move to the FAQ or fine print. Copy across the whole site needs a rewrite later; the hub comes first.
+- **Phone-first.** Phones are most or all of the traffic; optimise length and layout for 390px.
+- **Show more product.**
+- **Proof:** when there are no numbers, show a "why shops say yes" strip instead.
+- **Service area is all of Florida**, not only South Florida: Miami, the Keys, Fort Lauderdale, Tampa/St. Pete, Naples and so on. Never show ZIP ranges to the user. Validation accepts Florida ZIPs (32004–34997); out-of-state requests are still submitted, flagged (D5).
+- Build the missing states: sending, network error, already requested. Also mock up the reorder page and the QR card.
+- Stock photo placeholders stay for now.
+
 ## 0. Decisions taken in this plan
 
 | # | Decision | Why |
@@ -114,7 +124,7 @@ These are **GitHub repo Variables** (Settings → Secrets and variables → Acti
 |---|---|---|
 | `TRIAL_REPLY_DAYS` | `2` | — |
 | `TRIAL_REORDER_MIN` | `150` (USD) | the minimum line is hidden |
-| `TRIAL_ZIP_MIN` / `TRIAL_ZIP_MAX` | `33001` / `33499` | — |
+| `TRIAL_ZIP_MIN` / `TRIAL_ZIP_MAX` | `32004` / `34997` (all of Florida) | — |
 | `PRICE_{MAGNET,STICKER,CAP,TOTE,COASTER}_WHOLESALE` | empty | that product's margin row is hidden |
 | `PRICE_{…}_RETAIL` | empty | same |
 | `PROOF_STORES` | empty | that proof chip is hidden |
