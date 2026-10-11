@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reorder card · 3.5 × 2 in (mockup v3)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* The printed card in every trial box. Designed in CSS inches: 3.5in × 2in, 0.125in safe margin.
+   1in = 96 CSS px, so text sizes below are ≥ 8.5px ≈ 6.4pt. */
+body { background: var(--sand); }
+.page { max-width: 1240px; margin: 0 auto; padding: 32px 24px 64px; display: grid; gap: 34px; }
+.page__head { display: grid; gap: 8px; }
+.page__head h1 { font: 900 56px/.9 var(--f-display); text-transform: uppercase; }
+.page__head h1 .sv { font-family: var(--f-serif); font-style: italic; font-weight: 400; text-transform: none; color: var(--teal); }
+.page__head p { color: var(--ink-2); max-width: 52em; }
+.row { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+.label { font: 600 12px/1 var(--f-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 10px; display: flex; gap: 10px; align-items: center; }
+.label b { color: var(--ink); }
+.lang { margin-left: auto; }
+
+/* ---------- The card ---------- */
+.card { width: 3.5in; height: 2in; position: relative; overflow: hidden; border-radius: .09in; box-shadow: 0 1px 2px rgba(13, 34, 48, .12), 0 14px 30px -14px rgba(13, 34, 48, .45); color: var(--ink); flex: none; }
+.zoom { zoom: 2.4; }
+.card .ico { stroke-width: 2; }
+
+/* Front: QR side (seen first) */
+.front { background: var(--white); display: grid; grid-template-columns: 1.24in 1fr; grid-template-rows: 1fr auto; column-gap: .12in; padding: .125in .14in 0 .125in; }
+.qr { width: 1.24in; display: grid; gap: .03in; align-content: start; }
+.qr__box { width: 1.24in; height: 1.24in; display: grid; place-items: center; background: #fff; }
+.qr__box svg { width: 100%; height: 100%; display: block; }
+.qr__box svg path { fill: var(--ink); }
+.qr__cta { font: 700 7.6px/1.15 var(--f-sans); letter-spacing: .04em; text-transform: uppercase; text-align: center; }
+.qr__cta b { color: var(--teal); }
+.fcopy { display: grid; grid-template-rows: auto auto 1fr; gap: .05in; padding-top: .02in; min-width: 0; }
+.fcopy__h { font: 900 23px/.86 var(--f-display); text-transform: uppercase; letter-spacing: .005em; }
+.fcopy__h .sv { display: block; font-family: var(--f-serif); font-style: italic; font-weight: 400; text-transform: none; font-size: 21px; line-height: .95; color: var(--teal-deep); letter-spacing: -.01em; margin-top: 1px; }
+.fcopy__line { font-size: 9.5px; line-height: 1.3; color: var(--ink-2); }
+.fcode { justify-self: start; align-self: end; margin-bottom: .1in; display: inline-flex; align-items: baseline; gap: 5px; padding: 3px 7px 3px 6px; background: var(--sun); border: 1.2px solid var(--ink); border-radius: 4px; box-shadow: 1.5px 1.5px 0 var(--ink); rotate: -2deg; }
+.fcode small { font: 700 6.5px/1 var(--f-sans); letter-spacing: .16em; text-transform: uppercase; }
+.fcode b { font: 900 17px/.9 var(--f-display); letter-spacing: .02em; }
+.fmark { position: absolute; right: .12in; top: .11in; width: 17px; height: 16px; color: var(--ink); --ms: 30; }
+.fwa { grid-column: 1 / -1; margin: .07in -.14in 0 -.125in; padding: .045in .14in .05in .125in; background: var(--ink); color: var(--paper); font-size: 8.6px; line-height: 1.25; display: flex; align-items: center; gap: 5px; }
+.fwa .ico { width: 10px; height: 10px; color: var(--sun); flex: none; }
+.fwa b { color: var(--sun); font-weight: 700; }
+
+/* Back: brand side */
+.back { background: var(--teal-deep); color: var(--paper); padding: .14in .15in .12in; display: grid; grid-template-columns: 1fr 1.08in; gap: .06in; }
+.back::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: .11in; background: repeating-linear-gradient(90deg, var(--sun) 0 .14in, var(--paper) .14in .28in); }
+.bwm { display: inline-flex; align-items: center; gap: 5px; color: var(--paper); }
+.bwm svg { width: 18px; height: 17px; --ms: 30; }
+.bwm b { font: 900 13px/1 var(--f-display); text-transform: uppercase; letter-spacing: .04em; }
+.bwm i { font: italic 400 14px/1 var(--f-serif); }
+.bcopy { display: grid; grid-template-rows: auto 1fr auto; padding-bottom: .1in; min-width: 0; }
+.bthanks { font: italic 400 19px/1.04 var(--f-serif); color: var(--sun); margin-top: .08in; letter-spacing: -.01em; }
+.btip { font-size: 8.6px; line-height: 1.3; color: rgba(250, 247, 240, .9); }
+.bsign { font: 700 7.6px/1 var(--f-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--aqua); margin-top: .04in; }
+.bfan { position: relative; }
+.bfan img { position: absolute; width: .56in; box-shadow: 0 2px 6px rgba(0, 0, 0, .35); border-radius: 1.5px; }
+.bfan img:nth-child(1) { left: 0; top: .2in; rotate: -10deg; }
+.bfan img:nth-child(2) { left: .26in; top: .08in; rotate: 3deg; z-index: 2; }
+.bfan img:nth-child(3) { left: .5in; top: .26in; rotate: 11deg; }
+
+/* Spec notes */
+.notes { display: grid; gap: 10px; background: var(--white); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; font-size: 14px; max-width: 760px; }
+.notes h2 { font-size: 15px; font-weight: 700; }
+.notes li { display: grid; grid-template-columns: 140px 1fr; gap: 12px; padding: 4px 0; border-bottom: 1px dashed var(--line); }
+.notes li:last-child { border-bottom: 0; }
+.notes dt, .notes .k { color: var(--ink-2); }
+.notes code { font-size: 12.5px; word-break: break-all; }
+.var { text-decoration: underline dotted; }
+.qrfail { font-size: 8px; text-align: center; padding: 6px; color: var(--bloom); }
+
+@media print {
+  @page { size: letter; margin: .5in; }
+  body { background: #fff; }
+  .page__head, .notes, .enlarged, .label .lang { display: none !important; }
+  .card { box-shadow: none; outline: .5px dashed #999; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="-16 -16 499 463">
+    <path d="M233.5 80 C 210 24, 160 3, 108 5 C 46 8, 5 52, 5 122 C 5 182, 42 232, 100 288 C 150 336, 205 384, 233.5 426 C 262 384, 317 336, 367 288 C 425 232, 462 182, 462 122 C 462 52, 421 8, 359 5 C 307 3, 257 24, 233.5 80 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:var(--ms,24)"/>
+    <path transform="translate(230 200) rotate(-141) scale(1.65 2.02)" d="M0 -26 C -8 -50, -40 -60, -58 -40 C -74 -22, -64 8, -40 26 C -22 38, -4 44, 0 64 C 4 44, 22 38, 40 26 C 64 8, 74 -22, 58 -40 C 40 -60, 8 -50, 0 -26 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.4 7.4L3.5 20.5l1.5-4.4a8.4 8.4 0 1 1 15.5-4.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/></symbol>
+</svg>
+
+<!-- Card templates (cloned into the print-scale and enlarged rows) -->
+<template id="tpl-front">
+  <article class="card front" aria-label="Card front: QR side">
+    <div class="qr">
+      <div class="qr__box" data-qr role="img" aria-label="QR code: reorder link for box MB-014"></div>
+      <p class="qr__cta" data-es="Escanea: <b>tu pedido ya empezado</b>">Scan: <b>your reorder, already started</b></p>
+    </div>
+    <div class="fcopy">
+      <p class="fcopy__h" data-es="¿Se acaba? <span class='sv'>Escanea y repón.</span>">Running low? <span class="sv">Scan to restock.</span></p>
+      <p class="fcopy__line" data-es="El código de tu caja ya va en el pedido.">Your box code is already in the order.</p>
+      <p class="fcode"><small data-es="Caja">Box</small><b>MB-014</b></p>
+    </div>
+    <svg class="fmark" aria-hidden="true"><use href="#mark"/></svg>
+    <p class="fwa"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg><span data-es="¿No escanea? WhatsApp al <b>+1 (786) 483-4268</b> y di “MB-014”.">Can’t scan? WhatsApp <b>+1 (786) 483-4268</b> and say “MB-014”.</span></p>
+  </article>
+</template>
+<template id="tpl-back">
+  <article class="card back" aria-label="Card back: brand side">
+    <div class="bcopy">
+      <span class="bwm"><svg aria-hidden="true"><use href="#mark"/></svg><b>Miami</b><i>Peculiar</i></span>
+      <p class="bthanks" data-es="Gracias por darle un lugarcito a Miami en tu tienda.">Thanks for giving Miami a spot on your shelf.</p>
+      <div>
+        <p class="btip" data-es="Consejo: pon los imanes en el mostrador, a la vista.">Tip: keep the magnets by the register, at eye level.</p>
+        <p class="bsign">Jesús · Studio Lab, Miami</p>
+      </div>
+    </div>
+    <div class="bfan" aria-hidden="true">
+      <img src="../../../../assets/img/47f0ab36ab5535bc.jpg" alt="">
+      <img src="../../../../assets/img/3d7a5d7f8f8aeaa7.jpg" alt="">
+      <img src="../../../../assets/img/7d3176b3f321fba9.jpg" alt="">
+    </div>
+  </article>
+</template>
+
+<main class="page">
+  <header class="page__head">
+    <p class="eyebrow">Mockup v3 · in every trial box</p>
+    <h1>Reorder card <span class="sv">3.5 × 2 in</span></h1>
+    <p>Business-card size, printed both sides. The QR side faces up in the box. Print each card in the language the shop used on the form (<code>lang</code>). The QR below is real and scannable.</p>
+  </header>
+
+  <section>
+    <p class="label"><b>Print scale</b> · 100% (1in = 96 CSS px) <span class="lang" role="group" aria-label="Language"><button type="button" aria-pressed="true" data-lang="en">EN</button><button type="button" aria-pressed="false" data-lang="es">ES</button></span></p>
+    <div class="row" data-slot="print"></div>
+  </section>
+
+  <section class="enlarged">
+    <p class="label"><b>Enlarged</b> · 240% for review</p>
+    <div class="row" data-slot="zoom"></div>
+  </section>
+
+  <section class="notes" aria-label="Print spec">
+    <h2>Print spec</h2>
+    <ul>
+      <li><span class="k">QR encodes</span><code data-url></code></li>
+      <li><span class="k">QR</span><span>Version auto (5 for this URL) · error correction M · 1.24 in square incl. 4-module quiet zone · ink on white</span></li>
+      <li><span class="k">Library</span><span>qrcode-generator 1.4.4 from cdnjs, with SRI. Production: generate per box on <code>/r/print/</code></span></li>
+      <li><span class="k">Bleed / safe</span><span>Add 0.125 in bleed on the teal back and the ink strip; keep text 0.125 in inside the trim</span></li>
+      <li><span class="k">Smallest text</span><span>7.6 px ≈ 5.7 pt (QR caption, sign-off, caps) · body lines 8.6–9 px ≈ 6.5 pt</span></li>
+      <li><span class="k">Blocker</span><span>Final domain (Q5) must be chosen before the first print run: the printed URL is permanent</span></li>
+    </ul>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha512-ZDSPMa/JM1D+7kdg2x3BsruQ6T/JpJo3jWDWkCZsP+5yVyp1KfESqLI+7RqB5k24F7p2cV7i2YHh/890y6P6Sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(function () {
+  'use strict';
+  var URL = 'https://studio-lab-nodarse.github.io/studio-lab-catalog/r/?box=MB-014';
+  document.querySelector('[data-url]').textContent = URL;
+  var svg = null;
+  try {
+    var qr = qrcode(0, 'M');
+    qr.addData(URL); qr.make();
+    svg = qr.createSvgTag({ cellSize: 4, margin: 16, scalable: true });   /* margin = 4 modules */
+  } catch (e) { svg = null; }
+  function place(slot, zoom) {
+    ['tpl-front', 'tpl-back'].forEach(function (id) {
+      var node = document.getElementById(id).content.firstElementChild.cloneNode(true);
+      if (zoom) node.classList.add('zoom');
+      var box = node.querySelector('[data-qr]');
+      if (box) box.innerHTML = svg || '<p class="qrfail">QR library did not load</p>';
+      document.querySelector('[data-slot="' + slot + '"]').appendChild(node);
+    });
+  }
+  place('print', false);
+  place('zoom', true);
+})();
+</script>
+<script src="mockup.js"></script>
+</body>
+</html>
