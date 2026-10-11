@@ -1,0 +1,1008 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-es="Souvenirs de Miami al por mayor | Caja de prueba gratis (mockup v3)">Wholesale Miami Souvenirs | Free Trial Box | Miami Peculiar (mockup v3)</title>
+<meta name="description" content="Handmade wood magnets, stickers, caps, totes and coasters with original Miami art. Florida gift shops: request a free trial box, yours to keep.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* ==========================================================================
+   v3 — "Coastal editorial", phone-first (authored at 390px; desktop adapts)
+   Copy: docs/hub-trial/mockups/copy.md. EN is inline; ES sits in data-es and
+   mockup.js swaps it. .var = env-var stand-in, .ph = unknown fact.
+   ========================================================================== */
+
+/* ---------- Header over the hero ---------- */
+.ehdr { position: absolute; inset: 0 0 auto; z-index: 30; color: var(--paper); }
+.ehdr .wrap { display: flex; align-items: center; gap: 12px; min-height: 68px; }
+.ehdr .hdr__nav a { color: var(--paper); }
+.ehdr .hdr__nav a:hover { border-color: var(--sun); }
+.ehdr .menu-btn { background: transparent; border-color: rgba(250, 247, 240, .45); color: var(--paper); }
+
+/* ---------- Hero ---------- */
+.ehero { position: relative; overflow: hidden; color: var(--paper); background: var(--teal-deep); isolation: isolate; }
+.ehero__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.ehero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(6, 52, 58, .74) 0%, rgba(8, 69, 74, .6) 38%, rgba(6, 46, 52, .88) 62%, rgba(5, 38, 43, .97) 100%); }
+.ehero__inner { padding-top: 76px; display: grid; gap: 12px; }
+.ehero__copy { display: grid; gap: 12px; justify-items: start; position: relative; z-index: 2; }
+.ehero__meta { display: flex; gap: 12px; align-items: center; width: 100%; font: 600 12px/1 var(--f-sans); letter-spacing: .18em; text-transform: uppercase; color: rgba(250, 247, 240, .8); }
+.ehero__meta > span:first-child { white-space: nowrap; }
+.rule { flex: 1; height: 1.5px; background: currentColor; opacity: .3; }
+.ehero__h1 { color: var(--sun); font-size: clamp(54px, 14.2vw, 140px); }
+.sv { font-family: var(--f-serif); font-style: italic; font-weight: 400; text-transform: none; font-size: 1.06em; letter-spacing: -.02em; line-height: .7; }
+.ehero__h1 .sv { color: var(--paper); }
+.ehero__sub { font-size: 17px; line-height: 1.5; max-width: 30em; color: rgba(250, 247, 240, .92); }
+.ehero__ctas { display: flex; flex-wrap: wrap; gap: 2px 22px; align-items: center; width: 100%; }
+.ehero__ctas .btn--sun { width: 100%; }
+.ehero__ctas .link-arrow { color: var(--paper); min-height: 44px; border: 0; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
+
+/* Product wall: dense, tilted, bleeding off both edges — the product is the hero */
+.wall { position: relative; height: 246px; margin-inline: calc(var(--gutter) * -1); clip-path: inset(-90px -40px 0 -40px); }
+.wall__rows { position: absolute; left: 50%; top: 10px; width: 720px; translate: -50% 0; rotate: -6deg; display: grid; gap: 14px; }
+.wall__row { display: flex; gap: 14px; align-items: center; justify-content: center; }
+.wall__row:nth-child(2) { translate: -38px 0; }
+.wall__row:nth-child(3) { translate: 26px 0; }
+.wall img { flex: none; height: calc(var(--h, 108px) * var(--s, 1)); width: auto; }
+.wall img:nth-child(3n+1) { rotate: -3deg; }
+.wall img:nth-child(3n+2) { rotate: 2.5deg; }
+.wall .obj { border-radius: 3px; }
+.wall .w-sq { --h: 90px; }
+.wall .w-st { --h: 98px; }
+.wall .w-rd { --h: 94px; }
+.wall .w-tote { --h: 116px; }
+.wall .w-cap { width: calc(108px * var(--s, 1)); height: calc(86px * var(--s, 1)); object-fit: cover; border-radius: 14px; box-shadow: var(--shadow-obj); }
+.wall__seal { position: absolute; right: 14px; top: -30px; width: 96px; height: 96px; z-index: 3; }
+.wall__seal .seal__mark { width: 30px; height: 28px; }
+.wall__seal .seal__ring text { font-size: 11px; }
+
+/* Chips strip + foot line */
+.chips3 { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(250, 247, 240, .22); position: relative; z-index: 2; }
+.chips3 li { padding: 12px 8px 12px 0; display: grid; gap: 8px; align-content: start; font-size: 13px; line-height: 1.3; color: rgba(250, 247, 240, .9); }
+.chips3 li + li { padding-left: 12px; border-left: 1px solid rgba(250, 247, 240, .22); }
+.chips3 .ico { width: 22px; height: 22px; color: var(--sun); }
+.chips3 b { color: var(--sun); font-weight: 700; }
+.ehero__foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 11px 14px; border-top: 1px solid rgba(250, 247, 240, .22); font: 600 12px/1.2 var(--f-sans); letter-spacing: .16em; text-transform: uppercase; color: rgba(250, 247, 240, .8); }
+.ehero__foot span:last-child { white-space: nowrap; color: var(--sun); }
+
+@media (min-width: 720px) { .ehero__ctas .btn--sun { width: auto; } }
+@media (min-width: 1000px) {
+  .ehdr .wrap { min-height: 84px; }
+  .ehero__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 0 32px; padding-top: 112px; }
+  .ehero__copy { gap: 20px; padding-bottom: 36px; }
+  .ehero__h1 { font-size: min(8.4vw, 132px); }
+  .ehero__sub { font-size: 20px; }
+  .wall { height: 640px; margin: 0 calc(var(--gutter) * -1) 0 0; overflow: hidden; clip-path: none; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%); mask-image: linear-gradient(90deg, transparent 0, #000 14%); }
+  .wall__rows { width: 1100px; top: 12px; left: 56%; gap: 20px; rotate: -7deg; }
+  .wall__row { gap: 20px; }
+  .wall img { --s: 1.5; }
+  .wall__row:nth-child(2) { translate: -60px 0; }
+  .wall__row:nth-child(3) { translate: 40px 0; }
+  .wall__seal { width: 132px; height: 132px; right: auto; left: 13%; top: 20px; }
+  .wall__seal .seal__mark { width: 40px; height: 37px; }
+  .chips3, .ehero__foot { grid-column: 1 / -1; }
+  .chips3 li { grid-template-columns: auto 1fr; align-items: center; gap: 14px; padding: 22px 32px 22px 0; font-size: 16px; }
+  .chips3 li + li { padding-left: 32px; }
+  .chips3 .ico { width: 28px; height: 28px; }
+}
+
+/* ---------- Variables & toggled variants ---------- */
+.var { text-decoration: underline dotted currentColor; text-decoration-thickness: 1.5px; text-underline-offset: 3px; cursor: help; }
+[data-variant][hidden] { display: none !important; }
+.demo-toggle { margin-top: 14px; font-size: 12.5px; color: var(--ink-2); }
+.demo-toggle a { font-weight: 600; color: inherit; }
+
+/* ---------- Picks (bestsellers) ---------- */
+.best .shead { margin-bottom: 14px; align-items: end; flex-wrap: nowrap; }
+.best .shead__main { gap: 6px; }
+.best__sub { font-size: 15px; color: var(--ink-2); }
+.rail--best { --rail-w: 70%; }
+.bcard { background: var(--white); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; text-decoration: none; transition: box-shadow .2s, transform .2s; }
+.bcard:hover { box-shadow: var(--shadow-1); transform: translateY(-2px); }
+.bcard__img { position: relative; aspect-ratio: 1 / .95; display: grid; place-items: center; overflow: hidden; }
+.bcard__img img { height: auto; }
+.bcard__img img.obj { width: 52%; rotate: -2.5deg; margin-top: 7%; }
+.bcard__img img.obj--coaster { width: 68%; rotate: 2deg; }
+.bcard__img img.obj--cut { width: 82%; margin-top: 6%; }
+.bcard__img img.tote { width: 44%; }
+.bcard__img img.cap { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; margin: 0; }
+.bcard__tag { position: absolute; z-index: 2; top: 12px; left: 12px; padding: 5px 9px; font-size: 10.5px; }
+.bcard__body { padding: 10px 14px 12px; display: grid; gap: 2px; flex: 1; align-content: start; }
+.bcard__meta { font-size: 12.5px; color: var(--ink-2); }
+.bcard__name { font-weight: 600; font-size: 17px; line-height: 1.2; letter-spacing: -.01em; }
+.mrow { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; align-items: end; }
+.mrow dt { font-size: 10px; font-weight: 600; letter-spacing: .07em; line-height: 1.2; text-transform: uppercase; color: var(--ink-2); }
+.mrow dd { margin-top: 4px; font-weight: 600; }
+.mrow .ph { font-size: 11px; }
+.mrow .is-profit dt { color: var(--teal); }
+.best__foot { margin-top: 2px; font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+.best__all { color: var(--ink); font-size: 15px; min-height: 44px; border: 0; text-decoration: underline; text-underline-offset: 5px; white-space: nowrap; }
+@media (min-width: 900px) {
+  .rail--best { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 0; padding: 0; gap: 18px; }
+}
+@media (min-width: 1200px) {
+  .rail--best { grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .bcard__name { font-size: 16px; }
+  .mrow { grid-template-columns: 1fr; gap: 5px; }
+  .mrow div { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+  .mrow dt { font-size: 10.5px; }
+  .mrow dd { margin: 0; }
+}
+
+/* ---------- Proof: "Why shops say yes" (default) · numbers (?proof=1) ---------- */
+.why { background: var(--teal-deep); color: var(--paper); }
+.why .eyebrow { color: var(--aqua); }
+.why .h2 em { color: var(--sun); }
+.why__head { display: grid; gap: 10px; margin-bottom: 16px; }
+.reasons { display: grid; border-top: 1px solid rgba(250, 247, 240, .18); }
+.reason { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(250, 247, 240, .18); }
+.reason__art { width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; overflow: hidden; background: var(--paper); }
+.reason__art img { width: 88%; height: auto; }
+.reason__art img.cover { width: 100%; height: 100%; object-fit: cover; }
+.reason p { font-size: 14.5px; line-height: 1.42; color: rgba(250, 247, 240, .82); }
+.reason p b { display: block; color: var(--paper); font-size: 16.5px; font-weight: 600; letter-spacing: -.01em; margin-bottom: 2px; }
+.why .demo-toggle { color: rgba(250, 247, 240, .7); }
+.why .demo-toggle a { color: var(--sun); }
+.estats { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(250, 247, 240, .22); }
+.estat { padding: 18px 12px 20px 0; border-bottom: 1px solid rgba(250, 247, 240, .22); display: grid; gap: 8px; align-content: start; }
+.estat:nth-child(even) { padding-left: 16px; border-left: 1px solid rgba(250, 247, 240, .22); }
+.estat__n { font: 900 52px/.85 var(--f-display); color: var(--sun); }
+.estat__n .ph { font-size: 11px; display: flex; width: max-content; margin-top: 10px; }
+.estat p { font-size: 14px; color: rgba(250, 247, 240, .82); }
+.why__src { font-size: 13px; color: rgba(250, 247, 240, .72); margin-top: 14px; }
+.why__photo { position: relative; border-radius: var(--r-l); overflow: hidden; aspect-ratio: 16 / 10; margin-bottom: 18px; }
+.why__photo img { width: 100%; height: 100%; object-fit: cover; }
+.why__photo .ph { position: absolute; left: 12px; bottom: 12px; right: 12px; white-space: normal; font-size: 12px; justify-content: center; text-align: center; }
+@media (min-width: 900px) {
+  .why__head { margin-bottom: 36px; }
+  .reasons { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .reasons { border-top: 0; }
+  .reason { grid-template-columns: 1fr; align-items: start; padding: 20px 20px 24px; gap: 16px; border-radius: var(--r); background: rgba(250, 247, 240, .06); border: 1px solid rgba(250, 247, 240, .14); }
+  .reason__art { width: 96px; height: 96px; border-radius: 18px; }
+  .estats { grid-template-columns: repeat(4, 1fr); }
+  .estat, .estat:nth-child(even) { padding: 26px 20px 26px 24px; border-left: 1px solid rgba(250, 247, 240, .22); }
+  .estat:first-child { padding-left: 0; border-left: 0; }
+  .estat__n { font-size: 84px; }
+  .why__numbers { display: grid; grid-template-columns: 1.1fr .9fr; gap: 0 56px; align-items: center; }
+  .why__numbers .estats, .why__numbers .why__src { grid-column: 1 / -1; }
+  .why__numbers .estats { margin-top: 32px; }
+  .why__photo { margin: 0; }
+}
+
+/* ---------- The box: an open kraft box, full of real product ---------- */
+.ebox { position: relative; }
+.ebox__band { position: relative; height: 280px; overflow: hidden; display: grid; place-items: center; border-block: 2px solid var(--ink); }
+.ebox__band > .tag { position: absolute; left: var(--gutter); top: 16px; rotate: -3deg; z-index: 5; }
+.ebox__cap { position: absolute; right: var(--gutter); top: 16px; z-index: 5; rotate: 3deg; font: italic 400 21px/1 var(--f-serif); background: var(--white); padding: 6px 12px 8px; border-radius: 4px; box-shadow: var(--shadow-1); }
+.kbox { position: relative; width: 284px; height: 206px; rotate: -3deg; margin-top: 4px; }
+.kbox__flap { position: absolute; background: #D8AE76; }
+.kbox__flap--t { left: 7%; right: 7%; top: -30px; height: 34px; clip-path: polygon(0 100%, 6% 0, 94% 0, 100% 100%); background: #E2BC86; }
+.kbox__flap--b { left: 7%; right: 7%; bottom: -30px; height: 34px; clip-path: polygon(0 0, 100% 0, 94% 100%, 6% 100%); background: #C79A5F; }
+.kbox__flap--l { left: -26px; top: 9%; bottom: 9%; width: 30px; clip-path: polygon(100% 0, 0 7%, 0 93%, 100% 100%); }
+.kbox__flap--r { right: -26px; top: 9%; bottom: 9%; width: 30px; clip-path: polygon(0 0, 100% 7%, 100% 93%, 0 100%); }
+.kbox__body { position: absolute; inset: 0; background: #CFA167; border-radius: 6px; box-shadow: 0 30px 44px -26px rgba(13, 34, 48, .65); }
+.kbox__tray { position: absolute; inset: 11px; border-radius: 4px; background: linear-gradient(180deg, #A47442, #B78851 60%, #BE9058); box-shadow: inset 0 16px 22px -8px rgba(70, 40, 10, .55); }
+.kbox__in { position: absolute; inset: 0; }
+.kbox__in > * { position: absolute; }
+.kbox .k1 { width: 25%; left: 6%; top: -2%; rotate: -9deg; }
+.kbox .k2 { width: 25%; left: 26%; top: -8%; rotate: 2deg; }
+.kbox .k3 { width: 25%; left: 46%; top: -1%; rotate: 9deg; }
+.kbox .kcap { width: 37%; right: -4%; top: 2%; rotate: 8deg; border-radius: 14px; aspect-ratio: 5 / 4; object-fit: cover; box-shadow: var(--shadow-obj); }
+.kbox .kst { width: 36%; left: -6%; bottom: -14%; rotate: -10deg; }
+.kbox .kco { width: 26%; left: 29%; bottom: 0; rotate: -5deg; }
+.kbox .kst2 { width: 30%; left: 50%; bottom: -16%; rotate: 8deg; }
+.kcard { width: 38%; right: -6%; bottom: 6%; rotate: 5deg; aspect-ratio: 3.5 / 2; background: var(--sun); border: 1.5px solid var(--ink); border-radius: 6px; box-shadow: var(--shadow-obj); display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px; padding: 6px 8px; color: var(--ink); }
+.kcard b { font: 900 14px/.9 var(--f-display); text-transform: uppercase; }
+.kcard .ico { width: 30px; height: 30px; stroke-width: 1.6; background: var(--white); border-radius: 4px; padding: 2px; }
+.ebox__card { position: relative; z-index: 2; margin: -44px var(--gutter) 0; background: var(--white); border: 2px solid var(--ink); border-radius: var(--r-l); padding: 20px 18px 18px; display: grid; gap: 12px; justify-items: start; box-shadow: 6px 6px 0 var(--ink); }
+.checks { display: grid; gap: 8px; }
+.checks li { display: flex; gap: 12px; align-items: flex-start; font-size: 15.5px; line-height: 1.42; }
+.ck { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--teal); color: var(--paper); display: grid; place-items: center; margin-top: -1px; }
+.ck .ico { width: 15px; height: 15px; stroke-width: 2.8; }
+.ck--sun { background: var(--sun); color: var(--ink); border: 1.5px solid var(--ink); }
+.ebox__fine { font-size: 13px; line-height: 1.7; color: var(--ink-2); }
+.ebox__card .btn { display: none; }
+@media (min-width: 1000px) {
+  .ebox__wrap { display: grid; grid-template-columns: 1fr 540px; align-items: center; }
+  .ebox__band { height: 640px; grid-column: 1 / 3; grid-row: 1; place-items: center start; padding-left: 9%; }
+  .ebox__band > .tag { left: 8%; top: 44px; }
+  .ebox__cap { right: auto; top: auto; left: 36%; bottom: 52px; rotate: -4deg; font-size: 26px; }
+  .kbox { width: 500px; height: 366px; margin-top: 0; }
+  .kbox__flap--t, .kbox__flap--b { height: 52px; }
+  .kbox__flap--t { top: -48px; }
+  .kbox__flap--b { bottom: -48px; }
+  .kbox__flap--l { left: -42px; width: 46px; }
+  .kbox__flap--r { right: -42px; width: 46px; }
+  .kbox__tray { inset: 16px; }
+  .kcard { padding: 10px 14px; }
+  .kcard b { font-size: 24px; }
+  .kcard .ico { width: 52px; height: 52px; }
+  .ebox__card { grid-column: 2; grid-row: 1; margin: 0 var(--gutter) 0 0; padding: 36px 36px 32px; max-width: 520px; justify-self: end; box-shadow: 8px 8px 0 var(--ink); }
+  .ebox__card .btn { display: inline-flex; }
+}
+
+/* ---------- How it works ---------- */
+.how { background: var(--sand); }
+.how .h2 { margin: 6px 0 14px; }
+.steps { display: grid; position: relative; }
+.step { display: grid; grid-template-columns: 48px 1fr; gap: 14px; padding-bottom: 10px; position: relative; }
+.step:last-child { padding-bottom: 0; }
+.step:not(:last-child)::before { content: ""; position: absolute; left: 23px; top: 52px; bottom: 4px; border-left: 2px dashed rgba(14, 107, 107, .45); }
+.step__ico { width: 48px; height: 48px; border-radius: 15px; background: var(--white); border: 1.5px solid var(--ink); display: grid; place-items: center; color: var(--teal); }
+.step__ico .ico { width: 24px; height: 24px; stroke-width: 2; }
+.step--hl .step__ico { background: var(--sun); color: var(--ink); }
+.step h3 { margin: 3px 0 3px; }
+.step p { color: var(--ink-2); font-size: 14.5px; line-height: 1.42; }
+@media (min-width: 900px) {
+  .how .wrap { display: grid; grid-template-columns: 360px 1fr; gap: 56px; align-items: start; }
+  .how .h2 { margin-bottom: 0; }
+  .steps { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .step { grid-template-columns: 1fr; padding: 0; align-content: start; }
+  .step:not(:last-child)::before { left: 62px; right: -22px; top: 26px; bottom: auto; border-left: 0; border-top: 2px dashed rgba(14, 107, 107, .45); }
+  .step h3 { margin-top: 6px; }
+}
+
+/* ---------- Made in Miami (story, compressed) + collections ---------- */
+.story__top { display: grid; }
+.story__big { font-size: clamp(60px, 17.4vw, 200px); color: var(--ink); position: relative; z-index: 2; }
+.story__big span { display: block; }
+.story__big .sv { color: var(--teal); }
+.story__art { position: relative; margin-top: -22px; }
+.story__art .wave { aspect-ratio: 2.15 / 1; }
+.story__seal { position: absolute; right: 4%; bottom: -26px; width: 100px; height: 100px; z-index: 3; }
+.story__seal .seal__mark { width: 30px; height: 28px; }
+.story__copy { margin-top: 26px; display: grid; gap: 8px; max-width: 34rem; }
+.story__copy p { font-size: 16.5px; line-height: 1.5; color: var(--ink-2); text-wrap: pretty; }
+.story__copy p:first-child { font-size: 17px; line-height: 1.45; color: var(--ink); }
+.story__copy .punch { font: italic 400 23px/1.15 var(--f-serif); color: var(--teal-deep); letter-spacing: -.01em; }
+.story__p2 { display: none; }
+.cols__head { display: grid; gap: 6px; margin: 28px 0 12px; scroll-margin-top: 16px; }
+.cols__head .row { display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+.rail--col { --rail-w: 80%; }
+.ccard { position: relative; border-radius: var(--r-l); overflow: hidden; text-decoration: none; display: grid; grid-template-rows: auto 1fr; border: 1.5px solid var(--ink); }
+.ccard__fan { position: relative; height: 134px; }
+.ccard__fan img { position: absolute; width: 30%; top: 54%; left: 50%; }
+.ccard__fan img:nth-child(1) { translate: -134% -46%; rotate: -11deg; }
+.ccard__fan img:nth-child(2) { translate: -50% -54%; width: 33%; z-index: 2; }
+.ccard__fan img:nth-child(3) { translate: 34% -44%; rotate: 10deg; }
+.ccard__text { padding: 2px 16px 14px; display: grid; gap: 5px; align-content: end; }
+.ccard__name { font-size: 42px; color: var(--ink); }
+.ccard__desc { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+.ccard__row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 2px; }
+.ccard__count { font: 800 15.5px/1.15 var(--f-display); letter-spacing: .02em; text-transform: uppercase; }
+.ccard__go { flex: none; width: 48px; height: 48px; border-radius: 50%; background: var(--ink); color: var(--paper); display: grid; place-items: center; transition: background .2s, color .2s; }
+.ccard:hover .ccard__go { background: var(--sun); color: var(--ink); }
+@media (min-width: 900px) {
+  .story__top { grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; gap: 0 48px; align-items: start; }
+  .story__big { grid-column: 1; grid-row: 1; align-self: end; font-size: min(10.4vw, 156px); }
+  .story__copy { grid-column: 1; grid-row: 2; }
+  .story__art { grid-column: 2; grid-row: 1 / 3; margin: 0; align-self: center; }
+  .story__art .wave { aspect-ratio: 1 / .82; }
+  .story__seal { width: 132px; height: 132px; right: auto; left: -40px; bottom: 8%; }
+  .story__seal .seal__mark { width: 40px; height: 37px; }
+  .story__p2 { display: block; }
+  .story__copy { margin-top: 26px; gap: 14px; }
+  .story__copy p:first-child { font-size: 21px; }
+  .story__copy .punch { font-size: 30px; }
+  .cols__head { margin: 72px 0 26px; }
+  .rail--col { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 0; padding: 0; gap: 20px; }
+  .ccard__fan { height: 260px; }
+  .ccard__name { font-size: 60px; }
+  .ccard__text { padding: 8px 26px 26px; }
+}
+
+.shead--tight { margin-bottom: 14px; }
+.shead--tight .shead__main { gap: 8px; }
+
+/* ---------- Shop by product: rows with four real thumbnails each ---------- */
+.plist { border-top: 1.5px solid var(--ink); }
+.prow { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); text-decoration: none; transition: background .2s; }
+.prow:hover { background: rgba(255, 210, 63, .14); }
+.prow__text { display: grid; gap: 4px; min-width: 0; }
+.prow__top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.prow__name { font: 900 30px/.9 var(--f-display); text-transform: uppercase; letter-spacing: .005em; }
+.prow__count { font-size: 12.5px; font-weight: 600; color: var(--teal); white-space: nowrap; }
+.prow__desc { font-size: 13.5px; line-height: 1.35; color: var(--ink-2); text-wrap: pretty; }
+.prow > .ico { display: none; }
+.prow__fan { display: flex; align-self: center; }
+.pth { width: 44px; height: 44px; border-radius: 12px; overflow: hidden; display: grid; place-items: center; border: 2px solid var(--paper); box-shadow: 0 4px 10px -4px rgba(13, 34, 48, .35); flex: none; background: var(--white); }
+.pth + .pth { margin-left: -14px; }
+.pth:nth-child(odd) { rotate: -4deg; }
+.pth:nth-child(even) { rotate: 3deg; translate: 0 3px; }
+.pth img { width: 100%; height: 100%; object-fit: cover; }
+.pth img.fit { object-fit: contain; padding: 3px; }
+@media (min-width: 900px) {
+  .prow { grid-template-columns: 1fr auto 28px; padding: 18px 8px; gap: 32px; }
+  .prow__top { gap: 18px; }
+  .prow__name { font-size: 64px; }
+  .prow__count { font-size: 15px; }
+  .prow__desc { font-size: 16px; }
+  .prow > .ico { display: block; width: 28px; height: 28px; }
+  .pth { width: 88px; height: 88px; border-radius: 18px; }
+  .pth + .pth { margin-left: 10px; }
+  .pth:nth-child(n) { rotate: 0deg; translate: 0 0; }
+  .prow:hover .pth:nth-child(odd) { rotate: -4deg; }
+  .prow:hover .pth:nth-child(even) { rotate: 4deg; }
+}
+
+/* ---------- Trial (sunny band) ---------- */
+.etrial { background: var(--sun); color: var(--ink); border-top: 2px solid var(--ink); }
+.etrial__grid { display: grid; gap: 18px; }
+.etrial__copy { display: grid; gap: 12px; justify-items: start; align-content: start; }
+.etrial__h { font-size: clamp(50px, 13.6vw, 128px); }
+.etrial__h .sv { color: var(--teal-deep); }
+.etrial .lede { color: var(--ink); font-size: 16.5px; }
+.etrial .checks { gap: 4px 14px; display: flex; flex-wrap: wrap; }
+.etrial .checks li { font-size: 14.5px; gap: 7px; align-items: center; }
+.etrial .checks li:last-child { flex-basis: 100%; }
+.etrial .ck { background: var(--ink); color: var(--sun); width: 20px; height: 20px; margin: 0; }
+.etrial .ck .ico { width: 12px; height: 12px; }
+.etrial .fcard { border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+.etrial__alt { margin-top: 2px; font-size: 15px; text-align: center; }
+.etrial__alt a { font-weight: 600; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+.etrial__alt .ico { width: 18px; height: 18px; }
+.ferr-sum { font-size: 14px; font-weight: 600; color: var(--bloom); display: flex; gap: 8px; align-items: center; }
+.ferr-sum[hidden] { display: none; }
+.ferr-sum .ico { width: 18px; height: 18px; }
+.fdone .flinks { margin-top: 2px; }
+@media (min-width: 1000px) {
+  .etrial__grid { grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .etrial__copy { position: sticky; top: 40px; padding-top: 10px; }
+  .etrial .fcard { box-shadow: 8px 8px 0 var(--ink); }
+}
+
+/* ---------- Custom collections (ink) ---------- */
+.ecrear { background: var(--ink); color: var(--paper); }
+.ecrear__grid { display: grid; gap: 16px; }
+.ecrear__top { display: grid; grid-template-columns: 1fr 112px; gap: 16px; align-items: center; }
+.ecrear__art { position: relative; }
+.ecrear__art .arch { aspect-ratio: 3 / 4; border: 5px solid var(--paper); }
+.ecrear__art .tag { position: absolute; left: 50%; bottom: -10px; translate: -50% 0; rotate: -5deg; padding: 5px 9px; font-size: 9.5px; letter-spacing: .04em; }
+.ecrear .eyebrow { color: var(--aqua); margin-bottom: 10px; }
+.ecrear .h2 em { color: var(--sun); }
+.ecrear .lede { color: rgba(250, 247, 240, .84); }
+.ecrear__btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.ecrear__btns .btn { flex: 1 1 auto; padding: 0 16px; font-size: 15.5px; gap: 8px; white-space: nowrap; }
+.ecrear .muted { color: rgba(250, 247, 240, .72); font-size: 14px; }
+@media (min-width: 900px) {
+  .ecrear__grid { grid-template-columns: 380px 1fr; grid-template-rows: auto auto auto 1fr; gap: 18px 88px; align-items: start; }
+  .ecrear__top { display: contents; }
+  .ecrear__art { grid-column: 1; grid-row: 1 / 5; }
+  .ecrear__art .arch { border-width: 8px; }
+  .ecrear__art .tag { left: -6px; bottom: 28px; translate: 0 0; padding: 7px 13px 7px 11px; font-size: 12.5px; }
+  .ecrear__head, .ecrear__grid > p, .ecrear__btns { grid-column: 2; }
+  .ecrear__head { padding-top: 70px; }
+  .ecrear__btns { max-width: 520px; }
+}
+
+/* ---------- FAQ ---------- */
+.efaq { display: grid; gap: 12px; }
+.efaq__intro { display: grid; gap: 8px; justify-items: start; }
+.efaq__big { font-size: clamp(52px, 14vw, 168px); }
+.efaq__big .sv { color: var(--teal); }
+.efaq__intro p { font-size: 15px; color: var(--ink-2); display: none; }
+@media (min-width: 900px) { .efaq__intro p { display: block; } }
+.efaq__intro .link-arrow { min-height: 44px; border: 0; text-decoration: underline; text-underline-offset: 5px; }
+.faq summary { min-height: 50px; padding: 10px 2px; font-size: 16px; }
+.faq details p { padding-bottom: 18px; font-size: 15.5px; }
+@media (min-width: 900px) {
+  .efaq { grid-template-columns: .9fr 1.1fr; gap: 72px; }
+  .efaq__big .sv { display: block; padding-bottom: .14em; }
+  .efaq__intro { gap: 18px; align-content: start; }
+  .faq summary { font-size: 17px; padding: 18px 2px; }
+}
+
+.waline .wrap { padding-block: 10px; gap: 2px 14px; font-size: 15px; }
+.waline a { min-height: 44px; }
+
+/* ---------- Mockup-only bar ---------- */
+.mockbar { background: #FFF4C9; color: #5A4300; border-top: 1px dashed #B38900; font-size: 12.5px; line-height: 1.6; }
+.mockbar .wrap { display: grid; gap: 2px; padding-block: 12px 96px; }
+.mockbar a { font-weight: 600; color: inherit; }
+.best__ph { margin-top: 2px; font-size: 12px; }
+
+/* ---------- Footer (compact on phone) ---------- */
+.ftr .wrap { padding-block: 28px 16px; gap: 18px; }
+.ftr__top { gap: 20px; }
+.ftr__cols { grid-template-columns: repeat(3, 1fr); gap: 20px 12px; }
+.ftr h4 { margin-bottom: 6px; }
+.ftr li + li { margin-top: 0; }
+.ftr li a { display: flex; align-items: center; min-height: 44px; line-height: 1.2; }
+.ftr__about p { font-size: 13.5px; }
+.ftr__about { gap: 10px; }
+.ftr h4 { margin-bottom: 2px; }
+@media (min-width: 900px) { .ftr .wrap { padding-block: 56px 28px; } }
+</style>
+</head>
+<body id="top">
+
+<!-- ======== SVG sprite: heart mark, icons, wave mask (no copy lives in SVG art) ======== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="wave-clip" clipPathUnits="objectBoundingBox">
+      <path d="M0,.07 C.08,0 .17,0 .25,.05 C.33,.1 .42,.1 .5,.05 C.58,0 .67,0 .75,.05 C.83,.1 .92,.1 1,.05 L1,.93 C.92,.88 .83,.88 .75,.93 C.67,.98 .58,.98 .5,.93 C.42,.88 .33,.88 .25,.93 C.17,.98 .08,.98 0,.93 Z"/>
+    </clipPath>
+  </defs>
+  <symbol id="mark" viewBox="-16 -16 499 463">
+    <path d="M233.5 80 C 210 24, 160 3, 108 5 C 46 8, 5 52, 5 122 C 5 182, 42 232, 100 288 C 150 336, 205 384, 233.5 426 C 262 384, 317 336, 367 288 C 425 232, 462 182, 462 122 C 462 52, 421 8, 359 5 C 307 3, 257 24, 233.5 80 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:var(--ms,24)"/>
+    <path transform="translate(230 200) rotate(-141) scale(1.65 2.02)" d="M0 -26 C -8 -50, -40 -60, -58 -40 C -74 -22, -64 8, -40 26 C -22 38, -4 44, 0 64 C 4 44, 22 38, 40 26 C 64 8, 74 -22, 58 -40 C 40 -60, 8 -50, 0 -26 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9M7.5 5.2l9 4.6"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="6" height="6" rx="1"/><rect x="14.5" y="3.5" width="6" height="6" rx="1"/><rect x="3.5" y="14.5" width="6" height="6" rx="1"/><path d="M14.5 14.5h2.5v2.5M20.5 14.5v.01M14.5 20.5h.01M17.5 20.5h3v-3M6.5 6.5h.01M17.5 6.5h.01M6.5 17.5h.01"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3c.6 4.6 3.4 7.4 8 8-4.6.6-7.4 3.4-8 8-.6-4.6-3.4-7.4-8-8 4.6-.6 7.4-3.4 8-8z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.4 7.4L3.5 20.5l1.5-4.4a8.4 8.4 0 1 1 15.5-4.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.8 6.8 8.2 6.2 8.2-6.2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.4v.1"/></symbol>
+  <symbol id="i-spin" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 1-9 9"/></symbol>
+  <symbol id="i-swipe" viewBox="0 0 24 24"><path d="M3 12h14M13 8l4 4-4 4M21 6v12"/></symbol>
+</svg>
+
+<main>
+
+<!-- ======== Hero: promise + action + a wall of real product ======== -->
+<section class="ehero" aria-labelledby="h1" data-hide-sticky>
+  <img class="ehero__bg" src="https://images.unsplash.com/photo-1744648617182-519c4bf39e30?w=2000&q=80&auto=format&fit=crop" alt="">
+
+  <header class="ehdr">
+    <div class="wrap">
+      <a class="wm wm--light" href="#top" aria-label="Miami Peculiar by Studio Lab — home">
+        <svg class="wm__mark" aria-hidden="true"><use href="#mark"/></svg>
+        <span class="wm__text"><span class="wm__name"><b>Miami</b><i>Peculiar</i></span><span class="wm__by">by Studio Lab</span></span>
+      </a>
+      <nav class="hdr__nav" aria-label="Main">
+        <a href="#story" data-es="Nuestra historia">Our story</a>
+        <a href="#collections" data-es="Colecciones">Collections</a>
+        <a href="#how" data-es="Cómo funciona">How it works</a>
+        <a href="#faq" data-es="Preguntas">FAQ</a>
+      </nav>
+      <div class="hdr__tools">
+        <div class="lang lang--light" role="group" aria-label="Language">
+          <button type="button" aria-pressed="true" data-lang="en">EN</button>
+          <button type="button" aria-pressed="false" data-lang="es">ES</button>
+        </div>
+        <a class="btn btn--sun btn--sm hdr__cta" href="#trial" data-es="Pide tu caja">Request a box</a>
+        <button class="menu-btn" type="button" aria-label="Menu"><svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap ehero__inner">
+    <div class="ehero__copy">
+      <div class="ehero__meta rise"><span data-es="Para tiendas de la Florida">For shops across Florida</span><span class="rule"></span></div>
+      <span class="tag tag--onphoto rise" style="--d:1"><span class="star" aria-hidden="true">★</span> <span data-es="Al por mayor · Hecho en Miami">Wholesale · Made in Miami</span></span>
+      <h1 id="h1" class="display ehero__h1 rise" style="--d:2" data-es="Miami de verdad, en tu tienda. <span class='sv'>Gratis.</span>">Put real Miami on your shelf. <span class="sv">Free.</span></h1>
+      <p class="ehero__sub rise" style="--d:3" data-es="Imanes de madera hechos a mano y arte original de Miami. Pruébalos en tu tienda sin gastar un centavo.">Handmade wood magnets and original Miami art. Try a box on your shelf before you spend a dollar.</p>
+      <div class="ehero__ctas rise" style="--d:4">
+        <a class="btn btn--sun" href="#trial"><span data-es="Pide tu caja de prueba gratis">Request a free trial box</span> <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="link-arrow" href="#bestsellers"><span data-es="Mira los diseños">See the designs</span> <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+
+    <div class="wall" role="img" aria-label="A wall of Miami Peculiar products: wood magnets, stickers, ceramic coasters, caps and totes">
+      <div class="wall__rows">
+        <div class="wall__row">
+          <img class="obj" src="../../../../assets/img/2eac1eb8869b4363.webp" alt="">
+          <img class="obj--cut w-st" src="../../../../assets/img/513bbc4d19415c11.webp" alt="">
+          <img class="obj obj--coaster w-sq" src="../../../../assets/img/8551650fbdb8f778.webp" alt="">
+          <img class="obj" src="../../../../assets/img/3d7a5d7f8f8aeaa7.jpg" alt="">
+          <img class="w-cap" src="../../../../assets/img/40b385e5adb4c466.webp" alt="">
+          <img class="obj" src="../../../../assets/img/7d3176b3f321fba9.jpg" alt="">
+          <img class="obj--cut w-st" src="../../../../assets/img/a567dd3bcbebad81.webp" alt="">
+        </div>
+        <div class="wall__row">
+          <img class="obj obj--coaster w-sq" src="../../../../assets/img/5584dca78a8391d2.webp" alt="">
+          <img class="obj" src="../../../../assets/img/7872f70e7b733fd1.jpg" alt="">
+          <img class="obj--cut w-st" src="../../../../assets/img/bbc41738899fac38.webp" alt="">
+          <img class="obj--cut w-rd" src="../../../../assets/img/fcdd919d5f40f226.webp" alt="">
+          <img class="obj" src="../../../../assets/img/47f0ab36ab5535bc.jpg" alt="">
+          <img class="obj--cut w-tote" src="../../../../assets/img/921a3f7d029aba06.webp" alt="">
+          <img class="obj obj--coaster w-sq" src="../../../../assets/img/60346db705575dde.webp" alt="">
+        </div>
+        <div class="wall__row">
+          <img class="obj--cut w-st" src="../../../../assets/img/30d7805403769920.webp" alt="">
+          <img class="obj" src="../../../../assets/img/656597aea3465b45.jpg" alt="">
+          <img class="w-cap" src="../../../../assets/img/1ec98070ae143318.webp" alt="">
+          <img class="obj" src="../../../../assets/img/839192581b809382.jpg" alt="">
+          <img class="obj--cut w-st" src="../../../../assets/img/822ef7ce04a01d08.webp" alt="">
+          <img class="obj" src="../../../../assets/img/0486137ef7ba753c.jpg" alt="">
+          <img class="obj obj--coaster w-sq" src="../../../../assets/img/d15f26c2ef6c9d64.webp" alt="">
+        </div>
+      </div>
+      <div class="seal wall__seal" aria-hidden="true">
+        <svg class="seal__ring" viewBox="0 0 132 132"><defs><path id="ring-h" d="M66,66 m-49,0 a49,49 0 1,1 98,0 a49,49 0 1,1 -98,0"/></defs><text><textPath href="#ring-h" textLength="304" lengthAdjust="spacing" data-es="Caja gratis ★ Hecho en Miami ★ ">Free trial box ★ Made in Miami ★ </textPath></text></svg>
+        <svg class="seal__mark"><use href="#mark"/></svg>
+      </div>
+    </div>
+
+    <!-- Chips: {70} is computed from src/_data at build time (D10) -->
+    <ul class="chips3" aria-label="At a glance">
+      <li><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg><span data-es="Arte original, no importado">Original art, not imports</span></li>
+      <li><svg class="ico" aria-hidden="true"><use href="#i-grid"/></svg><span data-es="<b>70</b> diseños para escoger"><b>70</b> designs to choose from</span></li>
+      <li><svg class="ico" aria-hidden="true"><use href="#i-qr"/></svg><span data-es="Repón con un escaneo">Restock with one scan</span></li>
+    </ul>
+    <div class="ehero__foot"><span data-es="Trato directo con el artista">Deal direct with the maker</span><span>25.79° N</span></div>
+  </div>
+</section>
+
+<div class="marquee marquee--sun" aria-hidden="true">
+  <div class="marquee__track">
+    <ul class="marquee__list"><li data-es="Pruébalo en tu tienda, gratis">Try it on your shelf, free</li><li data-es="Arte original de Miami">Original Miami art</li><li data-es="Imanes hechos a mano">Handmade wood magnets</li><li data-es="Nada de importado">Not another import</li><li data-es="De la Calle Ocho a Ocean Drive">Calle Ocho to Ocean Drive</li><li data-es="Repón con un escaneo">Restock in one scan</li></ul>
+    <ul class="marquee__list" aria-hidden="true"><li data-es="Pruébalo en tu tienda, gratis">Try it on your shelf, free</li><li data-es="Arte original de Miami">Original Miami art</li><li data-es="Imanes hechos a mano">Handmade wood magnets</li><li data-es="Nada de importado">Not another import</li><li data-es="De la Calle Ocho a Ocean Drive">Calle Ocho to Ocean Drive</li><li data-es="Repón con un escaneo">Restock in one scan</li></ul>
+  </div>
+</div>
+
+<!-- ======== Jesús's picks: big art; swipe row on phone, 6-up shelf on desktop ========
+     Default = prices version (margin rows render when PRICE_* are set; placeholders here).
+     ?prices=0 shows the no-prices version. -->
+<section class="sec best" id="bestsellers" aria-labelledby="best-h">
+  <div class="wrap">
+    <div class="shead">
+      <div class="shead__main">
+        <p class="eyebrow" data-es="★ Favoritos de Jesús">★ Jesús’s picks</p>
+        <h2 id="best-h" class="h2" data-variant="prices" data-es="Tu ganancia, <em>pieza por pieza.</em>">Your profit, <em>piece by piece.</em></h2>
+        <h2 class="h2" data-variant="noprices" hidden data-es="Coloridos y <em>bien llamativos.</em>">Bright, bold, <em>hard to miss.</em></h2>
+        <p class="best__sub" data-variant="prices" data-es="Lo que pagas, el precio sugerido y lo que te queda.">What you pay, the suggested price, what you keep.</p>
+        <p class="best__sub" data-variant="noprices" hidden data-es="Seis piezas de toda la línea. Toca una para ver el reverso.">Six pieces from across the line. Tap one to see the back.</p>
+      </div>
+      <a class="link-arrow best__all" href="#products"><span data-es="Ver todo">See all</span> <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="rail rail--best" role="list">
+      <a class="bcard" role="listitem" href="#products">
+        <div class="bcard__img tint-sea"><span class="tag tag--soft bcard__tag"><span class="star">★</span> <span data-es="Imán">Magnet</span></span><img class="obj" src="../../../../assets/img/47f0ab36ab5535bc.jpg" alt="Lifeguard tower wood magnet, Miami Beach"></div>
+        <div class="bcard__body"><p class="bcard__meta">Miami Beach · #57</p><h3 class="bcard__name">Lifeguard Tower</h3>
+          <dl class="mrow" data-variant="prices"><div><dt data-es="Pagas">You pay</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt data-es="Precio sugerido">Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="is-profit"><dt data-es="Te queda">You keep</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+      <a class="bcard" role="listitem" href="#products">
+        <div class="bcard__img tint-sun"><span class="tag tag--soft bcard__tag"><span class="star">★</span> <span data-es="Imán">Magnet</span></span><img class="obj" src="../../../../assets/img/3d7a5d7f8f8aeaa7.jpg" alt="Domino Park wood magnet, Little Havana"></div>
+        <div class="bcard__body"><p class="bcard__meta">Cuban American · #101</p><h3 class="bcard__name">Domino Park</h3>
+          <dl class="mrow" data-variant="prices"><div><dt data-es="Pagas">You pay</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt data-es="Precio sugerido">Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="is-profit"><dt data-es="Te queda">You keep</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+      <a class="bcard" role="listitem" href="#products">
+        <div class="bcard__img tint-blush"><span class="tag tag--soft bcard__tag"><span class="star">★</span> Sticker</span><img class="obj--cut" src="../../../../assets/img/513bbc4d19415c11.webp" alt="Pink Cadillac Miami Florida sticker"></div>
+        <div class="bcard__body"><p class="bcard__meta">Miami · #157</p><h3 class="bcard__name">Pink Cadillac</h3>
+          <dl class="mrow" data-variant="prices"><div><dt data-es="Pagas">You pay</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt data-es="Precio sugerido">Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="is-profit"><dt data-es="Te queda">You keep</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+      <a class="bcard" role="listitem" href="#products">
+        <div class="bcard__img tint-cap"><span class="tag tag--soft bcard__tag"><span class="star">★</span> <span data-es="Gorra">Cap</span></span><img class="cap" src="../../../../assets/img/40b385e5adb4c466.webp" alt="Pink cap with lifeguard tower patch"></div>
+        <div class="bcard__body"><p class="bcard__meta">Miami Beach · #165</p><h3 class="bcard__name">Lifeguard Tower cap</h3>
+          <dl class="mrow" data-variant="prices"><div><dt data-es="Pagas">You pay</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt data-es="Precio sugerido">Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="is-profit"><dt data-es="Te queda">You keep</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+      <a class="bcard" role="listitem" href="#products">
+        <div class="bcard__img tint-sea"><span class="tag tag--soft bcard__tag"><span class="star">★</span> Tote</span><img class="obj--cut tote" src="../../../../assets/img/921a3f7d029aba06.webp" alt="Cotton tote with Ocean Drive print"></div>
+        <div class="bcard__body"><p class="bcard__meta">Miami Beach · #24</p><h3 class="bcard__name">Ocean Drive</h3>
+          <dl class="mrow" data-variant="prices"><div><dt data-es="Pagas">You pay</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt data-es="Precio sugerido">Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="is-profit"><dt data-es="Te queda">You keep</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+      <a class="bcard" role="listitem" href="#products">
+        <div class="bcard__img tint-sun"><span class="tag tag--soft bcard__tag"><span class="star">★</span> <span data-es="Posavasos">Coaster</span></span><img class="obj obj--coaster" src="../../../../assets/img/8551650fbdb8f778.webp" alt="Ceramic coaster with rainbow lifeguard tower"></div>
+        <div class="bcard__body"><p class="bcard__meta">Miami Beach · #61</p><h3 class="bcard__name">Rainbow Lifeguard Tower</h3>
+          <dl class="mrow" data-variant="prices"><div><dt data-es="Pagas">You pay</dt><dd><span class="ph">$ [—]</span></dd></div><div><dt data-es="Precio sugerido">Suggested retail</dt><dd><span class="ph">$ [—]</span></dd></div><div class="is-profit"><dt data-es="Te queda">You keep</dt><dd><span class="ph">$ [—]</span></dd></div></dl></div>
+      </a>
+    </div>
+    <p class="best__foot"><span data-variant="prices" data-es="El precio sugerido es una guía. Tú pones tus precios.">Suggested retail is a guide. You set your prices.</span> <span class="ph">[placeholder: picks, names &amp; prices from Jesús]</span></p>
+  </div>
+</section>
+
+<!-- ======== Proof: "Why shops say yes" (default) · "In numbers" with ?proof=1 ========
+     Build rule: numbers version only when ≥ 2 PROOF_* vars are set. -->
+<section class="sec why" id="proof" aria-labelledby="why-h">
+  <div class="wrap">
+    <div data-variant="reasons">
+      <div class="why__head">
+        <h2 id="why-h" class="h2" data-es="Por qué <em>dicen que sí.</em>">Why shops <em>say yes.</em></h2>
+      </div>
+      <ul class="reasons">
+        <li class="reason"><span class="reason__art"><img src="../../../../assets/img/bbc41738899fac38.webp" alt=""></span><p data-es="<b>Arte que nadie más imprime.</b> Diseños originales de un estudio en Miami, no de catálogo."><b>Art nobody else prints.</b> Original designs from a Miami studio, not a catalog import.</p></li>
+        <li class="reason"><span class="reason__art"><img class="cover" src="../../../../assets/img/d15f26c2ef6c9d64.webp" alt=""></span><p data-es="<b>Probar no cuesta nada.</b> La primera caja es gratis y es tuya. Lo que vendas, también."><b>Trying costs nothing.</b> The first box is free and yours. So is every sale.</p></li>
+        <li class="reason"><span class="reason__art"><img class="cover" src="../../../../assets/img/0486137ef7ba753c.jpg" alt=""></span><p data-es="<b>Reponer es un escaneo.</b> La tarjeta de tu caja te empieza el pedido."><b>Restocking is one scan.</b> The card in your box starts the order for you.</p></li>
+        <li class="reason"><span class="reason__art"><img class="cover" src="../../../../assets/img/1ec98070ae143318.webp" alt=""></span><p data-es="<b>Tratas con el artista.</b> Jesús te contesta el WhatsApp en persona."><b>You deal with the maker.</b> Jesús answers your WhatsApp himself.</p></li>
+      </ul>
+    </div>
+
+    <div class="why__numbers" data-variant="numbers" hidden>
+      <div class="why__head">
+        <p class="eyebrow" data-es="En números">In numbers</p>
+        <h2 class="h2" data-es="Tiendas reales, <em>números reales.</em>">Real shelves, <em>real numbers.</em></h2>
+      </div>
+      <figure class="why__photo">
+        <img src="https://images.unsplash.com/photo-1741276889229-f71ba39bdf1e?w=1100&q=80&auto=format&fit=crop" alt="" loading="lazy">
+        <figcaption class="ph">[placeholder: real stockist shelf photo · shop name, city]</figcaption>
+      </figure>
+      <div class="estats">
+        <div class="estat"><p class="estat__n">[&thinsp;—&thinsp;]<span class="ph">PROOF_STORES</span></p><p data-es="tiendas ya nos venden">shops already carry us</p></div>
+        <div class="estat"><p class="estat__n">[&thinsp;—&thinsp;]<span class="ph">PROOF_UNITS_SOLD</span></p><p data-es="piezas vendidas">pieces sold</p></div>
+        <div class="estat"><p class="estat__n">[&thinsp;—&thinsp;]%<span class="ph">PROOF_REORDER_RATE</span></p><p data-es="de las tiendas vuelve a pedir">of shops come back for more</p></div>
+        <div class="estat"><p class="estat__n">[&thinsp;—&thinsp;]<span class="ph">PROOF_YEARS</span></p><p data-es="años haciendo souvenirs de Miami">years making Miami souvenirs</p></div>
+      </div>
+      <p class="why__src"><span data-es="Datos de Studio Lab,">From Studio Lab’s records,</span> <span class="ph">[placeholder: month year]</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== The box: real product in an open kraft box ======== -->
+<section class="ebox" id="box" aria-labelledby="box-h">
+  <div class="ebox__wrap">
+    <div class="ebox__band stripes--bold">
+      <span class="tag tag--sun"><span class="star" aria-hidden="true">★</span> <span data-es="Invita la casa">On the house</span></span>
+      <div class="kbox" role="img" aria-label="An open trial box with wood magnets, stickers, a cap, a coaster and the reorder card">
+        <span class="kbox__flap kbox__flap--t"></span><span class="kbox__flap kbox__flap--b"></span><span class="kbox__flap kbox__flap--l"></span><span class="kbox__flap kbox__flap--r"></span>
+        <div class="kbox__body"><div class="kbox__tray"></div></div>
+        <div class="kbox__in">
+          <img class="obj k1" src="../../../../assets/img/47f0ab36ab5535bc.jpg" alt="">
+          <img class="obj k2" src="../../../../assets/img/fa811de686c580f3.jpg" alt="">
+          <img class="obj k3" src="../../../../assets/img/656597aea3465b45.jpg" alt="">
+          <img class="kcap" src="../../../../assets/img/356171fadf9422e9.webp" alt="">
+          <img class="obj obj--coaster kco" src="../../../../assets/img/5584dca78a8391d2.webp" alt="">
+          <img class="obj--cut kst" src="../../../../assets/img/513bbc4d19415c11.webp" alt="">
+          <img class="obj--cut kst2" src="../../../../assets/img/a567dd3bcbebad81.webp" alt="">
+          <div class="kcard" aria-hidden="true"><b data-es="Repón">Restock</b><svg class="ico"><use href="#i-qr"/></svg></div>
+        </div>
+      </div>
+      <p class="ebox__cap" aria-hidden="true" data-es="sale de Miami">shipped from Miami</p>
+    </div>
+    <div class="ebox__card">
+      <h2 id="box-h" class="h2" data-es="Tu primer surtido, <em>invita la casa.</em>">A starter shelf, <em>on the house.</em></h2>
+      <p class="muted" data-es="Ponlo en el mostrador y mira qué se vende.">Put it by the register and see what moves.</p>
+      <ul class="checks">
+        <li><span class="ck ck--sun"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span data-es="<b>Imanes de madera hechos a mano,</b> el alma de la caja."><b>Handmade wood magnets,</b> the heart of every box.</span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span data-es="<b>Y un poco de todo:</b> stickers, gorras, totes o posavasos."><b>A taste of the rest:</b> stickers, caps, totes or coasters.</span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span data-es="<b>Es tuya.</b> Lo que vendas, te lo quedas."><b>Yours to keep.</b> Every sale is yours.</span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span data-es="<b>Tarjeta para reponer.</b> Escanéala cuando se acabe."><b>A reorder card.</b> Scan it when you run low.</span></li>
+      </ul>
+      <div class="ebox__fine">
+        <p><span class="ph">[placeholder: pieces per box]</span> <span data-es="piezas · sale de Miami">pieces · ships from Miami</span><span data-variant="prices"> · <span data-es="Vale">Worth</span> <span class="ph">$[placeholder: box value at suggested retail]</span> <span data-es="a precio sugerido.">at suggested retail.</span></span></p>
+      </div>
+      <a class="btn btn--sun" href="#trial"><span data-es="Pide tu caja de prueba gratis">Request a free trial box</span> <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======== How it works ======== -->
+<section class="sec how" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" data-es="Cómo funciona">How it works</p>
+      <h2 id="how-h" class="h2" data-es="Tres pasos a una tienda <em>surtida.</em>">Three steps to a <em>stocked shelf.</em></h2>
+    </div>
+    <ol class="steps">
+      <li class="step"><span class="step__ico"><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg></span><div><h3 class="h3" data-es="Cuéntanos de tu tienda">Tell us about your shop</h3><p data-es="Unos dos minutos desde el celular. Sin tarjeta, sin contrato.">About two minutes on your phone. No card, no contract.</p></div></li>
+      <li class="step"><span class="step__ico"><svg class="ico" aria-hidden="true"><use href="#i-eye"/></svg></span><div><h3 class="h3" data-es="Jesús la lee en persona">Jesús reads it himself</h3><p data-es="Cada solicitud se revisa a mano. Te contestamos por email o WhatsApp en <span class='var' title='TRIAL_REPLY_DAYS'>2</span> días hábiles.">Every request gets a real look. You’ll hear back by email or WhatsApp within <span class="var" title="Variable TRIAL_REPLY_DAYS (default 2)">2</span> business days.</p></div></li>
+      <li class="step step--hl"><span class="step__ico"><svg class="ico" aria-hidden="true"><use href="#i-qr"/></svg></span><div><h3 class="h3" data-es="Véndelo. Repón con un escaneo.">Sell it. Restock in a scan.</h3><p data-es="La caja trae una tarjeta para reponer. Cuando se vacíe el exhibidor, la escaneas y el pedido está casi hecho.">Your box comes with a reorder card. When the rack runs low, scan it and the order is half written.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======== Made in Miami (short story) + the three collections ======== -->
+<section class="sec story" id="story" aria-labelledby="story-h">
+  <div class="wrap">
+    <div class="story__top">
+      <h2 id="story-h" class="display story__big" data-es="<span>Hecho en</span> <span class='sv'>Miami</span>"><span>Made in</span> <span class="sv">Miami</span></h2>
+      <div class="story__art">
+        <figure class="wave"><img src="https://images.unsplash.com/photo-1754269675159-38dfb1650a35?w=1200&q=80&auto=format&fit=crop" alt="Miami Beach seen from above at sunset" loading="lazy"></figure>
+        <div class="seal seal--ink story__seal" aria-hidden="true">
+          <svg class="seal__ring" viewBox="0 0 132 132"><defs><path id="ring-s" d="M66,66 m-49,0 a49,49 0 1,1 98,0 a49,49 0 1,1 -98,0"/></defs><text><textPath href="#ring-s" textLength="304" lengthAdjust="spacing" data-es="Hecho a mano ★ Miami, Florida ★ ">Handmade ★ Miami, Florida ★ </textPath></text></svg>
+          <svg class="seal__mark"><use href="#mark"/></svg>
+        </div>
+      </div>
+      <div class="story__copy">
+        <p data-es="Hoteles Art Deco, torres de salvavidas, las mesas de dominó de la Calle Ocho. El Miami que vinieron a ver, listo para la maleta.">Art Deco hotels, lifeguard towers, the domino tables on Calle Ocho. The Miami your customers came to see, ready for the suitcase.</p>
+        <p class="story__p2" data-es="Cada diseño es original y se produce en nuestro estudio en Miami. Los imanes de madera son hechos a mano.">Every design is original and produced in our Miami studio. The wood magnets are made by hand.</p>
+        <p class="punch" data-es="Este arte no lo vas a encontrar con el importador.">You won’t find this art at the import wholesaler.</p>
+      </div>
+    </div>
+
+    <div class="cols__head" id="collections">
+      <p class="eyebrow" data-es="Colecciones">Collections</p>
+      <div class="row">
+        <h2 class="h2" data-es="Tres maneras de <em>vender Miami.</em>">Three ways to <em>sell Miami.</em></h2>
+      </div>
+    </div>
+    <div class="rail rail--col" role="list">
+      <a class="ccard tint-sea" role="listitem" href="#collections" aria-label="See the Miami Beach collection">
+        <div class="ccard__fan" aria-hidden="true">
+          <img class="obj" src="../../../../assets/img/6f8f31ca70c0e3d6.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/656597aea3465b45.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/42940bfa05bba510.webp" alt="">
+        </div>
+        <div class="ccard__text">
+          <h3 class="display ccard__name">Miami Beach</h3>
+          <p class="ccard__desc" data-es="La postal: Art Deco, torres de salvavidas, Ocean Drive.">The postcard: Art Deco, lifeguard towers, Ocean Drive.</p>
+          <div class="ccard__row"><p class="ccard__count" data-es="22 diseños de imanes · 46 productos">22 magnet designs · 46 products</p><span class="ccard__go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
+        </div>
+      </a>
+      <a class="ccard tint-sun" role="listitem" href="#collections" aria-label="See the Miami collection">
+        <div class="ccard__fan" aria-hidden="true">
+          <img class="obj" src="../../../../assets/img/78b9a11102de291b.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/7d3176b3f321fba9.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/2114ebf44cf9338c.jpg" alt="">
+        </div>
+        <div class="ccard__text">
+          <h3 class="display ccard__name">Miami</h3>
+          <p class="ccard__desc" data-es="Skyline, murales de Wynwood, palmas al atardecer.">Skyline, Wynwood walls and palms at sunset.</p>
+          <div class="ccard__row"><p class="ccard__count" data-es="27 diseños de imanes · 53 productos">27 magnet designs · 53 products</p><span class="ccard__go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
+        </div>
+      </a>
+      <a class="ccard tint-blush" role="listitem" href="#collections" aria-label="See the Cuban American collection">
+        <div class="ccard__fan" aria-hidden="true">
+          <img class="obj" src="../../../../assets/img/fa811de686c580f3.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/3d7a5d7f8f8aeaa7.jpg" alt="">
+          <img class="obj" src="../../../../assets/img/cf336840ca0aaa54.jpg" alt="">
+        </div>
+        <div class="ccard__text">
+          <h3 class="display ccard__name">Cuban American</h3>
+          <p class="ccard__desc" data-es="Calle Ocho, dominó y el gallo. Pura Pequeña Habana.">Calle Ocho, dominoes, the rooster. Pure Little Havana.</p>
+          <div class="ccard__row"><p class="ccard__count" data-es="21 diseños de imanes · 38 productos">21 magnet designs · 38 products</p><span class="ccard__go"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======== Shop by product: each row shows four real products ======== -->
+<section class="sec" id="products" aria-labelledby="prod-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead shead--tight"><div class="shead__main"><p class="eyebrow" data-es="Por producto">Shop by product</p><h2 id="prod-h" class="h2" data-es="Cinco cosas que <em>el turista se lleva.</em>">Five things <em>tourists take home.</em></h2></div></div>
+    <nav class="plist" aria-label="Products">
+      <a class="prow" href="#products">
+        <span class="prow__text"><span class="prow__top"><span class="prow__name" data-es="Imanes">Magnets</span><span class="prow__count" data-es="70 diseños">70 designs</span></span><span class="prow__desc" data-es="Madera hecha a mano, en su refrigerador a diario.">Handmade wood, on their fridge every day.</span></span>
+        <span class="prow__fan" aria-hidden="true"><span class="pth"><img src="../../../../assets/img/47f0ab36ab5535bc.jpg" alt=""></span><span class="pth"><img src="../../../../assets/img/3d7a5d7f8f8aeaa7.jpg" alt=""></span><span class="pth"><img src="../../../../assets/img/7d3176b3f321fba9.jpg" alt=""></span><span class="pth"><img src="../../../../assets/img/839192581b809382.jpg" alt=""></span></span>
+        <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+      <a class="prow" href="#products">
+        <span class="prow__text"><span class="prow__top"><span class="prow__name">Stickers</span><span class="prow__count" data-es="28 diseños">28 designs</span></span><span class="prow__desc" data-es="Vinilo resistente. El extra fácil en el mostrador.">Weatherproof vinyl. The easy add-on at the register.</span></span>
+        <span class="prow__fan" aria-hidden="true"><span class="pth tint-blush"><img class="fit" src="../../../../assets/img/513bbc4d19415c11.webp" alt=""></span><span class="pth tint-sun"><img class="fit" src="../../../../assets/img/a567dd3bcbebad81.webp" alt=""></span><span class="pth tint-sea"><img class="fit" src="../../../../assets/img/30d7805403769920.webp" alt=""></span><span class="pth tint-sand"><img class="fit" src="../../../../assets/img/ecfb36faf2b601e5.webp" alt=""></span></span>
+        <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+      <a class="prow" href="#products">
+        <span class="prow__text"><span class="prow__top"><span class="prow__name" data-es="Gorras">Caps</span><span class="prow__count" data-es="6 diseños · 6 colores">6 designs · 6 colors</span></span><span class="prow__desc" data-es="Gorras vintage, parche de cuero. Paquetes de 15.">Vintage caps, leather patch. Packs of 15.</span></span>
+        <span class="prow__fan" aria-hidden="true"><span class="pth tint-cap"><img src="../../../../assets/img/40b385e5adb4c466.webp" alt=""></span><span class="pth tint-cap"><img src="../../../../assets/img/1ec98070ae143318.webp" alt=""></span><span class="pth tint-cap"><img src="../../../../assets/img/6d14cf076a853609.webp" alt=""></span><span class="pth tint-cap"><img src="../../../../assets/img/73c319be1ef90c31.webp" alt=""></span></span>
+        <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+      <a class="prow" href="#products">
+        <span class="prow__text"><span class="prow__top"><span class="prow__name">Totes</span><span class="prow__count" data-es="19 diseños">19 designs</span></span><span class="prow__desc" data-es="Lona de algodón. Para cargar el resto del viaje.">Cotton canvas. Carries the rest of the trip.</span></span>
+        <span class="prow__fan" aria-hidden="true"><span class="pth tint-sea"><img class="fit" src="../../../../assets/img/921a3f7d029aba06.webp" alt=""></span><span class="pth tint-sand"><img class="fit" src="../../../../assets/img/f0e8ff12a1f9c3a3.webp" alt=""></span><span class="pth tint-blush"><img class="fit" src="../../../../assets/img/149353a7c1c3f1ba.webp" alt=""></span><span class="pth tint-sun"><img class="fit" src="../../../../assets/img/30853038e19a5a3d.webp" alt=""></span></span>
+        <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+      <a class="prow" href="#products">
+        <span class="prow__text"><span class="prow__top"><span class="prow__name" data-es="Posavasos">Coasters</span><span class="prow__count" data-es="14 diseños">14 designs</span></span><span class="prow__desc" data-es="Cerámica con corcho. El regalito para los de casa.">Glazed ceramic, cork back. The gift for back home.</span></span>
+        <span class="prow__fan" aria-hidden="true"><span class="pth"><img src="../../../../assets/img/8551650fbdb8f778.webp" alt=""></span><span class="pth"><img src="../../../../assets/img/5584dca78a8391d2.webp" alt=""></span><span class="pth"><img src="../../../../assets/img/60346db705575dde.webp" alt=""></span><span class="pth"><img src="../../../../assets/img/2969c9837f70b27d.webp" alt=""></span></span>
+        <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </nav>
+  </div>
+</section>
+
+<!-- ======== Trial form ======== -->
+<section class="sec etrial" id="trial" aria-labelledby="trial-h" data-hide-sticky>
+  <div class="wrap etrial__grid">
+    <div class="etrial__copy">
+      <span class="tag tag--ink"><span class="star" aria-hidden="true">★</span> <span data-es="Caja gratis">Free trial box</span></span>
+      <h2 id="trial-h" class="display etrial__h" data-es="Pruébalo en tu tienda, <span class='sv'>gratis.</span>">Try it on your shelf, <span class="sv">free.</span></h2>
+      <p class="lede" data-es="Dos pasos rápidos. Jesús lee cada solicitud en persona.">Two quick steps. Jesús reads every request himself.</p>
+      <ul class="checks">
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span data-es="<b>Gratis.</b> Sin tarjeta, sin contrato."><b>Free.</b> No card, no contract.</span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span data-es="<b>Es tuya</b> para vender."><b>Yours to keep</b> and sell.</span></li>
+        <li><span class="ck"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span data-es="<b>En toda la Florida,</b> desde los Cayos."><b>Anywhere in Florida,</b> from the Keys up.</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <form class="fcard" id="tform" novalidate data-zip-min="32004" data-zip-max="34997" aria-labelledby="trial-h">
+        <div class="fcard__head">
+          <p class="fcard__step"><span data-step-label>Step 1 of 2 · Your shop</span><span>~2 min</span></p>
+          <div class="fbar" aria-hidden="true"><span class="is-on"></span><span></span></div>
+        </div>
+        <p class="sr-only" aria-live="polite" data-live></p>
+
+        <fieldset class="fstep" data-step="1">
+          <legend class="sr-only" data-es="Tu tienda y cómo contactarte">Your shop and how to reach you</legend>
+          <p class="ferr-sum" data-errsum hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span data-es="Revisa los campos marcados.">A couple of fields need a look.</span></p>
+          <div class="field">
+            <label for="f-store" data-es="Nombre de la tienda">Store name</label>
+            <input id="f-store" name="store" autocomplete="organization" required aria-describedby="e-store">
+            <p class="field__err" id="e-store" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="field">
+            <label for="f-name" data-es="Tu nombre">Your name</label>
+            <input id="f-name" name="name" autocomplete="name" required aria-describedby="e-name">
+            <p class="field__err" id="e-name" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="e-email">
+            <p class="field__err" id="e-email" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="frow2">
+            <div class="field">
+              <label for="f-phone" data-es="Teléfono / WhatsApp">Phone / WhatsApp</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="e-phone">
+              <p class="field__err" id="e-phone" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+            </div>
+            <div class="field">
+              <label for="f-zip" data-es="ZIP de la tienda">Shop ZIP code</label>
+              <input id="f-zip" name="zip" inputmode="numeric" pattern="\d{5}" maxlength="5" autocomplete="postal-code" required aria-describedby="h-zip e-zip">
+              <p class="field__err" id="e-zip" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+            </div>
+          </div>
+          <p class="field__hint" id="h-zip" data-zip-hint>Where your shop is.</p>
+          <button class="btn btn--sun btn--block" type="button" data-next><span data-es="Continuar">Continue</span> <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <p class="ffine" data-es="Gratis · Sin tarjeta · Sin contrato">Free · No card · No contract</p>
+        </fieldset>
+
+        <fieldset class="fstep" data-step="2" hidden>
+          <legend class="sr-only" data-es="A dónde mandamos tu caja">Where we send your box</legend>
+          <div class="field">
+            <label for="f-street" data-es="Dirección">Street address</label>
+            <input id="f-street" name="street" autocomplete="street-address" required aria-describedby="h-street e-street">
+            <p class="field__hint" id="h-street" data-es="La de la tienda. Ahí llega la caja.">Your shop’s address. That’s where the box goes.</p>
+            <p class="field__err" id="e-street" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="field">
+            <label for="f-city" data-es="Ciudad">City</label>
+            <input id="f-city" name="city" autocomplete="address-level2" required aria-describedby="e-city">
+            <p class="field__err" id="e-city" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="field">
+            <label for="f-social" data-es="Instagram o página web <span class='opt'>(opcional)</span>">Instagram or website <span class="opt">(optional)</span></label>
+            <input id="f-social" name="social" autocomplete="url" aria-describedby="h-social">
+            <p class="field__hint" id="h-social" data-es="Así Jesús ve tu tienda y te contesta más rápido.">Lets Jesús see your shop and reply faster.</p>
+          </div>
+          <div class="frow">
+            <button class="btn btn--ghost" type="button" data-back data-es="Atrás">Back</button>
+            <button class="btn btn--sun" type="submit" data-submit><span data-es="Enviar solicitud">Send my request</span> <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+          <p class="ffine" data-es="Es una solicitud, no un pedido. Una caja por negocio.">A request, not an order. One trial box per business.</p>
+        </fieldset>
+
+        <!-- Outside Florida: friendly, and still submits (flagged area=outside) -->
+        <div class="fpanel" data-outside hidden>
+          <div class="fnote" role="status"><b data-es="¿Fuera de la Florida? Hablemos igual.">Outside Florida? Let’s still talk.</b><span data-es="Por ahora las cajas de prueba son solo en la Florida. Manda tus datos y Jesús te contesta sobre precios al por mayor.">Free trial boxes stay in Florida for now. Send your details and Jesús will reply about wholesale.</span></div>
+          <button class="btn btn--sun btn--block" type="button" data-send-outside><span data-es="Mandar mis datos">Send my details</span> <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="btn btn--ghost btn--block" type="button" data-change-zip data-es="Cambiar el ZIP">Change ZIP</button>
+        </div>
+
+        <!-- Success -->
+        <div class="fpanel fdone" data-done hidden tabindex="-1" role="status">
+          <div class="fdone__mark"><svg aria-hidden="true"><use href="#mark"/></svg></div>
+          <h3 data-done-h>Got it!</h3>
+          <p data-in data-es="Jesús lee cada solicitud en persona. Te contesta por email o WhatsApp en <span class='var' title='TRIAL_REPLY_DAYS'>2</span> días hábiles.">Jesús reads every request himself. Expect a reply by email or WhatsApp within <span class="var" title="Variable TRIAL_REPLY_DAYS (default 2)">2</span> business days.</p>
+          <p data-out hidden data-es="Ya tenemos tus datos. Jesús te contesta sobre precios al por mayor en <span class='var' title='TRIAL_REPLY_DAYS'>2</span> días hábiles.">Your details are in. Jesús will reply about wholesale within <span class="var" title="Variable TRIAL_REPLY_DAYS (default 2)">2</span> business days.</p>
+          <ol data-in>
+            <li data-es="Jesús mira tu tienda.">Jesús looks at your shop.</li>
+            <li data-es="Te contesta por email o WhatsApp.">He replies by email or WhatsApp.</li>
+            <li data-es="Si se aprueba, tu caja sale de Miami.">Once approved, your box ships from Miami.</li>
+          </ol>
+          <div class="flinks"><a href="#bestsellers" data-es="Mientras, mira los diseños">Meanwhile, see the designs</a></div>
+        </div>
+
+        <!-- Network error: production opens a prefilled mailto automatically; nothing is lost -->
+        <div class="fpanel fstate" data-error hidden tabindex="-1" role="alert">
+          <span class="fstate__icon fstate__icon--err"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></span>
+          <h3 data-es="Ya casi.">Almost there.</h3>
+          <p data-es="El formulario no pasó, así que te abrimos un email con tus datos. Solo dale a enviar.">The form didn’t go through, so we opened an email with your details filled in. Just hit send.</p>
+          <dl class="fsum" data-summary></dl>
+          <a class="btn btn--sun btn--block" data-mailto href="mailto:jesusnodarse1823@gmail.com?subject=Trial%20box%20request"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg> <span data-es="Abrir el email otra vez">Open the email again</span></a>
+          <a class="btn btn--ghost btn--block" data-wa href="https://wa.me/17864834268"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg> <span data-es="Mejor por WhatsApp">Send on WhatsApp instead</span></a>
+          <p class="ffine" data-es="¿Sin app de correo? Por WhatsApp también sirve.">No email app on this phone? WhatsApp works too.</p>
+        </div>
+
+        <!-- Already requested (soft guard: this browser already sent one) -->
+        <div class="fpanel fstate" data-already hidden tabindex="-1" role="status">
+          <span class="fstate__icon fstate__icon--ok"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>
+          <h3 data-es="Tu solicitud ya llegó.">Your request is already in.</h3>
+          <p data-es="Jesús ya la tiene y te contesta en <span class='var' title='TRIAL_REPLY_DAYS'>2</span> días hábiles. ¿Quieres cambiar algo? Escríbele.">Jesús has it and will reply within <span class="var" title="Variable TRIAL_REPLY_DAYS (default 2)">2</span> business days. Need to change something? Message him.</p>
+          <p class="fsum" data-already-meta hidden></p>
+          <a class="btn btn--ink btn--block" href="https://wa.me/17864834268"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg> <span data-es="WhatsApp a Jesús">WhatsApp Jesús</span></a>
+          <div class="flinks"><button type="button" data-new-request data-es="¿Otra tienda? Empieza de nuevo">Different shop? Start over</button></div>
+        </div>
+
+        <div class="hp" aria-hidden="true"><label>Leave this empty <input name="_honey" tabindex="-1" autocomplete="off"></label></div>
+        <input type="hidden" name="lang" value="en"><input type="hidden" name="area" value=""><input type="hidden" name="page" value="hub">
+
+        <p class="fprivacy"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><span data-es="Usamos tus datos solo para revisar tu solicitud y contestarte. Sin boletines. Nunca se venden ni se comparten.">We use your details only to review this request and reply to you. No newsletter. Never sold or shared.</span></p>
+      </form>
+      <p class="etrial__alt"><a href="https://wa.me/17864834268"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg> <span data-es="¿Solo los precios? WhatsApp a Jesús">Just want prices? WhatsApp Jesús</span></a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== Custom collections ======== -->
+<section class="sec ecrear" id="crear" aria-labelledby="crear-h">
+  <div class="wrap ecrear__grid">
+    <div class="ecrear__top">
+      <div class="ecrear__head">
+        <p class="eyebrow" data-es="Colecciones a medida">Custom collections</p>
+        <h2 id="crear-h" class="h2" data-es="Tu playa, <em>en un imán.</em>">Your beach, <em>on a magnet.</em></h2>
+      </div>
+      <div class="ecrear__art">
+        <figure class="arch"><img src="https://images.unsplash.com/photo-1754265222750-687ab87f5549?w=900&q=80&auto=format&fit=crop" alt="Palm trees against a bright blue sky" loading="lazy"></figure>
+        <span class="tag tag--sun"><span class="star" aria-hidden="true">★</span> <span data-es="Hecho para tu tienda">Made for your shop</span></span>
+      </div>
+    </div>
+    <p class="lede" data-es="El nombre de tu ciudad, tu muelle, tu faro. Cuéntale a Jesús lo que tus clientes siempre piden.">Your town’s name, your pier, your lighthouse. Tell Jesús what your customers keep asking for.</p>
+    <div class="ecrear__btns">
+      <a class="btn btn--sun" data-href-es="https://wa.me/17864834268?text=%C2%A1Hola%20Jes%C3%BAs!%20Me%20interesa%20una%20colecci%C3%B3n%20a%20medida%20para%20mi%20tienda.%20Estamos%20en%20" href="https://wa.me/17864834268?text=Hi%20Jes%C3%BAs!%20I%27d%20like%20a%20custom%20collection%20for%20my%20shop.%20We%27re%20in%20"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg> <span data-es="WhatsApp a Jesús">WhatsApp Jesús</span></a>
+      <a class="btn btn--ghost-light" data-href-es="mailto:jesusnodarse1823@gmail.com?subject=Colecci%C3%B3n%20a%20medida" href="mailto:jesusnodarse1823@gmail.com?subject=Custom%20collection"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg> <span data-es="Mándanos un email">Email us</span></a>
+    </div>
+    <p class="muted"><span data-es="Mínimos y tiempos:">Minimums and lead times:</span> <span class="ph">[placeholder: custom minimum + lead time]</span></p>
+  </div>
+</section>
+
+<!-- ======== FAQ (the business rules live here) ======== -->
+<section class="sec" id="faq" aria-labelledby="faq-h">
+  <div class="wrap efaq">
+    <div class="efaq__intro">
+      <h2 id="faq-h" class="display efaq__big" data-es="Buenas <span class='sv'>preguntas.</span>">Good <span class="sv">questions.</span></h2>
+      <p><span data-es="¿Algo más? Jesús te contesta en persona.">Anything else? Jesús answers himself.</span> <a class="link-arrow" href="https://wa.me/17864834268"><span data-es="Pregunta por WhatsApp">Ask on WhatsApp</span> <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    </div>
+    <div class="faq">
+      <details data-open-wide><summary><span data-es="¿Quién puede pedir la caja?">Who can request a trial box?</span> <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p data-es="Tiendas de regalos, souvenirs y turismo en toda la Florida, de los Cayos al Panhandle. Es una caja por negocio, para que alcance para todos.">Gift, souvenir and tourist shops anywhere in Florida, from the Keys to the Panhandle. It’s one box per business, so there’s enough to go around.</p></details>
+      <details><summary><span data-es="¿Cuánto cuesta?">What does it cost?</span> <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p data-es="Nada. Sin tarjeta, sin contrato, sin trampa. La caja es tuya, y lo que vendas también.">Nothing. No card, no contract, no catch. The box is yours to keep, and whatever it sells is yours too.</p></details>
+      <details><summary><span data-es="¿Qué trae la caja?">What comes in the box?</span> <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p data-es="Siempre nuestros imanes de madera hechos a mano, más una mezcla de stickers, gorras, totes o posavasos. Unas <span class='ph'>[placeholder]</span> piezas y una tarjeta para reponer.">Our handmade wood magnets, always, plus a mix of stickers, caps, totes or coasters. About <span class="ph">[placeholder: pieces per box]</span> pieces, and a reorder card.</p></details>
+      <details><summary><span data-es="¿Por qué Jesús revisa cada solicitud?">Why does Jesús review every request?</span> <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p data-es="Cada caja es gratis, así que se asegura de que llegue a una tienda de verdad. Lee cada solicitud en persona y te contesta en <span class='var' title='TRIAL_REPLY_DAYS'>2</span> días hábiles. Es una solicitud, no un pedido; si no encaja, te lo dice claro.">Every box is free, so he makes sure each one lands in a real shop. He reads each request himself and replies within <span class="var" title="Variable TRIAL_REPLY_DAYS (default 2)">2</span> business days. It’s a request, not an order; if it’s not a fit, he’ll tell you straight.</p></details>
+      <details><summary><span data-es="¿Cuándo llega la caja?">When will my box arrive?</span> <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p data-es="Cuando se aprueba la solicitud, tu caja sale de Miami en <span class='ph'>[placeholder]</span>.">Once your request is approved, your box ships from Miami in <span class="ph">[placeholder: days from approval to ship]</span>.</p></details>
+      <details><summary><span data-es="¿Cómo vuelvo a pedir?">How do I reorder?</span> <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p data-es="Escanea la tarjeta QR de tu caja o escríbele a Jesús por WhatsApp. Los pedidos son al por mayor, con mínimo de <span class='var' title='TRIAL_REORDER_MIN'>$150</span>, contra entrega o con tarjeta. Después del primer pedido pagado hay plazos de pago.">Scan the QR card in your box, or just WhatsApp Jesús. Reorders are wholesale, with a <span class="var" title="Variable TRIAL_REORDER_MIN (default 150)">$150</span> minimum, paid on delivery or by card. Payment terms open up after your first paid order.</p></details>
+      <details><summary><span data-es="¿Necesito certificado de reventa?">Do I need a resale certificate?</span> <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p data-es="Para la prueba, no. Para el primer pedido pagado, ten a mano tu Certificado Anual de Reventa de la Florida y te vendemos sin impuesto.">Not for the trial. For your first paid order, have your Florida Annual Resale Certificate handy so we can sell to you tax-free.</p></details>
+      <details><summary><span data-es="Mi tienda no está en la Florida.">My shop is outside Florida.</span> <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p data-es="Mándalo igual. Las cajas de prueba son solo en la Florida por ahora, pero Jesús te contesta sobre precios al por mayor.">Send the form anyway. Free trial boxes stay in Florida for now, but Jesús will reply about wholesale.</p></details>
+      <details><summary><span data-es="¿Hacen diseños con el nombre de mi ciudad?">Can I get designs with my town’s name?</span> <span class="pm"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></span></summary><p data-es="Pregúntale a Jesús. Para eso son las colecciones a medida: tu ciudad, tu playa, tu lugar. Mínimos y tiempos: <span class='ph'>[placeholder]</span>.">Ask Jesús. That’s what custom collections are for: your town, your beach, your landmark. Minimums and lead times: <span class="ph">[placeholder]</span>.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="waline">
+  <div class="wrap">
+    <span data-es="¿Prefieres escribir? Jesús contesta.">Rather just text? Jesús answers.</span>
+    <a href="https://wa.me/17864834268"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg> <span data-es="WhatsApp a Jesús · +1 (786) 483-4268">WhatsApp Jesús · +1 (786) 483-4268</span></a>
+  </div>
+</div>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__about">
+        <a class="wm wm--light" href="#top" aria-label="Miami Peculiar by Studio Lab">
+          <svg class="wm__mark" aria-hidden="true"><use href="#mark"/></svg>
+          <span class="wm__text"><span class="wm__name"><b>Miami</b><i>Peculiar</i></span><span class="wm__by">by Studio Lab</span></span>
+        </a>
+        <p data-es="Souvenirs originales, hechos en Miami. Al por mayor para tiendas de toda la Florida.">Original souvenirs, made in Miami. Wholesale for gift shops across Florida.</p>
+      </div>
+      <div class="ftr__cols">
+        <div><h4 data-es="Colecciones">Collections</h4><ul><li><a href="#collections">Miami Beach</a></li><li><a href="#collections">Miami</a></li><li><a href="#collections">Cuban American</a></li></ul></div>
+        <div><h4 data-es="Productos">Products</h4><ul><li><a href="#products" data-es="Imanes">Magnets</a></li><li><a href="#products">Stickers</a></li><li><a href="#products" data-es="Gorras">Caps</a></li><li><a href="#products">Totes</a></li><li><a href="#products" data-es="Posavasos">Coasters</a></li></ul></div>
+        <div><h4 data-es="Al por mayor">Wholesale</h4><ul><li><a href="#trial" data-es="Caja de prueba gratis">Free trial box</a></li><li><a href="#crear" data-es="Colecciones a medida">Custom collections</a></li><li><a href="https://wa.me/17864834268">WhatsApp</a></li><li><a href="mailto:jesusnodarse1823@gmail.com">Email</a></li></ul></div>
+      </div>
+    </div>
+    <div class="ftr__base"><span data-es="© 2026 Nodarse Arts LLC · Miami Peculiar es una marca de Studio Lab">© 2026 Nodarse Arts LLC · Miami Peculiar is a Studio Lab brand</span><span data-es="Hecho en Miami, FL">Made in Miami, FL</span></div>
+  </div>
+</footer>
+
+<!-- Mockup-only navigation (not part of the design) -->
+<nav class="mockbar" aria-label="Mockup views">
+  <div class="wrap">
+    <b>Mockup views</b>
+    <span><a href="?lang=es">Español</a> · <a data-toggle="proof" href="?proof=1#proof">proof with numbers</a> · <a data-toggle="prices" href="?prices=0#bestsellers">picks without prices</a></span>
+    <span>Form: <a href="?state=errors#trial">errors</a> · <a href="?state=outside#trial">outside FL</a> · <a href="?state=sending#trial">sending</a> · <a href="?state=success#trial">success</a> · <a href="?state=error#trial">network error</a> · <a href="?state=already#trial">already requested</a> · <a href="?#trial">reset</a></span>
+    <span><a href="reorder.html?box=MB-014">Reorder page</a> · <a href="qr-card.html">QR card</a></span>
+  </div>
+</nav>
+
+<div class="sticky-cta is-hidden">
+  <a class="btn btn--sun" href="#trial"><span data-es="Pide tu caja gratis">Request your free box</span> <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  <a class="sticky-wa" href="https://wa.me/17864834268" aria-label="WhatsApp Jesús"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg></a>
+</div>
+
+<script src="mockup.js"></script>
+</body>
+</html>

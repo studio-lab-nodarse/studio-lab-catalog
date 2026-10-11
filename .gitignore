@@ -5,3 +5,11 @@ _site/
 # Machine-local Claude Code settings; .claude/launch.json IS tracked (dev server config)
 .claude/settings.local.json
 .claude/worktrees/
+
+# Third-party design references (Pinterest) — local only, never commit
+docs/hub-trial/mockups/refs/
+docs/hub-trial/mockups/**/*.png
+# Superseded phase-2 mockups (screenshots are large)
+docs/hub-trial/design/
+# Rejected mockup variant (kept locally)
+docs/hub-trial/mockups/v1/
