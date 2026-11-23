@@ -31,8 +31,8 @@
     if (kind) setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 6000);
   }
   // Sólo resuelve si FormSubmit CONFIRMA el envío. A veces tarda en contestar (o no
-  // contesta): a los 20 s se da por no confirmado y se usa el canal original.
-  var TIMEOUT = 20000;
+  // contesta): (13-28 s es común) a los 60 s se da por no confirmado y se usa el canal original.
+  var TIMEOUT = 60000;
   function post(payload) {
     var request = fetch(ENDPOINT, {
       method: "POST",
