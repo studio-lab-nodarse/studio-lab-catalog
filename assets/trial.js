@@ -37,7 +37,6 @@
   if (!form) return;
   var cfg = form.dataset;
   var KEY = "mp_trial_sent";
-  var TIMEOUT = 20000;
   var fields = $("[data-fields]", form);
   var busy = false;
 
@@ -143,16 +142,6 @@
     });
   }
 
-  function post(payload) {
-    return new Promise(function (resolve, reject) {
-      var timer = setTimeout(function () { reject(new Error("timeout")); }, TIMEOUT);
-      window.__slSubmit(payload).then(
-        function (d) { clearTimeout(timer); resolve(d); },
-        function (e) { clearTimeout(timer); reject(e); }
-      );
-    });
-  }
-
   function send(v, outside) {
     if (busy) return;
     // Spam trap: people never see this field. Look done, send nothing.
@@ -173,14 +162,17 @@
 
     setBusy(true);
     var sent;
-    try { sent = post(payload); } catch (e) { sent = Promise.reject(e); }
-    sent.then(function () {
+    try { sent = window.__slSubmit(payload); } catch (e) { sent = Promise.reject(e); }
+    function confirmed() {
       setBusy(false);
       store({ store: v.store, at: Date.now() });
       track(outside ? "trial-submit-outside" : "trial-submit");
       show(outside ? "doneout" : "done", true);
-    }, function () {
+    }
+    sent.then(confirmed, function (err) {
       setBusy(false);
+      // Slow rather than failed: if it is confirmed later, say so.
+      if (err && err.late) err.late.then(confirmed, function () {});
       fill(v);
       var body = lines(v);
       var mail = "mailto:" + cfg.email + "?subject=" + encodeURIComponent(subject(v)) + "&body=" + encodeURIComponent(body);

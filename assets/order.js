@@ -32,8 +32,11 @@
   }
   // POST genérico a FormSubmit. Sólo resuelve si FormSubmit CONFIRMA el envío:
   // un 200 con success:"false" (p. ej. cuenta sin activar) también rechaza.
+  // FormSubmit a veces tarda en contestar (o no contesta): a los 20 s rechaza con
+  // error.late = el envío que sigue en curso, por si termina confirmándose.
+  var TIMEOUT = 20000;
   function post(payload) {
-    return fetch(ENDPOINT, {
+    var request = fetch(ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify(payload)
@@ -42,6 +45,17 @@
         if (d && (d.success === "true" || d.success === true)) return d;
         throw new Error("pending");
       });
+    return new Promise(function (resolve, reject) {
+      var timer = setTimeout(function () {
+        var e = new Error("timeout");
+        e.late = request;
+        reject(e);
+      }, TIMEOUT);
+      request.then(
+        function (d) { clearTimeout(timer); resolve(d); },
+        function (e) { clearTimeout(timer); reject(e); }
+      );
+    });
   }
   function send(url) {
     var o = parse(url);
@@ -52,8 +66,11 @@
         if (o.wa) window.open(url, "_blank"); // WhatsApp queda como canal secundario
       })
       .catch(function () {
-        // nunca perder un pedido: cae al canal original
-        if (o.wa) window.open(url, "_blank"); else window.location.href = url;
+        // nunca perder un pedido: cae al canal original. Tras una espera larga el
+        // navegador puede bloquear la ventana nueva; entonces abre en esta misma.
+        var t = document.getElementById("__sl_toast");
+        if (t && t.parentNode) t.parentNode.removeChild(t);
+        if (!o.wa || !window.open(url, "_blank")) window.location.href = url;
       });
   }
   // sink de mailto: el código de la app hace  window.__slp.href = 'mailto:...'
