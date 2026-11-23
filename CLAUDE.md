@@ -59,7 +59,7 @@ The committed sources are **frozen** (2026-07-16). The pages were originally pro
 
 ## Project constants (single source of truth)
 
-For the templated pages these are **injected from `src/_data/site.json`** — change them there. [docs/SITE-CONFIG.md](docs/SITE-CONFIG.md) remains the human-readable reference and lists every "Where used" spot; keep the two in step. Quick reference: brand **Studio Lab** (storefront sub-brand **Miami Peculiar**), legal entity **Nodarse Arts LLC**, order email `jesusnodarse1823@gmail.com` (via FormSubmit; CI blocks the old `nodarsesartsllc@gmail.com`), WhatsApp `wa.me/17864834268`, bilingual **en/es** (runtime toggle, ships **`en`**), Pages base `https://studio-lab-nodarse.github.io/studio-lab-catalog/`.
+For the templated pages these are **injected from `src/_data/site.json`** — change them there. [docs/SITE-CONFIG.md](docs/SITE-CONFIG.md) remains the human-readable reference and lists every "Where used" spot; keep the two in step. Quick reference: brand **Studio Lab** (storefront sub-brand **Miami Peculiar**), legal entity **Nodarse Arts LLC**, order email `jesusnodarse1823@gmail.com` (via FormSubmit; CI blocks the old `nodarsesartsllc@gmail.com`), WhatsApp `wa.me/17864834268`, bilingual **en/es** (runtime toggle, ships **`en`**), site base `https://miamipeculiar.com/` (custom domain; the old `studio-lab-nodarse.github.io/studio-lab-catalog/` URLs redirect to it).
 
 Note: the order email also lives in `assets/order.js` (the FormSubmit endpoint) and the **hub** still hardcodes its own copies — `site.json` does not reach either. CI guards both.
 

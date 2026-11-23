@@ -21,7 +21,7 @@ if len(sys.argv) > 1:
         sys.exit(1)
     os.chdir(root)
 
-BASE = "https://studio-lab-nodarse.github.io/studio-lab-catalog/"
+BASE = "https://miamipeculiar.com/"
 PAGES = [
     "index.html",
     "es/index.html",

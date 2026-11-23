@@ -14,7 +14,9 @@ Outstanding items. The remediation phases (P1–P4) are done; see [REMEDIATION-P
 - [ ] Owner OKs the catalog moving to `/catalogo/` and confirms his tool doesn't read the live root.
 - [ ] Repo Variables set (`.env.example`); `GOATCOUNTER_CODE` too.
 - [ ] FormSubmit activated; one real trial request reaches the inbox.
-- [ ] Domain bought, connected, base switched (SITE-CONFIG → "Switching to a custom domain").
+- [x] Domain bought, DNS set, base switched to `https://miamipeculiar.com/`.
+- [ ] Domain verified in the GitHub org and connected in Pages, HTTPS on (**before merging**).
+- [ ] After connecting: old github.io links redirect (with `?order=`), and FormSubmit still delivers from the new domain.
 - [ ] Owner confirms claims, terms, box contents, top 4 and the signed note.
 - [ ] Before the first box ships: reorder page + QR cards (the page promises them).
 

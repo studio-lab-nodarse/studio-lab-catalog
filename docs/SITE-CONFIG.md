@@ -31,8 +31,8 @@ Human-readable reference for the values that recur across the site (order channe
 | Key | Value |
 |-----|-------|
 | GitHub repo | `studio-lab-nodarse/studio-lab-catalog` |
-| Pages base URL | `https://studio-lab-nodarse.github.io/studio-lab-catalog/` |
-| Custom domain | none (no CNAME) |
+| Base URL | `https://miamipeculiar.com/` |
+| Custom domain | `miamipeculiar.com` (GoDaddy). DNS: 4 `A` + 4 `AAAA` to GitHub Pages, `www` CNAME to `studio-lab-nodarse.github.io`, TXT `_github-pages-challenge-studio-lab-nodarse` (keep it: GitHub rechecks it). **Connect it in repo Settings → Pages before merging the PR that sets this base.** Old github.io URLs then redirect here |
 | Deploy | push to `main` → Actions builds with Eleventy → Pages serves `_site/` |
 
 ## Canonical page URLs
@@ -50,9 +50,9 @@ Human-readable reference for the values that recur across the site (order channe
 
 Settings → Secrets and variables → Actions → **Variables**. To change one: edit it, then re-run "Deploy static content to Pages". Empty hides that block; a malformed value fails the build. Names and formats: [`.env.example`](../.env.example) and `src/_data/trial.js`. Analytics: `GOATCOUNTER_CODE` (empty = no script); events `trial-start`, `trial-submit`, `trial-submit-outside`, `trial-error`, `whatsapp-*`.
 
-## Switching to a custom domain
+## Changing the base URL
 
-Change the base in: `src/_data/site.json`, `index.html` (28 refs), `sitemap.xml`, `robots.txt`, `assets/cart.js` (`PROD`), `src/_vendor/hub.html` (URL strings only), `tools/verify_site.py` (`BASE`), `404.html` (its link is `/studio-lab-catalog/…`). Then set the domain in the repo's Pages settings, add the DNS records, and turn on HTTPS. The catalog tool may also write the old base into new cards: check its next PR.
+Base lives in: `src/_data/site.json`, `index.html`, `sitemap.xml`, `robots.txt`, `assets/cart.js` (`PROD`), `src/_vendor/hub.html` (URL strings only), `tools/verify_site.py` (`BASE`). CI fails if they disagree.
 
 ## Brand assets
 

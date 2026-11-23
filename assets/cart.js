@@ -120,8 +120,8 @@ function mpFlash() { var b = document.getElementById('mpBar'); if (!b) return; b
    links to the current origin so the cart (localStorage is per-origin)
    survives cross-page navigation during local development. No-op in prod. */
 function mpFixLocalNav() {
-  var PROD = 'https://studio-lab-nodarse.github.io/studio-lab-catalog';
-  if (location.origin === 'https://studio-lab-nodarse.github.io') return;
+  var PROD = 'https://miamipeculiar.com';
+  if (location.origin === PROD) return;
   document.querySelectorAll('a[href^="' + PROD + '"]').forEach(function (a) {
     a.setAttribute('href', a.getAttribute('href').replace(PROD, location.origin));
   });
