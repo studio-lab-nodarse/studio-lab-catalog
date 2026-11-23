@@ -1,0 +1,19 @@
+    {
+      "@type": ["Organization", "Store"],
+      "@id": "{{ site.base }}#org",
+      "name": "{{ site.brand }}",
+      "legalName": "{{ site.legalName }}",
+      "brand": "{{ site.subBrand }}",
+      "founder": { "@type": "Person", "name": "{{ site.founder }}" },
+      "url": "{{ site.base }}",
+      "logo": "{{ site.base }}assets/favicon.png",
+      "image": "{{ site.base }}assets/og/default.jpg",
+      "areaServed": { "@type": "City", "name": "{{ site.areaServed }}" },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "telephone": "{{ site.phone }}",
+        "email": "{{ site.orderEmail }}",
+        "availableLanguage": ["es", "en"]
+      }
+    },

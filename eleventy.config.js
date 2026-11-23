@@ -13,6 +13,10 @@
 
 import fs from "node:fs";
 
+// Trial-page values: GitHub repo Variables in CI, a git-ignored .env locally.
+// Real environment variables win over the file. Only src/_data/trial.js reads them.
+if (fs.existsSync(".env")) process.loadEnvFile(".env");
+
 // Copied verbatim from the repo root into _site/ at the same path.
 const PASSTHROUGH = [
   "assets",
@@ -20,15 +24,10 @@ const PASSTHROUGH = [
   "robots.txt",
   "sitemap.xml",
   "404.html",
-  // The root page IS the "Catálogo 2026" app — its original home, restored
-  // 2026-07-23. Hand-authored (not templated), so it is copied verbatim.
-  // The storefront remains at apps/storefront/, linked from the catalog's footer.
-  "index.html",
-
-  // Hub-trial design preview (noindex, not in the sitemap, never linked).
-  // Published at the same depth as in the repo so its `../../../../assets/img/`
-  // paths resolve. Remove once the new hub ships. See docs/hub-trial/01-plan.md.
-  "docs/hub-trial/mockups/v3",
+  // NOTE: the root index.html is NOT here. It is the "Catálogo 2026" app, and the
+  // owner's catalog tool opens PRs against that exact file, so the SOURCE stays at
+  // the repo root. It is PUBLISHED at /catalogo/ (src/catalogo.njk + the
+  // `catalogShell` filter); the site root is the trial page (src/trial.njk).
 
   // NOTE: the hub is NOT here. Its compiled-React bundle lives untouched at
   // src/_vendor/hub.html and is assembled by src/apps/storefront/index.njk,
@@ -107,6 +106,27 @@ export default function (eleventyConfig) {
       "\n    " +
       src.slice(rootAt)
     );
+  });
+
+  // Publish the hand-authored root catalog one level down, at /catalogo/. Only its
+  // location-dependent references change; everything else is byte-for-byte.
+  eleventyConfig.addWatchTarget("index.html");
+  eleventyConfig.addFilter("catalogShell", (srcPath, base) => {
+    let html = fs.readFileSync(srcPath, "utf8");
+    // Fail loudly: a missed reference must break the build, not ship a catalog
+    // whose canonical (or order link) points at the trial page.
+    const swap = (from, to) => {
+      if (html.split(from).length !== 2) throw new Error(`catalogShell: expected exactly one ${from} in ${srcPath}`);
+      html = html.replace(from, () => to);
+    };
+    const here = `${base}catalogo/`;
+    swap(`<link rel="canonical" href="${base}">`, `<link rel="canonical" href="${here}">`);
+    swap(`<meta property="og:url" content="${base}">`, `<meta property="og:url" content="${here}">`);
+    swap(`"@id": "${base}#webpage"`, `"@id": "${here}#webpage"`);
+    swap(`"@id": "${here}#webpage",\n      "url": "${base}"`, `"@id": "${here}#webpage",\n      "url": "${here}"`);
+    swap(`"name": "Catálogo 2026", "item": "${base}"`, `"name": "Catálogo 2026", "item": "${here}"`);
+    swap(`${base}?order=`, `${here}?order=`);
+    return html.replace(/(["'(])assets\//g, "$1../assets/");
   });
 
   // ── Ship the default language, don't repaint into it ──────────────────

@@ -1,0 +1,347 @@
+---
+pagination:
+  data: trialPages
+  size: 1
+  alias: p
+permalink: "{{ p.path }}index.html"
+---
+{#
+  The trial-box page: the site root, in English at / and Spanish at /es/.
+  Copy + numbers: src/_data/trialPages.js (values from src/_data/trial.js).
+  Standalone look: does not load brand.css / masthead.css / cart.
+-#}
+{% from "trial/icons.njk" import ico, mark, brand %}
+{%- set t = p.t -%}
+{%- set A = p.root + "assets" -%}
+{%- set I = A + "/img/" -%}
+{%- set wa = "https://wa.me/" + site.whatsapp -%}
+<!DOCTYPE html>
+<html lang="{{ p.lang }}">
+<head>
+<meta charset="utf-8">
+<script>/* Old catalog order links (/?order=…) predate the catalog's move to /catalogo/. */
+if(/[?&]order=/.test(location.search))location.replace("{{ p.root }}catalogo/"+location.search);</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ t.title }}</title>
+<meta name="description" content="{{ t.description }}">
+<link rel="canonical" href="{{ site.base }}{{ p.path }}">
+<link rel="alternate" hreflang="en" href="{{ site.base }}">
+<link rel="alternate" hreflang="es" href="{{ site.base }}es/">
+<link rel="alternate" hreflang="x-default" href="{{ site.base }}">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#062E33">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.subBrand }}">
+<meta property="og:locale" content="{{ 'es_US' if p.es else 'en_US' }}">
+<meta property="og:locale:alternate" content="{{ 'en_US' if p.es else 'es_US' }}">
+<meta property="og:url" content="{{ site.base }}{{ p.path }}">
+<meta property="og:title" content="{{ t.title }}">
+<meta property="og:description" content="{{ t.description }}">
+<meta property="og:image" content="{{ site.base }}assets/og/default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ t.title }}">
+<meta name="twitter:description" content="{{ t.description }}">
+<meta name="twitter:image" content="{{ site.base }}assets/og/default.jpg">
+<link rel="icon" href="{{ A }}/favicon.png" sizes="any">
+<link rel="apple-touch-icon" href="{{ A }}/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+{% include "org-node.njk" %}
+    {
+      "@type": "WebPage",
+      "@id": "{{ site.base }}{{ p.path }}#webpage",
+      "url": "{{ site.base }}{{ p.path }}",
+      "name": {{ t.title | dump | safe }},
+      "description": {{ t.description | dump | safe }},
+      "inLanguage": "{{ p.lang }}",
+      "isPartOf": { "@id": "{{ site.base }}#website" },
+      "about": { "@id": "{{ site.base }}#org" }
+    }
+  ]
+}
+</script>
+<link rel="preload" href="{{ A }}/fonts/funnel-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ A }}/fonts/funnel-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Funnel Display + Funnel Sans, SIL Open Font License. Self-hosted: no third-party request before first paint. */
+@font-face{font-family:"Funnel Display";font-weight:500 600;font-style:normal;font-display:swap;src:url("{{ A }}/fonts/funnel-display-latin.woff2") format("woff2")}
+@font-face{font-family:"Funnel Sans";font-weight:400 700;font-style:normal;font-display:swap;src:url("{{ A }}/fonts/funnel-sans-latin.woff2") format("woff2")}
+</style>
+{%- include "analytics.njk" %}
+<style>
+{% include "styles/trial.css" %}</style>
+</head>
+<body id="top">
+
+<dialog class="sheet" id="menu" aria-label="{{ t.menu }}">
+  <div class="sheet-top">{{ brand("#top") }}<button type="button" class="round" data-menu-close aria-label="{{ t.close }}">{{ ico("close") }}</button></div>
+  <nav aria-label="{{ t.menu }}">
+    <ul>
+      <li><a class="disp" href="#best">{{ t.navDesigns }}</a></li>
+      <li><a class="disp" href="#box">{{ t.navBox }}</a></li>
+      <li><a class="disp" href="#how">{{ t.navHow }}</a></li>
+      <li><a class="disp" href="#faq">{{ t.navFaq }}</a></li>
+      <li><a class="disp" href="{{ p.root }}catalogo/">{{ t.navCatalog }}</a></li>
+    </ul>
+    <a class="btn btn-sun" href="#trial">{{ t.cta }}</a>
+    <a class="lnk center" href="{{ wa }}" data-track="whatsapp-menu">{{ ico("wa", "teal") }}{{ t.rather }}</a>
+  </nav>
+</dialog>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <picture>
+    <source media="(min-width:960px)" srcset="{{ I }}{{ p.img.heroDesktop }}">
+    <img class="hero-img kb" src="{{ I }}{{ p.img.heroPhone }}" alt="" fetchpriority="high">
+  </picture>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <header>
+    <div class="wrap">
+      {{ brand("#top") }}
+      <nav class="dnav" aria-label="{{ t.menu }}">
+        <a href="#best">{{ t.navDesigns }}</a>
+        <a href="#box">{{ t.navBox }}</a>
+        <a href="#how">{{ t.navHow }}</a>
+        <a href="#faq">{{ t.navFaq }}</a>
+        <a href="{{ p.root }}catalogo/">{{ t.navCatalog }}</a>
+      </nav>
+      <div class="langs">
+        <a href="{{ p.enHref }}" lang="en" hreflang="en" data-lang{% if not p.es %} aria-current="true"{% endif %}>EN</a>
+        <a href="{{ p.esHref }}" lang="es" hreflang="es" data-lang{% if p.es %} aria-current="true"{% endif %}>ES</a>
+        <button type="button" class="mbtn" data-menu-open aria-label="{{ t.menu }}" aria-haspopup="dialog">{{ ico("menu") }}</button>
+      </div>
+    </div>
+  </header>
+  <div class="wrap hero-body">
+    <div class="hero-copy">
+      <p class="eyebrow rise d1"><span class="dot" aria-hidden="true"></span>{{ p.eyebrow }}</p>
+      <h1 id="h1" class="disp rise d2">{{ t.h1a }} <span>{{ t.h1b }}</span></h1>
+      <p class="lead rise d3">{{ t.sub }}</p>
+      <div class="hero-cta rise d4">
+        <a class="btn btn-sun btn-lg" href="#trial">{{ t.cta }}</a>
+        <p class="under">{{ p.under }}</p>
+        <a class="lnk see" href="#best">{{ t.seeLink }} {{ ico("arrow") }}</a>
+      </div>
+    </div>
+  </div>
+  <a class="seal" href="#trial" aria-label="{{ t.cta }}">
+    <span class="seal-in">
+      <span class="ring" aria-hidden="true">{% for c in p.ring %}<span style="transform:translate(-50%,-50%) rotate({{ c.deg }}deg) translateY(-39px)">{{ c.ch }}</span>{% endfor %}</span>
+      <span class="seal-mark" aria-hidden="true">{{ mark(30, 28) }}</span>
+    </span>
+  </a>
+</section>
+
+{% if p.stats.length or p.shopLine %}
+<div class="proof">
+  <div class="wrap">
+    {% if p.stats.length %}<ul class="stats" aria-label="{{ t.proofLabel }}">
+      {% for s in p.stats %}<li><span class="disp">{{ s.n }}</span><span>{{ s.l }}</span></li>
+      {% endfor %}</ul>{% endif %}
+    {% if p.shopLine %}<p class="shops">{{ p.shopLine }}</p>{% endif %}
+  </div>
+</div>
+{% endif %}
+
+<div class="mid">
+<div class="topbar">
+  <div class="wrap">{{ brand("#top") }}<a class="lnk" href="{{ wa }}" data-track="whatsapp-topbar">{{ ico("wa", "teal") }}{{ t.rather }}</a><a class="btn btn-sun" href="#trial">{{ t.cta }}</a></div>
+</div>
+
+<section id="best" class="sec" aria-labelledby="best-h">
+  <div class="wrap best">
+    <div class="best-head reveal"><h2 id="best-h" class="h2">{{ t.bestTitle }}</h2><p class="sub">{{ t.bestSub }}</p></div>
+    <ul class="pgrid">
+      {% for it in p.best %}<li class="prod reveal">
+        <span class="tile tile-{{ it.kind }}"><img src="{{ I }}{{ it.img }}" alt="{{ it.alt }}" width="{{ it.w }}" height="{{ it.h }}" loading="lazy" decoding="async"></span>
+        <span class="prod-t"><b>{{ it.name }}</b><span>{{ it.type }}</span>{% if it.price %}<span class="prod-p">{{ it.price }}</span>{% endif %}</span>
+      </li>
+      {% endfor %}</ul>
+    <a class="lnk best-link" href="#trial">{{ t.catalog }} {{ ico("arrow") }}</a>
+  </div>
+</section>
+
+<section id="box" class="sec sand" aria-labelledby="box-h">
+  <div class="wrap two">
+    <div class="collage reveal" role="img" aria-label="{{ t.boxAlt }}">
+      <div class="collage-in">
+        <img class="c1" src="{{ I }}{{ p.img.lifeguard }}" alt="" loading="lazy" decoding="async">
+        <img class="c2" src="{{ I }}{{ p.img.domino }}" alt="" loading="lazy" decoding="async">
+        <img class="c3" src="{{ I }}{{ p.img.magnet3 }}" alt="" loading="lazy" decoding="async">
+        <img class="c4" src="{{ I }}{{ p.img.coaster }}" alt="" loading="lazy" decoding="async">
+        <img class="c5" src="{{ I }}{{ p.img.cadillac }}" alt="" loading="lazy" decoding="async">
+        <img class="c6" src="{{ I }}{{ p.img.cap }}" alt="" loading="lazy" decoding="async">
+        <div class="c7"><span>{{ t.reorderTag }}</span>{{ ico("qr") }}</div>
+      </div>
+    </div>
+    <div class="box-copy reveal">
+      <h2 id="box-h" class="h2">{{ t.boxTitle }}</h2>
+      <p class="sub">{{ t.boxSub }}</p>
+      <ul class="checks">
+        <li>{{ ico("check", "ck") }}<span>{{ p.boxMagnets }}</span></li>
+        <li>{{ ico("check", "ck") }}<span>{{ p.boxMix }}</span></li>
+        <li>{{ ico("check", "ck") }}<span>{{ t.boxCustom }}</span></li>
+        <li>{{ ico("check", "ck") }}<span>{{ t.boxCard }}</span></li>
+      </ul>
+      <div class="value"><p><b>{{ p.valueLine }}</b></p><p>{{ p.marginLine }}</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="shelves" class="sec" aria-labelledby="shelves-h">
+  <div class="wrap">
+    <h2 id="shelves-h" class="h2 reveal">{{ t.shelvesTitle if p.photos.length else t.whyTitle }}</h2>
+    {% if p.photos.length %}<ul class="shelves n{{ p.photos.length }}">
+      {% for ph in p.photos %}<li class="reveal"><img src="{{ I }}{{ ph.img }}" alt="{{ ph.alt }}" loading="lazy" decoding="async"><span>{{ ph.caption }}</span></li>
+      {% endfor %}</ul>{% endif %}
+    <ul class="checks why">
+      {% for w in p.why %}<li class="reveal">{{ ico("check", "ck") }}<span>{{ w }}</span></li>
+      {% endfor %}</ul>
+  </div>
+</section>
+
+<section id="how" class="sec sand" aria-labelledby="how-h">
+  <div class="wrap">
+    <h2 id="how-h" class="h2 reveal">{{ t.howTitle }}</h2>
+    <ol class="steps">
+      <li class="reveal"><span class="badge">{{ ico("chat") }}</span><div><h3>{{ t.s1t }}</h3><p class="sub">{{ t.s1d }}</p></div></li>
+      <li class="reveal"><span class="badge">{{ ico("eye") }}</span><div><h3>{{ t.s2t }}</h3><p class="sub">{{ p.s2d }}</p></div></li>
+      <li class="reveal"><span class="badge">{{ ico("qr") }}</span><div><h3>{{ t.s3t }}</h3><p class="sub">{{ t.s3d }}</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<div class="sticky-cta">
+  <a class="btn btn-sun" href="#trial">{{ t.cta }}</a>
+  <a class="wa-round" href="{{ wa }}" aria-label="WhatsApp" data-track="whatsapp-sticky">{{ ico("wa") }}</a>
+</div>
+</div>
+
+<section id="trial" class="sec" aria-labelledby="trial-h">
+  <div class="wrap formgrid">
+    <div class="formside reveal">
+      <h2 id="trial-h" class="h2">{{ t.formTitle }}</h2>
+      <figure class="note">
+        <img src="{{ I }}{{ p.img.jesus }}" alt="" width="216" height="216" loading="lazy" decoding="async">
+        <figcaption><p>{{ p.note }}</p><p class="by">— {{ t.noteBy }}</p></figcaption>
+      </figure>
+      {% if p.quote %}<blockquote><p class="disp">“{{ p.quote.text }}”</p><p class="by">— {{ p.quote.by }}</p></blockquote>{% endif %}
+      {% if p.formProof %}<p class="formproof">{{ ico("check", "ck") }}{{ p.formProof }}</p>{% endif %}
+    </div>
+    <div class="formcol">
+      <form class="fcard" id="trial-form" aria-labelledby="trial-h" novalidate
+        data-lang="{{ p.lang }}" data-zip-min="{{ trial.TRIAL_ZIP_MIN }}" data-zip-max="{{ trial.TRIAL_ZIP_MAX }}"
+        data-email="{{ site.orderEmail }}" data-wa="{{ site.whatsapp }}"
+        data-subject="{{ t.mailSubject }}" data-err-one="{{ t.errOne }}" data-err-many="{{ t.errMany }}"
+        data-sent="{{ t.alSent }}" data-yes="{{ t.mailYes }}">
+
+        <div class="panel" data-panel="form">
+          <p class="steph"><span>{{ t.oneStep }}</span><span>{{ t.about1 }}</span></p>
+          <noscript><p class="errsum">{{ t.noscript }} <a href="{{ wa }}">WhatsApp</a></p></noscript>
+          <p class="errsum" data-errsum role="alert" hidden>{{ ico("alert") }}<span></span></p>
+          <fieldset data-fields>
+            <div class="frow">
+              <div class="fl"><label for="f-store">{{ t.fStore }}</label><input id="f-store" name="store" autocomplete="organization" maxlength="120" required aria-describedby="e-store" data-label="{{ t.fStore }}"><p class="err" id="e-store" hidden>{{ ico("alert") }}{{ t.errStore }}</p></div>
+              <div class="fl"><label for="f-name">{{ t.fName }}</label><input id="f-name" name="name" autocomplete="name" maxlength="120" required aria-describedby="e-name" data-label="{{ t.fName }}"><p class="err" id="e-name" hidden>{{ ico("alert") }}{{ t.errName }}</p></div>
+            </div>
+            <div class="frow2">
+              <div class="fl"><label for="f-phone">{{ t.fPhone }}</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required aria-describedby="e-phone" data-label="{{ t.fPhone }}"><p class="err" id="e-phone" hidden>{{ ico("alert") }}{{ t.errPhone }}</p></div>
+              <div class="fl"><label for="f-zip">{{ t.fZip }}</label><input id="f-zip" name="zip" inputmode="numeric" maxlength="5" pattern="\d{5}" autocomplete="postal-code" required aria-describedby="e-zip zip-hint" data-label="{{ t.fZip }}"><p class="err" id="e-zip" hidden>{{ t.errZip }}</p></div>
+            </div>
+            <p class="hint" id="zip-hint">{{ t.zipHint }}</p>
+            <div class="fl"><label for="f-email">{{ t.fEmail }} <small>{{ t.optional }}</small></label><input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="160" aria-describedby="e-email" data-label="{{ t.fEmail }}"><p class="err" id="e-email" hidden>{{ ico("alert") }}{{ t.errEmail }}</p></div>
+            <label class="cbox" for="f-custom"><input id="f-custom" name="custom" type="checkbox" data-label="{{ t.mailCustom }}">{{ t.fCustom }}</label>
+            <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          </fieldset>
+          <button type="submit" class="btn btn-sun btn-lg" data-send><span data-idle>{{ t.send }}</span><span data-busy hidden>{{ ico("spin", "spin") }}{{ t.sending }}</span></button>
+          <p class="hint center">{{ t.addrHint }}</p>
+        </div>
+
+        <div class="panel" data-panel="outside" role="status" tabindex="-1" hidden>
+          <p class="steph"><span>{{ t.oneStep }}</span><span>{{ t.fZip }}: <b data-fill="zip"></b></span></p>
+          <div class="outbox">{{ ico("pin", "teal") }}<p class="disp">{{ t.outTitle }}</p><p>{{ t.outText }}</p></div>
+          <button type="button" class="btn btn-sun" data-out-send><span data-idle>{{ t.outSend }}</span><span data-busy hidden>{{ ico("spin", "spin") }}{{ t.sending }}</span></button>
+          <button type="button" class="btn btn-soft" data-out-zip>{{ t.outZip }}</button>
+        </div>
+
+        <div class="panel" data-panel="net" role="alert" tabindex="-1" hidden>
+          <span class="disc disc-err">{{ ico("mail") }}</span>
+          <h3 class="disp">{{ t.netTitle }}</h3>
+          <p class="ptext">{{ t.netText }}</p>
+          <dl>
+            <div><dt>{{ t.dStore }}</dt><dd data-fill="store"></dd></div>
+            <div data-row="email"><dt>Email</dt><dd data-fill="email"></dd></div>
+            <div><dt>{{ t.dPhone }}</dt><dd data-fill="phone"></dd></div>
+            <div><dt>{{ t.dZip }}</dt><dd data-fill="zip"></dd></div>
+          </dl>
+          <a class="btn btn-sun" data-mail href="mailto:{{ site.orderEmail }}">{{ t.netEmail }}</a>
+          <a class="btn btn-soft" data-wa-link href="{{ wa }}" data-track="whatsapp-error">{{ ico("wa") }}{{ t.netWa }}</a>
+        </div>
+
+        <div class="panel" data-panel="already" role="status" tabindex="-1" hidden>
+          <span class="disc">{{ ico("check") }}</span>
+          <h3 class="disp">{{ t.alTitle }}</h3>
+          <p class="ptext">{{ p.alText }}</p>
+          <p class="meta" data-already-meta></p>
+          <a class="btn btn-deep" href="{{ wa }}" data-track="whatsapp-already">{{ ico("wa") }}{{ t.alWa }}</a>
+          <button type="button" class="textbtn" data-restart>{{ t.alNew }}</button>
+        </div>
+
+        <div class="panel done" data-panel="done" role="status" tabindex="-1" hidden>
+          <span class="disc pop">{{ ico("check") }}</span>
+          <h3 class="disp">{{ t.doneTitle }}</h3>
+          <p class="ptext">{{ p.doneText }}</p>
+        </div>
+
+        <div class="panel done" data-panel="doneout" role="status" tabindex="-1" hidden>
+          <span class="disc pop">{{ ico("check") }}</span>
+          <h3 class="disp">{{ t.doneTitle }}</h3>
+          <p class="ptext">{{ p.outDone }}</p>
+          <a class="lnk" href="#best">{{ t.meanwhile }}</a>
+        </div>
+
+        <p class="small">{{ t.small }}</p>
+      </form>
+      <a class="lnk center" href="{{ wa }}" data-track="whatsapp-form">{{ ico("wa", "teal") }}{{ t.rather }}</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="sec sand" aria-labelledby="faq-h">
+  <div class="wrap faqgrid">
+    <div class="faqhead"><h2 id="faq-h" class="h2 reveal">{{ t.faqTitle }}</h2></div>
+    <div class="faq">
+      {% for q in p.faq %}<details><summary>{{ q.q }} <span class="pm" aria-hidden="true">{{ ico("plus") }}</span></summary><p>{{ q.a }}</p></details>
+      {% endfor %}</div>
+  </div>
+</section>
+
+<section id="close" class="closesec">
+  <div class="wrap closerow">
+    <a class="lnk close-all" href="{{ p.root }}apps/storefront/">{{ p.browseAll }} {{ ico("arrow") }}</a>
+    <a class="lnk close-wa" href="{{ wa }}" data-track="whatsapp-close">{{ ico("wa", "teal") }}{{ t.closeContact }}</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>{{ brand("#top") }}<p>{{ t.footer }}</p></div>
+      <nav aria-label="Footer">
+        <a href="#trial">{{ t.footTrial }}</a>
+        <a href="{{ p.root }}catalogo/">{{ t.footCatalog }}</a>
+        <a href="{{ wa }}" data-track="whatsapp-footer">WhatsApp</a>
+        <a href="mailto:{{ site.orderEmail }}">Email</a>
+      </nav>
+    </div>
+    <p class="legal">© 2026 {{ site.legalName }} · Miami Peculiar is a Studio Lab brand</p>
+  </div>
+</footer>
+
+<script src="{{ A }}/order.js"></script>
+<script src="{{ A }}/trial.js"></script>
+</body>
+</html>

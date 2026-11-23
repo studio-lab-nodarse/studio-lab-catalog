@@ -12,7 +12,7 @@ Human-readable reference for the values that recur across the site (order channe
 | Storefront sub-brand | Miami Peculiar |
 | Legal entity | Nodarse Arts LLC |
 | Artist / founder | Jesús Nodarse |
-| Pricing model | Order-to-quote — **no public prices shown anywhere** ("Pedido para cotizar") |
+| Pricing model | Order-to-quote. **No wholesale prices shown anywhere.** The trial page shows suggested retail and a margin range (decision D4), from repo Variables |
 | Market / theme | Miami · Cuban-American (English-first audience; content is bilingual) |
 | Languages | `en` + `es` (bilingual, runtime JS toggle — same URL) |
 | Default `lang` | **`en`** (primary market, decided 2026-07-21). Pages must SHIP English so `setLang()` is a no-op on load — the build's `defaultLangEn` transform enforces this, and CI fails on any element shipping `es`. `og:locale` is `en_US`, alternate `es_US`. |
@@ -39,11 +39,20 @@ Human-readable reference for the values that recur across the site (order channe
 
 | Page | Path |
 |------|------|
-| **Catálogo 2026** | `/studio-lab-catalog/` — the root page (restored 2026-07-23) |
+| **Trial-box page** | `/` (English), `/es/` (Spanish) |
+| **Catálogo 2026** | `/catalogo/` (source: `index.html` at the repo root; moved from `/` when the trial page took the root) |
 
 | Storefront hub (Miami Peculiar) | `/apps/storefront/` |
 | Caps / Magnets / Stickers | `/apps/storefront/{gorras,magnets,stickers}.html` |
 | Collections | `/apps/storefront/colecciones/{miami,cuban-american,miami-beach}.html` |
+
+## Trial page values (GitHub repo Variables)
+
+Settings → Secrets and variables → Actions → **Variables**. To change one: edit it, then re-run "Deploy static content to Pages". Empty hides that block; a malformed value fails the build. Names and formats: [`.env.example`](../.env.example) and `src/_data/trial.js`. Analytics: `GOATCOUNTER_CODE` (empty = no script); events `trial-start`, `trial-submit`, `trial-submit-outside`, `trial-error`, `whatsapp-*`.
+
+## Switching to a custom domain
+
+Change the base in: `src/_data/site.json`, `index.html` (28 refs), `sitemap.xml`, `robots.txt`, `assets/cart.js` (`PROD`), `src/_vendor/hub.html` (URL strings only), `tools/verify_site.py` (`BASE`), `404.html` (its link is `/studio-lab-catalog/…`). Then set the domain in the repo's Pages settings, add the DNS records, and turn on HTTPS. The catalog tool may also write the old base into new cards: check its next PR.
 
 ## Brand assets
 

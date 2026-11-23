@@ -30,20 +30,25 @@
     if (!t.parentNode) document.body.appendChild(t);
     if (kind) setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 6000);
   }
-  function send(url) {
-    var o = parse(url);
-    toast("Enviando pedido…");
+  // POST genérico a FormSubmit. Sólo resuelve si FormSubmit CONFIRMA el envío:
+  // un 200 con success:"false" (p. ej. cuenta sin activar) también rechaza.
+  function post(payload) {
     return fetch(ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({ _subject: o.subject, _template: "box", _captcha: "false", Pedido: o.body })
+      body: JSON.stringify(payload)
     }).then(function (r) { if (!r.ok) throw new Error("http"); return r.json(); })
       .then(function (d) {
-        if (d && (d.success === "true" || d.success === true)) {
-          toast("✓ ¡Pedido enviado! Te contactaremos pronto.", "ok");
-        } else {
-          throw new Error("pending");
-        }
+        if (d && (d.success === "true" || d.success === true)) return d;
+        throw new Error("pending");
+      });
+  }
+  function send(url) {
+    var o = parse(url);
+    toast("Enviando pedido…");
+    return post({ _subject: o.subject, _template: "box", _captcha: "false", Pedido: o.body })
+      .then(function () {
+        toast("✓ ¡Pedido enviado! Te contactaremos pronto.", "ok");
         if (o.wa) window.open(url, "_blank"); // WhatsApp queda como canal secundario
       })
       .catch(function () {
@@ -55,4 +60,6 @@
   window.__slp = { set href(v) { send(String(v)); }, get href() { return ""; } };
   // sink de WhatsApp: el código hace  window.__slwa('https://wa.me/...')
   window.__slwa = function (u) { send(String(u)); };
+  // formulario de caja de prueba (assets/trial.js): único endpoint, aquí
+  window.__slSubmit = post;
 })();

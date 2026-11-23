@@ -9,6 +9,15 @@ Outstanding items. The remediation phases (P1–P4) are done; see [REMEDIATION-P
 - [ ] **Activate FormSubmit.** Orders POST to `formsubmit.co/ajax/jesusnodarse1823@gmail.com`, which needs a one-time confirmation. Submit one test order → click the activation link FormSubmit emails to that inbox. Until then, orders fall back to opening the mail client / WhatsApp (nothing lost, but not captured to inbox).
 - [ ] **Branch protection on `main`.** Enable it and mark the "Verify site" check as required, so a red CI (`tools/verify_site.py`) actually blocks the merge/deploy. GitHub repo setting — cannot be done in a file.
 
+## 🚀 Trial page launch
+- [ ] Shelf/counter photos in `src/_data/shelfPhotos.json` (**do not merge before this**).
+- [ ] Owner OKs the catalog moving to `/catalogo/` and confirms his tool doesn't read the live root.
+- [ ] Repo Variables set (`.env.example`); `GOATCOUNTER_CODE` too.
+- [ ] FormSubmit activated; one real trial request reaches the inbox.
+- [ ] Domain bought, connected, base switched (SITE-CONFIG → "Switching to a custom domain").
+- [ ] Owner confirms claims, terms, box contents, top 4 and the signed note.
+- [ ] Before the first box ships: reorder page + QR cards (the page promises them).
+
 ## 🔜 Should do soon
 - [ ] Push branch `cami/folder-structure-org-3f2f9f` and open a PR (12 commits, currently unpushed).
 - [ ] Switch FormSubmit to its **hashed alias endpoint** so the order email isn't exposed in client JS (needs one-time FormSubmit setup).

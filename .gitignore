@@ -1,5 +1,6 @@
 node_modules/
 _site/
+.env
 .DS_Store
 
 # Machine-local Claude Code settings; .claude/launch.json IS tracked (dev server config)

@@ -10,9 +10,9 @@ A static site hosting **the "Miami Peculiar" storefront**, built with **Eleventy
 - **`assets/`** — shared runtime code + images, passed through verbatim: `order.js`, `cart.js`, `flip.js`, `hub-nav.js`, `brand.css`, `masthead.css`, and content-hashed images in `assets/img/`.
 
 **Two stylesheets, deliberately split:** `masthead.css` holds the site header and is loaded by **every** page including the hub; its tokens are declared on `header`, *not* `:root`. `brand.css` holds everything else (page tokens, cards, cart, footer) and is loaded only by the six templated pages. They are separate because the hub can't take `brand.css`: its `:root` block collides with the hub's shadcn tokens (`--card`, `--accent`), and its `body .grid` rule collides with Tailwind's `.grid` utility, which the hub uses. CI enforces both halves of this.
-- **`index.html`** (root) — the **"Catálogo 2026" app**, restored to its original home at `/` on 2026-07-23 (it was the root page until the 2026-07-16 reorg, then briefly retired). Hand-authored, passed through verbatim — *not* templated, so edit it directly and surgically. It is Spanish-only (no `data-es`/`data-en` mechanism) and its category tabs are onclick-driven, so `verify_site.py` exempts it from the shipped-language and dead-anchor checks.
+- **`index.html`** (repo root) — the **"Catálogo 2026" app's source**. Hand-authored, Spanish-only, *not* templated: edit it directly and surgically. **Never move or rename it**: the owner's catalog tool opens `catalog/add-*` PRs against this exact file. It is *published* at **`/catalogo/`** (`src/catalogo.njk` + the `catalogShell` filter, which rewrites only its asset paths, canonical/og/JSON-LD URLs and order links, and fails the build if one is missing). `verify_site.py` exempts it from the shipped-language and dead-anchor checks.
 
-The live page set is: the **catalog at `/`**, the storefront hub at `/apps/storefront/`, plus `gorras`, `magnets`, `stickers`, and `colecciones/{miami,cuban-american,miami-beach}`.
+The live page set is: the **trial-box page at `/` (EN) and `/es/` (ES)**, the catalog at `/catalogo/`, the storefront hub at `/apps/storefront/`, plus `gorras`, `magnets`, `stickers`, `totes`, `coasters`, and `colecciones/{miami,cuban-american,miami-beach}`.
 
 ## Two kinds of page — know which one you're editing
 
@@ -44,6 +44,14 @@ The filter throws if either anchor is missing, so a bad injection fails the buil
 React's header stays in the DOM (hidden) because its EN/ES buttons still own the app's language state — the hub's bilingual content is React state, *not* the `data-es` mechanism the other pages use. `assets/hub-nav.js` defines `slHubLang()`, which forwards clicks from the shared toggle to those hidden buttons and mirrors the active state. It also still wires the bundle's dead placeholder anchors.
 
 Images are **not** inlined: they live as content-hashed files in `assets/img/` and are referenced by relative path. Do not re-inline base64 (CI fails on it).
+
+**3. The trial-box page — its own look, two static languages.**
+`src/trial.njk` renders `/` and `/es/` from `src/_data/trialPages.js` (all copy, EN + ES side by side). It does **not** load `brand.css`, `masthead.css` or the cart, and does not use the `data-es` mechanism: each language is its own page. Styles: `src/_includes/styles/trial.css` (phone first, desktop from 960px). Behaviour: `assets/trial.js` (menu, form states, analytics events); sending goes through `window.__slSubmit` in `order.js`, the only place with the FormSubmit endpoint.
+
+- **Every number is an environment variable** read only by `src/_data/trial.js` (GitHub repo Variables in CI, a git-ignored `.env` locally; names in `.env.example`). **Empty = that block is hidden; malformed = the build fails.** Never hard-code a number or a placeholder in the copy.
+- **Shelf photos:** put files in `assets/img/` and list them in `src/_data/shelfPhotos.json` (`img`, `shop`, `area`, `altEn`, `altEs`). The layout follows how many there are (1–4). Empty list = the section becomes "Why it sells".
+- `trial.js` must keep a **default export only**: a second named export makes Eleventy pass templates the module object, and every value silently turns empty.
+- `/?order=…` on either page forwards to `/catalogo/`: order links shared before the catalog moved point at the root.
 
 ### FROZEN — do not re-paste AI-builder exports
 

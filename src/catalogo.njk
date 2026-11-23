@@ -1,0 +1,8 @@
+---
+permalink: catalogo/index.html
+---
+{#
+  The "Catálogo 2026" app. Source: the hand-authored index.html at the repo root
+  (the owner's catalog tool edits that file). Never parsed as a template.
+-#}
+{{ "index.html" | catalogShell(site.base) | safe }}

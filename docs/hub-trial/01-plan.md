@@ -1,6 +1,8 @@
 # Hub trial — Phase 1 plan
 
-Status: **approved with owner answers** · 2026-10-10
+Status: **page built 2026-11-23** on `feat/trial-page` from the Claude Design canvas (Final boards). Where this plan and the canvas differ, the canvas won. Main differences: the page lives at `/` + `/es/` (the hub stays as is, so D1/D3/D8 and PR B steps 7–10, 15 and 18 did not happen), one-step form, catalog moved to `/catalogo/`. Still open: reorder page and QR card (§3, §4).
+
+Original status: approved with owner answers · 2026-10-10
 Inputs: [00-brief](00-brief.md) · [reuse-inventory](research/reuse-inventory.md) · [hub-content](research/hub-content.md) · [market](research/market.md)
 
 **Owner answers (2026-10-10):**

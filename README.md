@@ -23,19 +23,22 @@ src/                       ← edit here
     magnets.json           Magnets — also drives the 3 collection pages
     gorras.json            Caps + colourways
     stickers.json          Stickers, grouped into sections
+    trial.js               Trial page values, from env vars (see .env.example)
+    trialPages.js          Trial page copy, EN + ES
+    shelfPhotos.json       Trial page shelf photos
   _includes/               Shared layout, partials, card macros, per-page CSS
   _vendor/hub.html         Pre-built React hub — never edited, never parsed;
                            index.njk injects the shared masthead into it
 
 assets/                    Shared runtime + images: order.js, cart.js, flip.js,
                            hub-nav.js, brand.css, masthead.css, img/
-index.html                 Root → the "Catálogo 2026" app (hand-authored, not templated)
+index.html                 Source of the "Catálogo 2026" app (hand-authored; published at /catalogo/)
 _site/                     Build output (gitignored — never commit)
 ```
 
 ## Deploy
 
-Push to `main` → GitHub Actions builds with Eleventy and publishes `_site/` (`.github/workflows/static.yml`). The invariant checks run against the built output, so a bad build never ships. `deprecated/` and `src/` are never copied into `_site/`. Root `/` serves the Catálogo 2026 app; the storefront lives at `/apps/storefront/`.
+Push to `main` → GitHub Actions builds with Eleventy and publishes `_site/` (`.github/workflows/static.yml`). The invariant checks run against the built output, so a bad build never ships. `deprecated/` and `src/` are never copied into `_site/`. Root `/` serves the trial-box page (`src/trial.njk`, Spanish at `/es/`); the catalog lives at `/catalogo/` and the storefront at `/apps/storefront/`.
 
 Work on a branch and open a PR — merging to `main` publishes.
 

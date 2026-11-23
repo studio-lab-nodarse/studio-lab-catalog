@@ -33,12 +33,44 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
       - name: Install dependencies
         run: npm ci
       - name: Build site
         run: npm run build
+        # Trial-page values (repo Variables). Empty = that block is hidden.
+        env:
+          PROOF_STORES: ${{ vars.PROOF_STORES }}
+          PROOF_UNITS_SOLD: ${{ vars.PROOF_UNITS_SOLD }}
+          PROOF_REORDER_RATE: ${{ vars.PROOF_REORDER_RATE }}
+          PROOF_YEARS: ${{ vars.PROOF_YEARS }}
+          PROOF_SHOPS: ${{ vars.PROOF_SHOPS }}
+          PROOF_QUOTE: ${{ vars.PROOF_QUOTE }}
+          PROOF_QUOTE_ES: ${{ vars.PROOF_QUOTE_ES }}
+          PROOF_QUOTE_BY: ${{ vars.PROOF_QUOTE_BY }}
+          PRICE_MAGNET_RETAIL: ${{ vars.PRICE_MAGNET_RETAIL }}
+          PRICE_STICKER_RETAIL: ${{ vars.PRICE_STICKER_RETAIL }}
+          PRICE_CAP_RETAIL: ${{ vars.PRICE_CAP_RETAIL }}
+          PRICE_TOTE_RETAIL: ${{ vars.PRICE_TOTE_RETAIL }}
+          PRICE_COASTER_RETAIL: ${{ vars.PRICE_COASTER_RETAIL }}
+          MARGIN_FLOOR_PCT: ${{ vars.MARGIN_FLOOR_PCT }}
+          MARGIN_TOP_PCT: ${{ vars.MARGIN_TOP_PCT }}
+          BOX_MAGNETS: ${{ vars.BOX_MAGNETS }}
+          BOX_STICKERS: ${{ vars.BOX_STICKERS }}
+          BOX_COASTERS: ${{ vars.BOX_COASTERS }}
+          BOX_CAPS: ${{ vars.BOX_CAPS }}
+          BOX_TOTES: ${{ vars.BOX_TOTES }}
+          BOX_VALUE_RETAIL: ${{ vars.BOX_VALUE_RETAIL }}
+          TRIAL_REPLY_DAYS: ${{ vars.TRIAL_REPLY_DAYS }}
+          TRIAL_SHIP_DAYS: ${{ vars.TRIAL_SHIP_DAYS }}
+          REORDER_DAYS: ${{ vars.REORDER_DAYS }}
+          TRIAL_REORDER_MIN: ${{ vars.TRIAL_REORDER_MIN }}
+          CUSTOM_MIN: ${{ vars.CUSTOM_MIN }}
+          CUSTOM_LEAD_DAYS: ${{ vars.CUSTOM_LEAD_DAYS }}
+          TRIAL_ZIP_MIN: ${{ vars.TRIAL_ZIP_MIN }}
+          TRIAL_ZIP_MAX: ${{ vars.TRIAL_ZIP_MAX }}
+          GOATCOUNTER_CODE: ${{ vars.GOATCOUNTER_CODE }}
       - name: Verify site invariants
         # Same gate as CI, run against the built output — a bad build never ships.
         run: python3 tools/verify_site.py _site

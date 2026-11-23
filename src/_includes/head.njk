@@ -24,26 +24,7 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": ["Organization", "Store"],
-      "@id": "{{ site.base }}#org",
-      "name": "{{ site.brand }}",
-      "legalName": "{{ site.legalName }}",
-      "brand": "{{ site.subBrand }}",
-      "founder": { "@type": "Person", "name": "{{ site.founder }}" },
-      "url": "{{ site.base }}",
-      "logo": "{{ site.base }}assets/favicon.png",
-      "image": "{{ site.base }}assets/og/default.jpg",
-      "areaServed": { "@type": "City", "name": "{{ site.areaServed }}" },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "sales",
-        "telephone": "{{ site.phone }}",
-        "email": "{{ site.orderEmail }}",
-        "availableLanguage": ["es", "en"]
-      }
-    },
-    {
+{% include "org-node.njk" %}    {
       "@type": "CollectionPage",
       "@id": "{{ site.base }}{{ pagePath }}#webpage",
       "url": "{{ site.base }}{{ pagePath }}",
@@ -69,4 +50,4 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ assetsBase }}/brand.css">
-<link rel="stylesheet" href="{{ assetsBase }}/masthead.css">
+<link rel="stylesheet" href="{{ assetsBase }}/masthead.css">{% include "analytics.njk" %}

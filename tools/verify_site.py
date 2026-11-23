@@ -24,6 +24,8 @@ if len(sys.argv) > 1:
 BASE = "https://studio-lab-nodarse.github.io/studio-lab-catalog/"
 PAGES = [
     "index.html",
+    "es/index.html",
+    "catalogo/index.html",
     "apps/storefront/index.html",
     "apps/storefront/gorras.html",
     "apps/storefront/magnets.html",
@@ -39,7 +41,10 @@ PAGE_SIZE_BUDGET = 800 * 1024  # bytes; catches a re-pasted export / re-inlined 
 ORDER_EMAIL = "jesusnodarse1823@gmail.com"   # live order destination (SITE-CONFIG.md)
 WHATSAPP = "17864834268"                     # canonical WhatsApp number, digits only
 ORDER_JS = "assets/order.js"                 # shared FormSubmit capture script
-APP_PAGES = [p for p in PAGES if p != "index.html"]  # order-form pages (root landing has none)
+# The trial-box page: the site root (English) and its Spanish twin. Standalone
+# look: own header/footer, no brand.css / masthead.css / cart.
+TRIAL_PAGES = ["index.html", "es/index.html"]
+PAGE_LANG = {"es/index.html": "es"}          # pages that don't ship DEFAULT_LANG
 BRAND_CSS = "assets/brand.css"               # shared Miami Peculiar tokens + footer
 # category/collection pages that consume the shared brand stylesheet (the hub
 # uses its own shadcn tokens; catalog/root are a separate surface)
@@ -60,11 +65,13 @@ MASTHEAD_PAGES = THEMED_PAGES + [HUB]
 # on load. Shipping the other language caused a visible ES->EN repaint after
 # first paint on every page (~1260 elements). See the `defaultLangEn` transform.
 DEFAULT_LANG = "en"
-# The root page is the "Catálogo 2026" app: hand-authored, Spanish-only (it has
-# no data-es/data-en mechanism at all), and its category tabs are onclick-driven
-# rather than href targets. It is therefore exempt from the shipped-language and
-# dead-anchor checks, both of which describe the bilingual storefront pages.
-CATALOG = "index.html"
+# The "Catálogo 2026" app: hand-authored, Spanish-only (it has no data-es/data-en
+# mechanism at all), and its category tabs are onclick-driven rather than href
+# targets. It is therefore exempt from the shipped-language and dead-anchor checks,
+# both of which describe the bilingual storefront pages. Its SOURCE is the repo
+# root index.html (the owner's catalog tool edits that file); it is published here.
+CATALOG = "catalogo/index.html"
+APP_PAGES = [p for p in PAGES if p != CATALOG]  # pages that must load order.js (the catalog is checked in 6n)
 # Masthead nav, checked by its bilingual pair so the assertion holds whichever
 # language ships. es -> en.
 NAV_LINKS = [("Gorras", "Caps"), ("Magnets", "Magnets"), ("Stickers", "Stickers")]
@@ -129,7 +136,8 @@ for p in present:
         err(f"[seo] {p} has {s.count('<title>')} <title> tags (want 1)")
     needs = [('rel="canonical"', "canonical"), ("og:title", "og:title")]
     if p != CATALOG:      # Spanish-only page; declaring lang="es" is correct for it
-        needs.append((f'lang="{DEFAULT_LANG}"', f'lang="{DEFAULT_LANG}"'))
+        lang = PAGE_LANG.get(p, DEFAULT_LANG)
+        needs.append((f'<html lang="{lang}"', f'<html lang="{lang}"'))
     for need, label in needs:
         if need not in s:
             err(f"[seo] {p} missing {label}")
@@ -156,7 +164,7 @@ else:
     ojs = read(ORDER_JS)
     if f"formsubmit.co/ajax/{ORDER_EMAIL}" not in ojs:
         err(f"[order-js] {ORDER_JS} FormSubmit endpoint != ORDER_EMAIL ({ORDER_EMAIL})")
-src_ref = re.compile(r'<script src="((?:\.\./)+assets/order\.js)"></script>')
+src_ref = re.compile(r'<script src="((?:\.\./)*assets/order\.js)"></script>')
 for p in APP_PAGES:
     if p not in present:
         continue
@@ -174,7 +182,7 @@ for p in APP_PAGES:
 # 6c. contact-channel drift: order email present, WhatsApp number consistent
 for p in present:
     s = read(p)
-    if ("mailto:" in s or "contactPoint" in s) and ORDER_EMAIL not in s and p != "index.html":
+    if ("mailto:" in s or "contactPoint" in s) and ORDER_EMAIL not in s and p != CATALOG:
         err(f"[contact] {p} has a mailto/contactPoint but no {ORDER_EMAIL}")
     for m in set(re.findall(r"wa\.me/(\d+)", s)):
         if m != WHATSAPP:
@@ -214,6 +222,8 @@ def org_node(s):
 for label, extract in [("footer", footer_block), ("org-jsonld", org_node)]:
     seen = {}
     for p in present:
+        if label == "footer" and p in TRIAL_PAGES:   # own footer by design
+            continue
         v = extract(read(p))
         if v is None:
             err(f"[{label}] {p} has no {label} block")
@@ -387,12 +397,61 @@ hub = "apps/storefront/index.html"
 if hub in present and "assets/hub-nav.js" not in read(hub):
     err(f"[dead-anchor] {hub} does not load assets/hub-nav.js (hub nav anchors unwired)")
 
-# 6m. the catalog (root page): its assets resolve and it keeps its own canonical.
-#     It is a hand-authored, Spanish-only app — see CATALOG exemptions above.
+# 6n. the catalog: its assets resolve from /catalogo/, and everything that says
+#     "this page" (canonical, shared order links) points there, not at the root.
 if os.path.isfile(CATALOG):
-    for m in set(re.findall(r"(assets/[A-Za-z0-9_./\-]+)", read(CATALOG))):
+    s = read(CATALOG)
+    for m in set(re.findall(r"(assets/[A-Za-z0-9_./\-]+)", s)):
         if not os.path.isfile(m):
             err(f"[catalog] {CATALOG} -> {m} (missing)")
+    if re.search(r"""["'(]assets/""", s):
+        err(f"[catalog] {CATALOG} has root-relative assets/ refs (they 404 under /catalogo/)")
+    if f'<link rel="canonical" href="{BASE}catalogo/">' not in s:
+        err(f"[catalog] {CATALOG} canonical is not {BASE}catalogo/")
+    if f"{BASE}catalogo/?order=" not in s or f"{BASE}?order=" in s:
+        err(f"[catalog] {CATALOG} order links must point at {BASE}catalogo/?order=")
+
+# 6o. trial page: form wiring, links out, no leaked template values
+TRIAL_FIELDS = ["store", "name", "phone", "zip", "email", "custom", "_honey"]
+TRIAL_PANELS = ["form", "outside", "net", "already", "done", "doneout"]
+for p in TRIAL_PAGES:
+    if p not in present:
+        continue
+    s = read(p)
+    up = "../" if "/" in p else ""
+    for f in TRIAL_FIELDS:
+        if f'name="{f}"' not in s:
+            err(f"[trial] {p} form is missing the {f} field")
+    for f in TRIAL_PANELS:
+        if f'data-panel="{f}"' not in s:
+            err(f"[trial] {p} is missing the {f} state")
+    if not re.search(r'data-zip-min="\d{5}" data-zip-max="\d{5}"', s):
+        err(f"[trial] {p} has no Florida ZIP range")
+    if f'<script src="{up}assets/trial.js"></script>' not in s:
+        err(f"[trial] {p} does not load assets/trial.js")
+    for href in [f'{up}catalogo/', f'{up}apps/storefront/']:
+        if f'href="{href}"' not in s:
+            err(f"[trial] {p} does not link {href}")
+    # order links shared before the catalog moved (/?order=…) must still open
+    if f'location.replace("{up}catalogo/"+location.search)' not in s:
+        err(f"[trial] {p} does not forward old /?order= links to the catalog")
+    for m in set(re.findall(r'(?:src|srcset)="((?:\.\./)?assets/[^"]+)"', s)):
+        if not os.path.isfile(os.path.normpath(os.path.join(os.path.dirname(p), m))):
+            err(f"[trial] {p} -> {m} (missing)")
+    body = re.sub(r"<(script|style)\b.*?</\1>", "", s, flags=re.S)
+    for bad in ["undefined", "NaN", "{{", "[object", "$ ", "Sunny Days Gifts"]:
+        if bad in body:
+            err(f"[trial] {p} contains {bad!r} (empty value or placeholder leaked)")
+    n = len(re.findall(r"<h1\b", s))
+    if n != 1:
+        err(f"[trial] {p} has {n} <h1> (want 1)")
+if os.path.isfile("assets/trial.js"):
+    if "formsubmit.co" in read("assets/trial.js"):
+        err(f"[trial] assets/trial.js must not carry a FormSubmit endpoint; it lives in {ORDER_JS}")
+else:
+    err("[trial] missing assets/trial.js")
+if os.path.isfile(ORDER_JS) and "window.__slSubmit" not in read(ORDER_JS):
+    err(f"[trial] {ORDER_JS} does not expose __slSubmit (trial form can't send)")
 
 # 7. brand + ops assets exist
 for a in BRAND_ASSETS:
