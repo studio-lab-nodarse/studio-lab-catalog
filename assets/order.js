@@ -30,25 +30,41 @@
     if (!t.parentNode) document.body.appendChild(t);
     if (kind) setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 6000);
   }
+  // Sólo resuelve si FormSubmit CONFIRMA el envío. A veces tarda en contestar (o no
+  // contesta): a los 20 s se da por no confirmado y se usa el canal original.
+  var TIMEOUT = 20000;
+  function post(payload) {
+    var request = fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (r) { if (!r.ok) throw new Error("http"); return r.json(); })
+      .then(function (d) {
+        if (d && (d.success === "true" || d.success === true)) return d;
+        throw new Error("pending");
+      });
+    return new Promise(function (resolve, reject) {
+      var timer = setTimeout(function () { reject(new Error("timeout")); }, TIMEOUT);
+      request.then(
+        function (d) { clearTimeout(timer); resolve(d); },
+        function (e) { clearTimeout(timer); reject(e); }
+      );
+    });
+  }
   function send(url) {
     var o = parse(url);
     toast("Enviando pedido…");
-    return fetch(ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({ _subject: o.subject, _template: "box", _captcha: "false", Pedido: o.body })
-    }).then(function (r) { if (!r.ok) throw new Error("http"); return r.json(); })
-      .then(function (d) {
-        if (d && (d.success === "true" || d.success === true)) {
-          toast("✓ ¡Pedido enviado! Te contactaremos pronto.", "ok");
-        } else {
-          throw new Error("pending");
-        }
+    return post({ _subject: o.subject, _template: "box", _captcha: "false", Pedido: o.body })
+      .then(function () {
+        toast("✓ ¡Pedido enviado! Te contactaremos pronto.", "ok");
         if (o.wa) window.open(url, "_blank"); // WhatsApp queda como canal secundario
       })
       .catch(function () {
-        // nunca perder un pedido: cae al canal original
-        if (o.wa) window.open(url, "_blank"); else window.location.href = url;
+        // nunca perder un pedido: cae al canal original. Tras una espera larga el
+        // navegador puede bloquear la ventana nueva; entonces abre en esta misma.
+        var t = document.getElementById("__sl_toast");
+        if (t && t.parentNode) t.parentNode.removeChild(t);
+        if (!o.wa || !window.open(url, "_blank")) window.location.href = url;
       });
   }
   // sink de mailto: el código de la app hace  window.__slp.href = 'mailto:...'
